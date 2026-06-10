@@ -290,7 +290,7 @@
 <div class="container">
   <header>
     <h1>Optimistディンギー クイズ</h1>
-    <div class="subtitle" id="subtitle"><ruby>帆走<rt>はんそう</rt></ruby>ルール・<ruby>旗<rt>はた</rt></ruby>・セッティングまで<ruby>全<rt>ぜん</rt></ruby>132<ruby>問<rt>もん</rt></ruby></div>
+    <div class="subtitle" id="subtitle"><ruby>帆走<rt>はんそう</rt></ruby>ルール・<ruby>旗<rt>はた</rt></ruby>・セッティングまで<ruby>全<rt>ぜん</rt></ruby>150<ruby>問<rt>もん</rt></ruby></div>
     <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
   </header>
   <main>
@@ -973,7 +973,7 @@ const quizData = [
   },
   {
     cat: 'setting',
-    q: 'レーキを<ruby>起<rt>お</rt></ruby>こす（<ruby>数値<rt>すうち</rt></ruby><ruby>大<rt>だい</rt></ruby>＝マストを<ruby>立<rt>た</rt></ruby>てる）と？',
+    q: 'レーキを<ruby>起<rt>お</rt></ruby>こす（マストを<ruby>立<rt>た</rt></ruby>てる）と？',
     options: ['ウェザーが<ruby>強<rt>つよ</rt></ruby>くなる', 'ウェザーが<ruby>弱<rt>よわ</rt></ruby>くなり<ruby>重心<rt>じゅうしん</rt></ruby>が<ruby>前<rt>まえ</rt></ruby>に', '<ruby>速<rt>はや</rt></ruby>くなる', 'ヒールが<ruby>大<rt>おお</rt></ruby>きくなる'],
     answer: 1,
     explain: 'レーキを<ruby>起<rt>お</rt></ruby>こすほどウェザーが<ruby>弱<rt>よわ</rt></ruby>くなり、セールの<ruby>重心<rt>じゅうしん</rt></ruby>が<ruby>前<rt>まえ</rt></ruby>に<ruby>行<rt>い</rt></ruby>く。'
@@ -1027,14 +1027,14 @@ const quizData = [
     q: '<ruby>強風<rt>きょうふう</rt></ruby>（8〜12m）のレーキの<ruby>目安<rt>めやす</rt></ruby>は？',
     options: ['2780〜2800', '2800〜2840', '2820〜2860', '2740〜2820'],
     answer: 2,
-    explain: '<ruby>強風<rt>きょうふう</rt></ruby>のレーキは2820〜2860<ruby>mm<rt>みりめーとる</rt></ruby>。<ruby>長<rt>なが</rt></ruby>めにしてウェザー<ruby>弱<rt>よわ</rt></ruby>めに。'
+    explain: '<ruby>強風<rt>きょうふう</rt></ruby>のレーキは2820〜2860<ruby>mm<rt>みりめーとる</rt></ruby>。レーキを<ruby>起<rt>お</rt></ruby>こしてウェザーを<ruby>弱<rt>よわ</rt></ruby>める。'
   },
   {
     cat: 'setdetail',
     q: '<ruby>超強風<rt>ちょうきょうふう</rt></ruby>（12m〜）のレーキは<ruby>強風<rt>きょうふう</rt></ruby>と<ruby>比<rt>くら</rt></ruby>べてどうする？',
-    options: ['もっと<ruby>長<rt>なが</rt></ruby>くする', '<ruby>短<rt>みじか</rt></ruby>くする（2740〜2820）', '<ruby>変<rt>か</rt></ruby>えない', '<ruby>関係<rt>かんけい</rt></ruby>ない'],
+    options: ['もっと<ruby>起<rt>お</rt></ruby>こす', '<ruby>倒<rt>たお</rt></ruby>す（2740〜2820）', '<ruby>変<rt>か</rt></ruby>えない', '<ruby>関係<rt>かんけい</rt></ruby>ない'],
     answer: 1,
-    explain: '<ruby>超強風<rt>ちょうきょうふう</rt></ruby>はレーキを<ruby>短<rt>みじか</rt></ruby>くして（2740〜2820）<ruby>艇<rt>てい</rt></ruby>を<ruby>抑<rt>おさ</rt></ruby>えやすくする。'
+    explain: '<ruby>超強風<rt>ちょうきょうふう</rt></ruby>はレーキを<ruby>倒<rt>たお</rt></ruby>して（2740〜2820）<ruby>艇<rt>てい</rt></ruby>を<ruby>抑<rt>おさ</rt></ruby>えやすくする。'
   },
   {
     cat: 'setdetail',
@@ -1080,10 +1080,10 @@ const quizData = [
   },
   {
     cat: 'setdetail',
-    q: 'プリベンドを<ruby>強<rt>つよ</rt></ruby>くしたい<ruby>時<rt>とき</rt></ruby>のやり<ruby>方<rt>かた</rt></ruby>は？',
+    q: 'ラフのテンションを<ruby>強<rt>つよ</rt></ruby>くしたい<ruby>時<rt>とき</rt></ruby>、プリベンダーはどうする？',
     options: ['ひもをねじってかける', 'ひもをかけない', 'マストを<ruby>叩<rt>たた</rt></ruby>く', 'バングを<ruby>緩<rt>ゆる</rt></ruby>める'],
     answer: 1,
-    explain: 'プリベンド：ひもをかけない＝<ruby>強<rt>つよ</rt></ruby>く、ねじってかける＝<ruby>弱<rt>よわ</rt></ruby>く。<ruby>強<rt>つよ</rt></ruby>くするほどトップリーチが<ruby>開<rt>ひら</rt></ruby>く。'
+    explain: 'プリベンダー：ひもをかけない＝<ruby>強<rt>つよ</rt></ruby>く<ruby>固定<rt>こてい</rt></ruby>、ねじってかける＝<ruby>弱<rt>よわ</rt></ruby>く。<ruby>強<rt>つよ</rt></ruby>くするとラフのテンションが<ruby>強<rt>つよ</rt></ruby>くなり、トップリーチが<ruby>開<rt>ひら</rt></ruby>く。'
   },
 
   // ===== セッティング（ガイドベース）30問 =====
@@ -1192,10 +1192,10 @@ const quizData = [
   },
   {
     cat: 'setting',
-    q: 'レーキを<ruby>後傾<rt>こうけい</rt></ruby>（マストを<ruby>倒<rt>たお</rt></ruby>す）にすると？',
+    q: 'レーキを<ruby>倒<rt>たお</rt></ruby>す（マストを<ruby>後<rt>うし</rt></ruby>ろに<ruby>傾<rt>かたむ</rt></ruby>ける）と？',
     options: ['ヘルムが<ruby>軽<rt>かる</rt></ruby>くなる', 'CEが<ruby>後<rt>うし</rt></ruby>ろへ→ウェザーヘルム<ruby>増<rt>ぞう</rt></ruby>、<ruby>上<rt>のぼ</rt></ruby>り<ruby>感<rt>かん</rt></ruby>が<ruby>出<rt>で</rt></ruby>る', 'スピードUP', '<ruby>変<rt>か</rt></ruby>わらない'],
     answer: 1,
-    explain: 'レーキ<ruby>後傾<rt>こうけい</rt></ruby>＝CE<ruby>後<rt>うし</rt></ruby>ろへ→ウェザーヘルム<ruby>増<rt>ぞう</rt></ruby>、<ruby>上<rt>のぼ</rt></ruby>り<ruby>感<rt>かん</rt></ruby>UP。<ruby>逆<rt>ぎゃく</rt></ruby>に<ruby>前傾<rt>ぜんけい</rt></ruby>＝ヘルム<ruby>軽<rt>かる</rt></ruby>くベアしやすい。'
+    explain: 'レーキを<ruby>倒<rt>たお</rt></ruby>す＝CE<ruby>後<rt>うし</rt></ruby>ろへ→ウェザーヘルム<ruby>増<rt>ぞう</rt></ruby>、<ruby>上<rt>のぼ</rt></ruby>り<ruby>感<rt>かん</rt></ruby>UP。<ruby>逆<rt>ぎゃく</rt></ruby>にレーキを<ruby>起<rt>お</rt></ruby>こす＝ヘルム<ruby>軽<rt>かる</rt></ruby>くベアしやすい。'
   },
   {
     cat: 'setting',
@@ -1307,9 +1307,9 @@ const quizData = [
   {
     cat: 'parts',
     q: 'Optimistのセールを<ruby>支<rt>ささ</rt></ruby>えている<ruby>斜<rt>なな</rt></ruby>めの<ruby>棒<rt>ぼう</rt></ruby>の<ruby>名前<rt>なまえ</rt></ruby>は？',
-    options: ['ブーム', 'マスト', 'スプリット（スプリート）', 'ティラー'],
+    options: ['ブーム', 'マスト', 'スプリット', 'ティラー'],
     answer: 2,
-    explain: 'スプリット（スプリート）<ruby>棒<rt>ぼう</rt></ruby>。Optimistの<ruby>特徴<rt>とくちょう</rt></ruby>。'
+    explain: 'スプリット<ruby>棒<rt>ぼう</rt></ruby>。Optimistの<ruby>特徴<rt>とくちょう</rt></ruby>。'
   },
   {
     cat: 'parts',
@@ -1345,6 +1345,127 @@ const quizData = [
     options: ['ラフ', 'リーチ', 'フット', 'ヘッド'],
     answer: 1,
     explain: 'リーチ（leech）＝<ruby>後縁<rt>うしろふち</rt></ruby>、ラフ＝<ruby>前縁<rt>まえふち</rt></ruby>、フット＝<ruby>下縁<rt>したふち</rt></ruby>。'
+  },
+
+  // ===== 艤装・パーツ追加 =====
+  {
+    cat: 'parts',
+    q: 'マストの<ruby>役割<rt>やくわり</rt></ruby>は？',
+    options: ['<ruby>艇<rt>てい</rt></ruby>の<ruby>前後<rt>ぜんご</rt></ruby>バランスをとる', 'セールを<ruby>立<rt>た</rt></ruby>てて<ruby>支<rt>ささ</rt></ruby>える<ruby>縦<rt>たて</rt></ruby>の<ruby>棒<rt>ぼう</rt></ruby>', '<ruby>方向<rt>ほうこう</rt></ruby>を<ruby>変<rt>か</rt></ruby>える', '<ruby>横滑<rt>よこすべ</rt></ruby>りを<ruby>防<rt>ふせ</rt></ruby>ぐ'],
+    answer: 1,
+    explain: 'マスト＝セールを<ruby>立<rt>た</rt></ruby>てて<ruby>支<rt>ささ</rt></ruby>える<ruby>縦<rt>たて</rt></ruby>の<ruby>棒<rt>ぼう</rt></ruby>。OPの<ruby>場合<rt>ばあい</rt></ruby>、マストとスプリットでセールを<ruby>立<rt>た</rt></ruby>てる。'
+  },
+  {
+    cat: 'parts',
+    q: 'ブームの<ruby>役割<rt>やくわり</rt></ruby>は？',
+    options: ['セールの<ruby>下端<rt>かたん</rt></ruby>を<ruby>横<rt>よこ</rt></ruby>に<ruby>広<rt>ひろ</rt></ruby>げる<ruby>水平<rt>すいへい</rt></ruby>の<ruby>棒<rt>ぼう</rt></ruby>', 'マストを<ruby>支<rt>ささ</rt></ruby>える', 'ラダーを<ruby>動<rt>うご</rt></ruby>かす', 'センターボードを<ruby>下<rt>お</rt></ruby>ろす'],
+    answer: 0,
+    explain: 'ブーム＝セールの<ruby>下端<rt>かたん</rt></ruby>（フット）を<ruby>横<rt>よこ</rt></ruby>に<ruby>広<rt>ひろ</rt></ruby>げる<ruby>水平<rt>すいへい</rt></ruby>の<ruby>棒<rt>ぼう</rt></ruby>。シートで<ruby>角度<rt>かくど</rt></ruby>を<ruby>変<rt>か</rt></ruby>える。'
+  },
+  {
+    cat: 'parts',
+    q: 'ラダーの<ruby>役割<rt>やくわり</rt></ruby>は？',
+    options: ['<ruby>横揺<rt>よこゆ</rt></ruby>れ<ruby>防止<rt>ぼうし</rt></ruby>', '<ruby>艇<rt>てい</rt></ruby>の<ruby>方向<rt>ほうこう</rt></ruby>を<ruby>変<rt>か</rt></ruby>える<ruby>舵<rt>かじ</rt></ruby>', 'スピードUP', '<ruby>体重<rt>たいじゅう</rt></ruby><ruby>移動<rt>いどう</rt></ruby>'],
+    answer: 1,
+    explain: 'ラダー（rudder）＝<ruby>艇<rt>てい</rt></ruby>の<ruby>方向<rt>ほうこう</rt></ruby>を<ruby>変<rt>か</rt></ruby>える<ruby>舵<rt>かじ</rt></ruby>。ティラーで<ruby>操作<rt>そうさ</rt></ruby>する。'
+  },
+  {
+    cat: 'parts',
+    q: 'フットストラップとは？',
+    options: ['セールの<ruby>下端<rt>かたん</rt></ruby>のロープ', 'ハイクアウト<ruby>時<rt>とき</rt></ruby>に<ruby>足<rt>あし</rt></ruby>を<ruby>引<rt>ひ</rt></ruby>っかけるベルト', 'ブームを<ruby>引<rt>ひ</rt></ruby>く<ruby>装置<rt>そうち</rt></ruby>', '<ruby>艇<rt>てい</rt></ruby>を<ruby>固定<rt>こてい</rt></ruby>する<ruby>金具<rt>かなぐ</rt></ruby>'],
+    answer: 1,
+    explain: 'フットストラップ＝<ruby>艇内<rt>ていない</rt></ruby>の<ruby>床<rt>ゆか</rt></ruby>にある<ruby>足<rt>あし</rt></ruby>を<ruby>引<rt>ひ</rt></ruby>っかけるベルト。ハイクアウト<ruby>時<rt>とき</rt></ruby>に<ruby>足<rt>あし</rt></ruby>を<ruby>固定<rt>こてい</rt></ruby>して<ruby>体<rt>からだ</rt></ruby>を<ruby>外<rt>そと</rt></ruby>に<ruby>出<rt>だ</rt></ruby>す。'
+  },
+  {
+    cat: 'parts',
+    q: 'ペインターとは？',
+    options: ['ペンキ<ruby>係<rt>がかり</rt></ruby>', '<ruby>艇<rt>てい</rt></ruby>の<ruby>前<rt>まえ</rt></ruby>についていて<ruby>係留<rt>けいりゅう</rt></ruby>やトーイング（けん<ruby>引<rt>いん</rt></ruby>）に<ruby>使<rt>つか</rt></ruby>うロープ', 'セールの<ruby>名前<rt>なまえ</rt></ruby>', 'マストの<ruby>装飾<rt>そうしょく</rt></ruby>'],
+    answer: 1,
+    explain: 'ペインター（painter）＝<ruby>艇首<rt>ていしゅ</rt></ruby>の<ruby>係留<rt>けいりゅう</rt></ruby>・トーイング<ruby>用<rt>よう</rt></ruby>ロープ。コーチボートに<ruby>引<rt>ひ</rt></ruby>っ<ruby>張<rt>ぱ</rt></ruby>ってもらう<ruby>時<rt>とき</rt></ruby>などに<ruby>使<rt>つか</rt></ruby>う。'
+  },
+  {
+    cat: 'parts',
+    q: 'バイラー（バケツ）の<ruby>役割<rt>やくわり</rt></ruby>は？',
+    options: ['<ruby>食事<rt>しょくじ</rt></ruby><ruby>用<rt>よう</rt></ruby>', '<ruby>艇内<rt>ていない</rt></ruby>に<ruby>入<rt>はい</rt></ruby>った<ruby>水<rt>みず</rt></ruby>をくみ<ruby>出<rt>だ</rt></ruby>す', 'シートを<ruby>収納<rt>しゅうのう</rt></ruby>', '<ruby>装飾<rt>そうしょく</rt></ruby>'],
+    answer: 1,
+    explain: 'バイラー＝<ruby>艇内<rt>ていない</rt></ruby>の<ruby>水<rt>みず</rt></ruby>をくみ<ruby>出<rt>だ</rt></ruby>すバケツ（または<ruby>排水<rt>はいすい</rt></ruby>器具）。クラスルールでも<ruby>携行<rt>けいこう</rt></ruby><ruby>義務<rt>ぎむ</rt></ruby>。<ruby>沈<rt>ちん</rt></ruby><ruby>後<rt>ご</rt></ruby>などに<ruby>必要<rt>ひつよう</rt></ruby>。'
+  },
+  {
+    cat: 'parts',
+    q: 'セールの<ruby>前<rt>まえ</rt></ruby>の<ruby>縁<rt>ふち</rt></ruby>（マスト<ruby>側<rt>がわ</rt></ruby>）の<ruby>名前<rt>なまえ</rt></ruby>は？',
+    options: ['リーチ', 'ラフ', 'フット', 'ヘッド'],
+    answer: 1,
+    explain: 'ラフ（luff）＝<ruby>前縁<rt>まえふち</rt></ruby>（マスト<ruby>側<rt>がわ</rt></ruby>）。リーチ＝<ruby>後縁<rt>うしろふち</rt></ruby>、フット＝<ruby>下縁<rt>したふち</rt></ruby>。'
+  },
+  {
+    cat: 'parts',
+    q: 'セールの<ruby>下<rt>した</rt></ruby>の<ruby>縁<rt>ふち</rt></ruby>（ブーム<ruby>側<rt>がわ</rt></ruby>）の<ruby>名前<rt>なまえ</rt></ruby>は？',
+    options: ['ラフ', 'リーチ', 'フット', 'クリュー'],
+    answer: 2,
+    explain: 'フット（foot）＝<ruby>下縁<rt>したふち</rt></ruby>（ブームに<ruby>沿<rt>そ</rt></ruby>う<ruby>部分<rt>ぶぶん</rt></ruby>）。アウトホールで<ruby>調整<rt>ちょうせい</rt></ruby>する。'
+  },
+  {
+    cat: 'parts',
+    q: 'セールの<ruby>3<rt>さん</rt></ruby>つの<ruby>角<rt>かど</rt></ruby>のうち、ブームの<ruby>後端<rt>こうたん</rt></ruby>（リーチとフットの<ruby>交点<rt>こうてん</rt></ruby>）の<ruby>名前<rt>なまえ</rt></ruby>は？',
+    options: ['ヘッド', 'タック', 'クリュー', 'スロート'],
+    answer: 2,
+    explain: 'クリュー（clew）＝リーチとフットの<ruby>交点<rt>こうてん</rt></ruby>（ブーム<ruby>後端<rt>こうたん</rt></ruby>）。アウトホールでブームに<ruby>引<rt>ひ</rt></ruby>っ<ruby>張<rt>ぱ</rt></ruby>る<ruby>場所<rt>ばしょ</rt></ruby>。'
+  },
+  {
+    cat: 'parts',
+    q: 'セールの<ruby>角<rt>かど</rt></ruby>のうち、ラフとフットの<ruby>交点<rt>こうてん</rt></ruby>（マスト<ruby>下<rt>した</rt></ruby>・ブーム<ruby>前端<rt>ぜんたん</rt></ruby>）の<ruby>名前<rt>なまえ</rt></ruby>は？',
+    options: ['ヘッド', 'タック', 'クリュー', 'スロート'],
+    answer: 1,
+    explain: 'タック（tack）＝ラフとフットの<ruby>交点<rt>こうてん</rt></ruby>（マスト<ruby>下<rt>した</rt></ruby>のブーム<ruby>前端<rt>ぜんたん</rt></ruby>）。ここをマストに<ruby>固定<rt>こてい</rt></ruby>する。'
+  },
+  {
+    cat: 'parts',
+    q: 'セールの<ruby>一番上<rt>いちばんうえ</rt></ruby>（ピーク／<ruby>頂点<rt>ちょうてん</rt></ruby>）の<ruby>名前<rt>なまえ</rt></ruby>は？',
+    options: ['ヘッド', 'タック', 'クリュー', 'スロート'],
+    answer: 0,
+    explain: 'ヘッド（head）＝セールの<ruby>頂点<rt>ちょうてん</rt></ruby>。スプリットで<ruby>支<rt>ささ</rt></ruby>えられる<ruby>部分<rt>ぶぶん</rt></ruby>。'
+  },
+  {
+    cat: 'parts',
+    q: 'マストとスプリットが<ruby>交<rt>まじ</rt></ruby>わる<ruby>部分<rt>ぶぶん</rt></ruby>（マスト<ruby>側<rt>がわ</rt></ruby>の<ruby>上<rt>うえ</rt></ruby>の<ruby>角<rt>かど</rt></ruby>）の<ruby>名前<rt>なまえ</rt></ruby>は？',
+    options: ['ヘッド', 'スロート', 'クリュー', 'タック'],
+    answer: 1,
+    explain: 'スロート（throat）＝マスト<ruby>側<rt>がわ</rt></ruby>の<ruby>上<rt>うえ</rt></ruby>の<ruby>角<rt>かど</rt></ruby>。スプリットがここを<ruby>支<rt>ささ</rt></ruby>える。'
+  },
+  {
+    cat: 'parts',
+    q: 'ハル（Hull）とは？',
+    options: ['セール', 'マスト', '<ruby>船体<rt>せんたい</rt></ruby>（<ruby>艇<rt>てい</rt></ruby>そのもの）', 'シート'],
+    answer: 2,
+    explain: 'ハル（Hull）＝<ruby>船体<rt>せんたい</rt></ruby>。<ruby>艇<rt>てい</rt></ruby>の<ruby>本体部分<rt>ほんたいぶぶん</rt></ruby>のこと。OPはワン・デザインクラスなのでハルの<ruby>形<rt>かたち</rt></ruby>・<ruby>重<rt>おも</rt></ruby>さは<ruby>規格<rt>きかく</rt></ruby><ruby>同<rt>おな</rt></ruby>じ。'
+  },
+  {
+    cat: 'parts',
+    q: 'バウとスタンの<ruby>違<rt>ちが</rt></ruby>いは？',
+    options: ['バウ＝<ruby>前<rt>まえ</rt></ruby>、スタン＝<ruby>後<rt>うし</rt></ruby>ろ', 'バウ＝<ruby>後<rt>うし</rt></ruby>ろ、スタン＝<ruby>前<rt>まえ</rt></ruby>', '<ruby>同<rt>おな</rt></ruby>じ<ruby>意味<rt>いみ</rt></ruby>', '<ruby>左右<rt>さゆう</rt></ruby>の<ruby>違<rt>ちが</rt></ruby>い'],
+    answer: 0,
+    explain: 'バウ（bow）＝<ruby>艇首<rt>ていしゅ</rt></ruby>（<ruby>前<rt>まえ</rt></ruby>）、スタン（stern）＝<ruby>艇尾<rt>ていび</rt></ruby>（<ruby>後<rt>うし</rt></ruby>ろ）。「スタン<ruby>角<rt>かど</rt></ruby>」はスタンの<ruby>角<rt>かど</rt></ruby>のこと。'
+  },
+  {
+    cat: 'parts',
+    q: 'トランサム（Transom）とは？',
+    options: ['<ruby>艇<rt>てい</rt></ruby>の<ruby>底<rt>そこ</rt></ruby>', '<ruby>艇<rt>てい</rt></ruby>の<ruby>一番<rt>いちばん</rt></ruby><ruby>後<rt>うし</rt></ruby>ろの<ruby>板<rt>いた</rt></ruby>（<ruby>艇尾<rt>ていび</rt></ruby>の<ruby>板<rt>いた</rt></ruby>）', '<ruby>艇<rt>てい</rt></ruby>の<ruby>前<rt>まえ</rt></ruby>', 'マスト<ruby>下<rt>した</rt></ruby>'],
+    answer: 1,
+    explain: 'トランサム＝<ruby>艇<rt>てい</rt></ruby>の<ruby>一番<rt>いちばん</rt></ruby><ruby>後<rt>うし</rt></ruby>ろの<ruby>板<rt>いた</rt></ruby>。レーキ<ruby>計測<rt>けいそく</rt></ruby>でマストヘッドから<ruby>測<rt>はか</rt></ruby>る<ruby>基準点<rt>きじゅんてん</rt></ruby>になる。'
+  },
+  {
+    cat: 'parts',
+    q: 'メインシートを<ruby>固定<rt>こてい</rt></ruby>する<ruby>金具<rt>かなぐ</rt></ruby>は？',
+    options: ['ティラー', 'クリート（または<ruby>留<rt>と</rt></ruby>めない）', 'ペインター', 'マスト'],
+    answer: 1,
+    explain: 'クリート＝ロープを<ruby>固定<rt>こてい</rt></ruby>する<ruby>金具<rt>かなぐ</rt></ruby>。ただしOPではメインシートは<ruby>固定<rt>こてい</rt></ruby>せず<ruby>手<rt>て</rt></ruby>で<ruby>持<rt>も</rt></ruby>つ（クラスルールで<ruby>制限<rt>せいげん</rt></ruby>あり）。'
+  },
+  {
+    cat: 'parts',
+    q: 'ティラーエクステンション（ティラー<ruby>延長棒<rt>えんちょうぼう</rt></ruby>）の<ruby>役割<rt>やくわり</rt></ruby>は？',
+    options: ['ティラーを<ruby>強化<rt>きょうか</rt></ruby>', 'ハイクアウト<ruby>時<rt>とき</rt></ruby>にも<ruby>遠<rt>とお</rt></ruby>くから<ruby>舵<rt>かじ</rt></ruby>を<ruby>操作<rt>そうさ</rt></ruby>できる', 'ティラーを<ruby>固定<rt>こてい</rt></ruby>', 'スピードUP'],
+    answer: 1,
+    explain: 'ティラーエクステンション＝ティラーに<ruby>付<rt>つ</rt></ruby>く<ruby>延長棒<rt>えんちょうぼう</rt></ruby>。ハイクアウトで<ruby>体<rt>からだ</rt></ruby>を<ruby>外<rt>そと</rt></ruby>に<ruby>出<rt>だ</rt></ruby>しても<ruby>舵<rt>かじ</rt></ruby>を<ruby>操作<rt>そうさ</rt></ruby>できる。'
   },
 
   // ===== 風・操船 6問 =====
