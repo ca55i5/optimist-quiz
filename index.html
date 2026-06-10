@@ -151,6 +151,24 @@
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     border-radius: 3px;
   }
+  /* ペナント形状（三角型）の旗 */
+  .flag.pennant {
+    width: 120px;
+    height: 60px;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    border-radius: 0;
+  }
+  .flag-big.pennant {
+    width: 240px;
+    height: 120px;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    border-radius: 0;
+  }
+  .option .flag.pennant { width: 80px; height: 40px; }
   .flag-row {
     display: flex;
     justify-content: center;
@@ -315,10 +333,31 @@
 
 <script>
 // ===== 旗SVG定義（クラスを差し込めるよう関数化） =====
+let _flagIdCounter = 0;
 function flagSvg(type, cls = 'flag') {
+  // ペナント形状（三角型）の旗：AP・第一代表旗（ゼネリコ）
+  if (type === 'ap' || type === 'ans') {
+    const clipId = `clip-${type}-${++_flagIdCounter}`;
+    let content;
+    if (type === 'ap') {
+      // AP旗：オレンジ＋白の縦5本縞（オレンジが3本・白が2本）
+      const colors = ['#ff5a1f','#fff','#ff5a1f','#fff','#ff5a1f'];
+      const stripes = colors.map((c, i) => `<rect x="${i*24}" width="24" height="60" fill="${c}"/>`).join('');
+      content = `<defs><clipPath id="${clipId}"><polygon points="0,0 120,30 0,60"/></clipPath></defs>` +
+        `<g clip-path="url(#${clipId})">${stripes}</g>` +
+        `<polygon points="0,0 120,30 0,60" fill="none" stroke="#666" stroke-width="0.8"/>`;
+    } else {
+      // ゼネリコ（第一代表旗）：青地に黄色の三角
+      content = `<polygon points="0,0 120,30 0,60" fill="#1565b8"/>` +
+        `<polygon points="6,12 76,30 6,48" fill="#ffd700"/>` +
+        `<polygon points="0,0 120,30 0,60" fill="none" stroke="#666" stroke-width="0.8"/>`;
+    }
+    return `<svg class="${cls} pennant" viewBox="0 0 120 60" preserveAspectRatio="xMidYMid meet">${content}</svg>`;
+  }
+
   const defs = {
-    orange: '<rect width="90" height="60" fill="#ff7a00"/>',
-    op: '<rect width="90" height="60" fill="#ff7a00"/><circle cx="45" cy="30" r="14" fill="#000"/>',
+    orange: '<rect width="90" height="60" fill="#ff5a1f"/>',
+    op: '<rect width="90" height="60" fill="#ff5a1f"/><circle cx="45" cy="30" r="14" fill="#000"/>',
     n: (() => {
       let s = '';
       for (let r = 0; r < 4; r++) for (let c = 0; c < 4; c++) {
@@ -327,16 +366,12 @@ function flagSvg(type, cls = 'flag') {
       return s;
     })(),
     p: '<rect width="90" height="60" fill="#003a8c"/><rect x="27" y="20" width="36" height="20" fill="#fff"/>',
-    ap: (() => {
-      let s = '';
-      const colors = ['#fff','#e60012','#fff','#e60012','#fff'];
-      for (let i = 0; i < 5; i++) s += `<rect x="${i*18}" width="18" height="60" fill="${colors[i]}"/>`;
-      return s;
-    })(),
     h: '<rect width="90" height="30" fill="#fff"/><rect y="30" width="90" height="30" fill="#e60012"/>',
-    i: '<rect width="90" height="60" fill="#fff"/><circle cx="45" cy="30" r="14" fill="#000"/>',
+    // I旗：黄色地に黒丸（白じゃなくて黄色！）
+    i: '<rect width="90" height="60" fill="#ffd700"/><circle cx="45" cy="30" r="14" fill="#000"/>',
     a: '<rect width="45" height="60" fill="#fff"/><polygon points="45,0 90,0 70,30 90,60 45,60" fill="#003a8c"/>',
-    u: '<rect width="45" height="30" fill="#fff"/><rect x="45" y="30" width="45" height="30" fill="#fff"/><rect x="45" width="45" height="30" fill="#e60012"/><rect y="30" width="45" height="30" fill="#e60012"/>',
+    // U旗：左上＝赤、右上＝白、左下＝白、右下＝赤
+    u: '<rect width="45" height="30" fill="#e60012"/><rect x="45" width="45" height="30" fill="#fff"/><rect y="30" width="45" height="30" fill="#fff"/><rect x="45" y="30" width="45" height="30" fill="#e60012"/>',
     c: (() => {
       let s = '';
       const colors = ['#003a8c','#fff','#e60012','#fff','#003a8c'];
@@ -347,7 +382,6 @@ function flagSvg(type, cls = 'flag') {
     s: '<rect width="90" height="60" fill="#003a8c"/><rect x="18" y="12" width="54" height="36" fill="#fff"/>',
     x: '<rect width="90" height="60" fill="#fff"/><rect x="40" width="10" height="60" fill="#003a8c"/><rect y="25" width="90" height="10" fill="#003a8c"/>',
     l: '<rect width="45" height="30" fill="#ffd700"/><rect x="45" width="45" height="30" fill="#000"/><rect y="30" width="45" height="30" fill="#000"/><rect x="45" y="30" width="45" height="30" fill="#ffd700"/>',
-    ans: '<rect width="90" height="20" fill="#003a8c"/><rect y="20" width="90" height="20" fill="#fff"/><rect y="40" width="90" height="20" fill="#e60012"/>',
     m: '<rect width="90" height="60" fill="#003a8c"/><line x1="0" y1="0" x2="90" y2="60" stroke="#fff" stroke-width="14"/><line x1="90" y1="0" x2="0" y2="60" stroke="#fff" stroke-width="14"/>'
   };
   return `<svg class="${cls}" viewBox="0 0 90 60">${defs[type] || ''}</svg>`;
@@ -567,38 +601,38 @@ const quizData = [
     q: `この<ruby>旗<rt>はた</rt></ruby>は？<br>${flagSvg('ans','flag flag-big')}`,
     options: ['C<ruby>旗<rt>はた</rt></ruby>', 'ゼネリコ<ruby>旗<rt>はた</rt></ruby>（スタートやり<ruby>直<rt>なお</rt></ruby>し）', 'AP<ruby>旗<rt>はた</rt></ruby>', 'OP<ruby>旗<rt>はた</rt></ruby>'],
     answer: 1,
-    explain: 'ゼネリコ（<ruby>第一代表旗<rt>だいいちだいひょうき</rt></ruby>）。<ruby>青<rt>あお</rt></ruby>・<ruby>白<rt>しろ</rt></ruby>・<ruby>赤<rt>あか</rt></ruby>の<ruby>横縞<rt>よこじま</rt></ruby>。スタートやり<ruby>直<rt>なお</rt></ruby>しのサイン。'
+    explain: 'ゼネリコ（<ruby>第一代表旗<rt>だいいちだいひょうき</rt></ruby>）。<ruby>青地<rt>あおじ</rt></ruby>に<ruby>黄色<rt>きいろ</rt></ruby>の<ruby>三角<rt>さんかく</rt></ruby>が<ruby>入<rt>はい</rt></ruby>った<ruby>燕尾型<rt>えんびがた</rt></ruby>（ペナント）。スタートやり<ruby>直<rt>なお</rt></ruby>しのサイン。'
   },
   {
     cat: 'flagimg',
     q: `この<ruby>旗<rt>はた</rt></ruby>は？<br>${flagSvg('ap','flag flag-big')}`,
     options: ['AP<ruby>旗<rt>はた</rt></ruby>（<ruby>回答旗<rt>かいとうき</rt></ruby>・レース<ruby>延期<rt>えんき</rt></ruby>）', 'P<ruby>旗<rt>はた</rt></ruby>', 'I<ruby>旗<rt>はた</rt></ruby>', 'N<ruby>旗<rt>はた</rt></ruby>'],
     answer: 0,
-    explain: 'AP<ruby>旗<rt>はた</rt></ruby>（<ruby>白<rt>しろ</rt></ruby>と<ruby>赤<rt>あか</rt></ruby>の<ruby>縦縞<rt>たてじま</rt></ruby>）。レース<ruby>延期<rt>えんき</rt></ruby>のサイン。'
+    explain: 'AP<ruby>旗<rt>はた</rt></ruby>（オレンジと<ruby>白<rt>しろ</rt></ruby>の<ruby>縦縞<rt>たてじま</rt></ruby><ruby>燕尾型<rt>えんびがた</rt></ruby>＝ペナント）。レース<ruby>延期<rt>えんき</rt></ruby>のサイン。'
   },
   {
     cat: 'flagimg',
     q: `<ruby>下<rt>した</rt></ruby>の<ruby>4<rt>よん</rt></ruby>つから「I<ruby>旗<rt>はた</rt></ruby>」を<ruby>選<rt>えら</rt></ruby>んで！`,
     options: [
       flagSvg('p') + ' <ruby>青<rt>あお</rt></ruby>＋<ruby>白四角<rt>しろしかく</rt></ruby>',
-      flagSvg('i') + ' <ruby>白<rt>しろ</rt></ruby>＋<ruby>黒丸<rt>くろまる</rt></ruby>',
+      flagSvg('i') + ' <ruby>黄色<rt>きいろ</rt></ruby>＋<ruby>黒丸<rt>くろまる</rt></ruby>',
       flagSvg('n') + ' <ruby>青白市松<rt>あおしろいちまつ</rt></ruby>',
       flagSvg('op') + ' オレンジ＋<ruby>黒丸<rt>くろまる</rt></ruby>'
     ],
     answer: 1,
-    explain: 'I<ruby>旗<rt>はた</rt></ruby>＝<ruby>白地<rt>しろじ</rt></ruby>に<ruby>黒<rt>くろ</rt></ruby>い<ruby>丸<rt>まる</rt></ruby>。OP<ruby>旗<rt>はた</rt></ruby>はオレンジに<ruby>黒丸<rt>くろまる</rt></ruby>なので<ruby>間違<rt>まちが</rt></ruby>えやすい！'
+    explain: 'I<ruby>旗<rt>はた</rt></ruby>＝<ruby>黄色地<rt>きいろじ</rt></ruby>に<ruby>黒<rt>くろ</rt></ruby>い<ruby>丸<rt>まる</rt></ruby>。OP<ruby>旗<rt>はた</rt></ruby>はオレンジに<ruby>黒丸<rt>くろまる</rt></ruby>なので<ruby>色<rt>いろ</rt></ruby>で<ruby>区別<rt>くべつ</rt></ruby>しよう！'
   },
   {
     cat: 'flagimg',
     q: `<ruby>下<rt>した</rt></ruby>の4つから「C<ruby>旗<rt>はた</rt></ruby>（コース<ruby>変更<rt>へんこう</rt></ruby>）」を<ruby>選<rt>えら</rt></ruby>んで！`,
     options: [
-      flagSvg('ans') + ' <ruby>青白赤<rt>あおしろあか</rt></ruby>の<ruby>横3本<rt>よこさんぼん</rt></ruby>',
+      flagSvg('ans') + ' <ruby>青<rt>あお</rt></ruby>＋<ruby>黄三角<rt>きさんかく</rt></ruby>のペナント',
       flagSvg('c') + ' <ruby>青白赤白青<rt>あおしろあかしろあお</rt></ruby>の<ruby>横5本<rt>よこごほん</rt></ruby>',
-      flagSvg('ap') + ' <ruby>白赤<rt>しろあか</rt></ruby>の<ruby>縦縞<rt>たてじま</rt></ruby>',
+      flagSvg('ap') + ' オレンジ＋<ruby>白<rt>しろ</rt></ruby>の<ruby>縦縞<rt>たてじま</rt></ruby>ペナント',
       flagSvg('l') + ' <ruby>黄黒<rt>きいくろ</rt></ruby>の<ruby>市松<rt>いちまつ</rt></ruby>'
     ],
     answer: 1,
-    explain: 'C<ruby>旗<rt>はた</rt></ruby>は<ruby>青<rt>あお</rt></ruby>・<ruby>白<rt>しろ</rt></ruby>・<ruby>赤<rt>あか</rt></ruby>・<ruby>白<rt>しろ</rt></ruby>・<ruby>青<rt>あお</rt></ruby>の<ruby>横<rt>よこ</rt></ruby>5<ruby>本縞<rt>ぼんじま</rt></ruby>。ゼネリコ(3<ruby>本<rt>ぼん</rt></ruby>)と<ruby>似<rt>に</rt></ruby>てるけど<ruby>違<rt>ちが</rt></ruby>うよ。'
+    explain: 'C<ruby>旗<rt>はた</rt></ruby>は<ruby>青<rt>あお</rt></ruby>・<ruby>白<rt>しろ</rt></ruby>・<ruby>赤<rt>あか</rt></ruby>・<ruby>白<rt>しろ</rt></ruby>・<ruby>青<rt>あお</rt></ruby>の<ruby>横<rt>よこ</rt></ruby>5<ruby>本縞<rt>ぼんじま</rt></ruby>の<ruby>四角<rt>しかく</rt></ruby>い<ruby>旗<rt>はた</rt></ruby>。ゼネリコは<ruby>三角形<rt>さんかくけい</rt></ruby>のペナントだよ。'
   },
   {
     cat: 'flagimg',
