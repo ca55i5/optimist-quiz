@@ -358,7 +358,7 @@ function flagSvg(type, cls = 'flag') {
   const defs = {
     orange: '<rect width="90" height="60" fill="#f08020"/>',
     // OP旗：白地に黒いΦ（ファイ）マーク
-    op: '<rect width="90" height="60" fill="#fff"/><circle cx="45" cy="30" r="15" fill="none" stroke="#000" stroke-width="5"/><line x1="45" y1="7" x2="45" y2="53" stroke="#000" stroke-width="5" stroke-linecap="round"/>',
+    op: '<rect width="90" height="60" fill="#fff"/><circle cx="45" cy="30" r="18" fill="none" stroke="#000" stroke-width="7"/><line x1="45" y1="2" x2="45" y2="58" stroke="#000" stroke-width="7" stroke-linecap="butt"/>',
     n: (() => {
       let s = '';
       for (let r = 0; r < 4; r++) for (let c = 0; c < 4; c++) {
@@ -1414,24 +1414,24 @@ const quizData = [
   },
   {
     cat: 'setting',
-    q: '<ruby>微風<rt>びふう</rt></ruby>の<ruby>一行<rt>いちぎょう</rt></ruby>サマリーは？',
+    q: '<ruby>微風<rt>びふう</rt></ruby>セッティングの<ruby>合言葉<rt>あいことば</rt></ruby>（コツを<ruby>短<rt>みじか</rt></ruby>く<ruby>言<rt>い</rt></ruby>うと）は？',
     options: ['<ruby>開<rt>ひら</rt></ruby>いて・<ruby>浅<rt>あさ</rt></ruby>く・<ruby>静<rt>しず</rt></ruby>かに', '<ruby>最大<rt>さいだい</rt></ruby>パワー', 'フラットに・<ruby>閉<rt>と</rt></ruby>じすぎない', '<ruby>上<rt>うえ</rt></ruby>を<ruby>捨<rt>す</rt></ruby>てる'],
     answer: 0,
-    explain: '<ruby>微風<rt>びふう</rt></ruby>＝「<ruby>開<rt>ひら</rt></ruby>いて・<ruby>浅<rt>あさ</rt></ruby>く・<ruby>静<rt>しず</rt></ruby>かに」。ツイストで<ruby>気流<rt>きりゅう</rt></ruby>を<ruby>付<rt>つ</rt></ruby>け、<ruby>艇<rt>てい</rt></ruby>を<ruby>動<rt>うご</rt></ruby>かさない。'
+    explain: '<ruby>微風<rt>びふう</rt></ruby>の<ruby>合言葉<rt>あいことば</rt></ruby>は「<ruby>開<rt>ひら</rt></ruby>いて・<ruby>浅<rt>あさ</rt></ruby>く・<ruby>静<rt>しず</rt></ruby>かに」。リーチを<ruby>開<rt>ひら</rt></ruby>き、セールは<ruby>浅<rt>あさ</rt></ruby>く、<ruby>艇<rt>てい</rt></ruby>を<ruby>動<rt>うご</rt></ruby>かさず<ruby>気流<rt>きりゅう</rt></ruby>を<ruby>付<rt>つ</rt></ruby>ける。'
   },
   {
     cat: 'setting',
-    q: '<ruby>中風<rt>ちゅうふう</rt></ruby>の<ruby>一行<rt>いちぎょう</rt></ruby>サマリーは？',
+    q: '<ruby>中風<rt>ちゅうふう</rt></ruby>セッティングの<ruby>合言葉<rt>あいことば</rt></ruby>は？',
     options: ['<ruby>開<rt>ひら</rt></ruby>いて<ruby>浅<rt>あさ</rt></ruby>く', '<ruby>最大<rt>さいだい</rt></ruby>パワー（ジワが<ruby>消<rt>き</rt></ruby>える<ruby>基準値<rt>きじゅんち</rt></ruby>・<ruby>深<rt>ふか</rt></ruby>さ<ruby>最大<rt>さいだい</rt></ruby>・フルハイク）', 'フェザリング', '<ruby>関係<rt>かんけい</rt></ruby>ない'],
     answer: 1,
-    explain: '<ruby>中風<rt>ちゅうふう</rt></ruby>＝「<ruby>最大<rt>さいだい</rt></ruby>パワー」。ジワが<ruby>消<rt>き</rt></ruby>える<ruby>基準値<rt>きじゅんち</rt></ruby>、フット<ruby>深<rt>ふか</rt></ruby>さ<ruby>最大<rt>さいだい</rt></ruby>、フラットでフルハイク。'
+    explain: '<ruby>中風<rt>ちゅうふう</rt></ruby>の<ruby>合言葉<rt>あいことば</rt></ruby>は「<ruby>最大<rt>さいだい</rt></ruby>パワー」。ジワが<ruby>消<rt>き</rt></ruby>える<ruby>基準値<rt>きじゅんち</rt></ruby>、フット<ruby>深<rt>ふか</rt></ruby>さ<ruby>最大<rt>さいだい</rt></ruby>、フラットでフルハイク。'
   },
   {
     cat: 'setting',
-    q: 'オーバーパワーの<ruby>一行<rt>いちぎょう</rt></ruby>サマリーは？',
+    q: 'オーバーパワー（<ruby>超強風<rt>ちょうきょうふう</rt></ruby>）セッティングの<ruby>合言葉<rt>あいことば</rt></ruby>は？',
     options: ['<ruby>最大<rt>さいだい</rt></ruby>パワー', '<ruby>上<rt>うえ</rt></ruby>を<ruby>捨<rt>す</rt></ruby>てる（ピークを<ruby>落<rt>お</rt></ruby>とし、ボード<ruby>上<rt>あ</rt></ruby>げ、フェザリング）', 'パワーを<ruby>溜<rt>た</rt></ruby>める', 'いつも<ruby>同<rt>おな</rt></ruby>じ'],
     answer: 1,
-    explain: 'オーバーパワー＝「<ruby>上<rt>うえ</rt></ruby>を<ruby>捨<rt>す</rt></ruby>てる」。ピーク<ruby>落<rt>お</rt></ruby>とし、ボード<ruby>上<rt>あ</rt></ruby>げ、フェザリング。<ruby>艇<rt>てい</rt></ruby>を<ruby>平<rt>たい</rt></ruby>らに<ruby>保<rt>たも</rt></ruby>つことが<ruby>最速<rt>さいそく</rt></ruby>。'
+    explain: 'オーバーパワーの<ruby>合言葉<rt>あいことば</rt></ruby>は「<ruby>上<rt>うえ</rt></ruby>を<ruby>捨<rt>す</rt></ruby>てる」。セール<ruby>上部<rt>じょうぶ</rt></ruby>のピークを<ruby>落<rt>お</rt></ruby>として<ruby>逃<rt>に</rt></ruby>がし、ボードを<ruby>上<rt>あ</rt></ruby>げ、フェザリングで<ruby>艇<rt>てい</rt></ruby>を<ruby>平<rt>たい</rt></ruby>らに<ruby>保<rt>たも</rt></ruby>つのが<ruby>最速<rt>さいそく</rt></ruby>。'
   },
 
   // ===== 艤装・パーツ 6問 =====
