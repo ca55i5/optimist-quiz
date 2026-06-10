@@ -290,7 +290,7 @@
 <div class="container">
   <header>
     <h1>Optimistディンギー クイズ</h1>
-    <div class="subtitle" id="subtitle"><ruby>帆走<rt>はんそう</rt></ruby>ルール・<ruby>旗<rt>はた</rt></ruby>・ホイッスル・セッティングまで<ruby>全<rt>ぜん</rt></ruby>90<ruby>問<rt>もん</rt></ruby></div>
+    <div class="subtitle" id="subtitle"><ruby>帆走<rt>はんそう</rt></ruby>ルール・<ruby>旗<rt>はた</rt></ruby>・セッティングまで<ruby>全<rt>ぜん</rt></ruby>132<ruby>問<rt>もん</rt></ruby></div>
     <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
   </header>
   <main>
@@ -457,24 +457,159 @@ const quizData = [
   },
   {
     cat: 'rule',
-    q: 'プロテストしたい<ruby>時<rt>とき</rt></ruby>、すぐに<ruby>必要<rt>ひつよう</rt></ruby>なことは？',
-    options: ['<ruby>大声<rt>おおごえ</rt></ruby>で「プロテスト！」＋レッドフラッグ<ruby>掲<rt>かか</rt></ruby>げる', '<ruby>無視<rt>むし</rt></ruby>して<ruby>続<rt>つづ</rt></ruby>ける', 'フィニッシュ<ruby>後<rt>ご</rt></ruby>に<ruby>本船<rt>ほんせん</rt></ruby>へ', 'スタート<ruby>前<rt>まえ</rt></ruby>に<ruby>伝<rt>つた</rt></ruby>える'],
-    answer: 0,
-    explain: '<ruby>事件後<rt>じけんご</rt></ruby>すぐに<ruby>声<rt>こえ</rt></ruby>とレッドフラッグで<ruby>意思表示<rt>いしひょうじ</rt></ruby>。'
-  },
-  {
-    cat: 'rule',
     q: 'スタート<ruby>前<rt>まえ</rt></ruby>でもスターボードタック<ruby>優先<rt>ゆうせん</rt></ruby>のルールは<ruby>同<rt>おな</rt></ruby>じ？',
     options: ['はい、<ruby>同<rt>おな</rt></ruby>じ', 'スタート<ruby>前<rt>まえ</rt></ruby>はポート<ruby>優先<rt>ゆうせん</rt></ruby>', 'スタート<ruby>前<rt>まえ</rt></ruby>はルールなし', '<ruby>先<rt>さき</rt></ruby>に<ruby>来<rt>き</rt></ruby>た<ruby>方<rt>ほう</rt></ruby>が<ruby>優先<rt>ゆうせん</rt></ruby>'],
     answer: 0,
     explain: 'スタート<ruby>前<rt>まえ</rt></ruby>もスターボードタック<ruby>優先<rt>ゆうせん</rt></ruby>。<ruby>例外<rt>れいがい</rt></ruby>はない。'
   },
 
+  // ===== ルール追加20問 =====
+  {
+    cat: 'rule',
+    q: '<ruby>右舷<rt>うげん</rt></ruby>から<ruby>風<rt>かぜ</rt></ruby>を<ruby>受<rt>う</rt></ruby>けるタックを<ruby>何<rt>なん</rt></ruby>と<ruby>呼<rt>よ</rt></ruby>ぶ？',
+    options: ['ポートタック', 'スターボードタック', 'ライトタック', 'ヘッドタック'],
+    answer: 1,
+    explain: '<ruby>右<rt>みぎ</rt></ruby>＝スターボード。<ruby>右舷<rt>うげん</rt></ruby>から<ruby>風<rt>かぜ</rt></ruby>を<ruby>受<rt>う</rt></ruby>ける（ブームが<ruby>左<rt>ひだり</rt></ruby>に<ruby>出<rt>で</rt></ruby>る）＝スターボードタック。<ruby>優先権<rt>ゆうせんけん</rt></ruby>あり。'
+  },
+  {
+    cat: 'rule',
+    q: '<ruby>左舷<rt>さげん</rt></ruby>から<ruby>風<rt>かぜ</rt></ruby>を<ruby>受<rt>う</rt></ruby>けるタックを<ruby>何<rt>なん</rt></ruby>と<ruby>呼<rt>よ</rt></ruby>ぶ？',
+    options: ['ポートタック', 'スターボードタック', 'レフトタック', 'バックタック'],
+    answer: 0,
+    explain: '<ruby>左<rt>ひだり</rt></ruby>＝ポート。<ruby>左舷<rt>さげん</rt></ruby>から<ruby>風<rt>かぜ</rt></ruby>を<ruby>受<rt>う</rt></ruby>ける（ブームが<ruby>右<rt>みぎ</rt></ruby>に<ruby>出<rt>で</rt></ruby>る）＝ポートタック。スターボードを<ruby>避<rt>よ</rt></ruby>ける<ruby>義務<rt>ぎむ</rt></ruby>。'
+  },
+  {
+    cat: 'rule',
+    q: 'ライト・オブ・ウェイ<ruby>艇<rt>てい</rt></ruby>（<ruby>権利艇<rt>けんりてい</rt></ruby>）とは？',
+    options: ['<ruby>優先権<rt>ゆうせんけん</rt></ruby>のある<ruby>艇<rt>てい</rt></ruby>', '<ruby>避<rt>よ</rt></ruby>ける<ruby>義務<rt>ぎむ</rt></ruby>のある<ruby>艇<rt>てい</rt></ruby>', '<ruby>速<rt>はや</rt></ruby>い<ruby>艇<rt>てい</rt></ruby>', 'マークに<ruby>近<rt>ちか</rt></ruby>い<ruby>艇<rt>てい</rt></ruby>'],
+    answer: 0,
+    explain: 'ライト・オブ・ウェイ<ruby>艇<rt>てい</rt></ruby>＝<ruby>優先権<rt>ゆうせんけん</rt></ruby>のある<ruby>艇<rt>てい</rt></ruby>。スターボード<ruby>艇<rt>てい</rt></ruby>や<ruby>風下艇<rt>かざしもてい</rt></ruby>、クリアアヘッド<ruby>艇<rt>てい</rt></ruby>がこれにあたる。'
+  },
+  {
+    cat: 'rule',
+    q: '「キープクリア」とは<ruby>義務艇<rt>ぎむてい</rt></ruby>が<ruby>何<rt>なに</rt></ruby>すること？',
+    options: ['<ruby>同<rt>おな</rt></ruby>じ<ruby>方向<rt>ほうこう</rt></ruby>に<ruby>進<rt>すす</rt></ruby>む', '<ruby>権利艇<rt>けんりてい</rt></ruby>に<ruby>触<rt>ふ</rt></ruby>れず、<ruby>権利艇<rt>けんりてい</rt></ruby>が<ruby>自由<rt>じゆう</rt></ruby>に<ruby>進<rt>すす</rt></ruby>めるよう<ruby>避<rt>よ</rt></ruby>ける', 'スピードを<ruby>落<rt>お</rt></ruby>とす', 'リタイアする'],
+    answer: 1,
+    explain: 'キープクリア＝<ruby>権利艇<rt>けんりてい</rt></ruby>に<ruby>触<rt>ふ</rt></ruby>れずに<ruby>進路<rt>しんろ</rt></ruby>を<ruby>明<rt>あ</rt></ruby>け、<ruby>権利艇<rt>けんりてい</rt></ruby>が<ruby>普通<rt>ふつう</rt></ruby>に<ruby>進<rt>すす</rt></ruby>めるようにすること。'
+  },
+  {
+    cat: 'rule',
+    q: 'マーク<ruby>周辺<rt>しゅうへん</rt></ruby>の「ゾーン」はマークから<ruby>何<rt>なん</rt></ruby>艇身<ruby>以内<rt>いない</rt></ruby>？',
+    options: ['1<ruby>艇身<rt>ていしん</rt></ruby>', '2<ruby>艇身<rt>ていしん</rt></ruby>', '3<ruby>艇身<rt>ていしん</rt></ruby>', '5<ruby>艇身<rt>ていしん</rt></ruby>'],
+    answer: 2,
+    explain: 'ゾーン＝マークから3<ruby>艇身<rt>ていしん</rt></ruby><ruby>以内<rt>いない</rt></ruby>。このエリアに<ruby>入<rt>はい</rt></ruby>った<ruby>時点<rt>じてん</rt></ruby>でオーバーラップしてればマークルームを<ruby>得<rt>え</rt></ruby>られる。'
+  },
+  {
+    cat: 'rule',
+    q: '「オーバーラップ」とはどんな<ruby>状態<rt>じょうたい</rt></ruby>？',
+    options: ['2<ruby>艇<rt>てい</rt></ruby>が<ruby>接触<rt>せっしょく</rt></ruby>している', '<ruby>後続艇<rt>こうぞくてい</rt></ruby>の<ruby>艇首<rt>ていしゅ</rt></ruby>が<ruby>先行艇<rt>せんこうてい</rt></ruby>の<ruby>艇尾<rt>ていび</rt></ruby>を<ruby>越<rt>こ</rt></ruby>えて<ruby>横<rt>よこ</rt></ruby>に<ruby>並<rt>なら</rt></ruby>ぶ', '<ruby>同<rt>おな</rt></ruby>じスピード', '<ruby>同<rt>おな</rt></ruby>じタック'],
+    answer: 1,
+    explain: 'オーバーラップ＝<ruby>横<rt>よこ</rt></ruby>に<ruby>並<rt>なら</rt></ruby>んだ<ruby>状態<rt>じょうたい</rt></ruby>。<ruby>後続艇<rt>こうぞくてい</rt></ruby>の<ruby>艇首<rt>ていしゅ</rt></ruby>が<ruby>前艇<rt>まえてい</rt></ruby>の<ruby>艇尾<rt>ていび</rt></ruby>より<ruby>前<rt>まえ</rt></ruby>にあると<ruby>成立<rt>せいりつ</rt></ruby>。'
+  },
+  {
+    cat: 'rule',
+    q: 'タッキング<ruby>中<rt>ちゅう</rt></ruby>（<ruby>風<rt>かぜ</rt></ruby>に<ruby>正対<rt>せいたい</rt></ruby>している<ruby>瞬間<rt>しゅんかん</rt></ruby>）の<ruby>艇<rt>てい</rt></ruby>は？',
+    options: ['<ruby>優先権<rt>ゆうせんけん</rt></ruby>がある', '<ruby>他<rt>ほか</rt></ruby>のタックの<ruby>艇<rt>てい</rt></ruby>を<ruby>避<rt>よ</rt></ruby>ける<ruby>義務<rt>ぎむ</rt></ruby>がある', '<ruby>停止<rt>ていし</rt></ruby>する', 'ペナルティ'],
+    answer: 1,
+    explain: 'RRS<ruby>第<rt>だい</rt></ruby>13<ruby>条<rt>じょう</rt></ruby>。タッキング<ruby>中<rt>ちゅう</rt></ruby>の<ruby>艇<rt>てい</rt></ruby>は、タックを<ruby>完了<rt>かんりょう</rt></ruby>するまで<ruby>他<rt>ほか</rt></ruby>の<ruby>艇<rt>てい</rt></ruby>を<ruby>避<rt>よ</rt></ruby>ける<ruby>義務<rt>ぎむ</rt></ruby>がある。'
+  },
+  {
+    cat: 'rule',
+    q: '「ベアアウェイ」とはどういう<ruby>動作<rt>どうさ</rt></ruby>？',
+    options: ['<ruby>艇<rt>てい</rt></ruby>を<ruby>風上<rt>かざかみ</rt></ruby>へ<ruby>向<rt>む</rt></ruby>ける', '<ruby>艇<rt>てい</rt></ruby>を<ruby>風下<rt>かざしも</rt></ruby>へ<ruby>向<rt>む</rt></ruby>ける', '<ruby>速度<rt>そくど</rt></ruby>を<ruby>落<rt>お</rt></ruby>とす', 'リタイア'],
+    answer: 1,
+    explain: 'ベアアウェイ（Bear away）＝<ruby>艇<rt>てい</rt></ruby>を<ruby>風下<rt>かざしも</rt></ruby>へ<ruby>向<rt>む</rt></ruby>けること。<ruby>逆<rt>ぎゃく</rt></ruby>は「ヘッドアップ／ラフィング」＝<ruby>風上<rt>かざかみ</rt></ruby>へ<ruby>切<rt>き</rt></ruby>り<ruby>上<rt>あ</rt></ruby>げる。'
+  },
+  {
+    cat: 'rule',
+    q: '<ruby>風下艇<rt>かざしもてい</rt></ruby>は<ruby>風上艇<rt>かざかみてい</rt></ruby>に<ruby>向<rt>む</rt></ruby>かって<ruby>切<rt>き</rt></ruby>り<ruby>上<rt>あ</rt></ruby>げる<ruby>権利<rt>けんり</rt></ruby>がある？',
+    options: ['ない', 'ある（ラフィングライト）', '<ruby>同<rt>おな</rt></ruby>じタックのときだけ', 'スタート<ruby>後<rt>ご</rt></ruby>のみ'],
+    answer: 1,
+    explain: '<ruby>風下艇<rt>かざしもてい</rt></ruby>は<ruby>風上艇<rt>かざかみてい</rt></ruby>に<ruby>向<rt>む</rt></ruby>かって<ruby>切<rt>き</rt></ruby>り<ruby>上<rt>あ</rt></ruby>げる（ラフィング）<ruby>権利<rt>けんり</rt></ruby>がある。プロパーコース<ruby>以上<rt>いじょう</rt></ruby>には<ruby>切<rt>き</rt></ruby>り<ruby>上<rt>あ</rt></ruby>げられない<ruby>制限<rt>せいげん</rt></ruby>あり。'
+  },
+  {
+    cat: 'rule',
+    q: '「プロパーコース」とは？',
+    options: ['<ruby>他艇<rt>たてい</rt></ruby>がいないとき<ruby>選<rt>えら</rt></ruby>ぶ<ruby>最速<rt>さいそく</rt></ruby>のコース', 'いつも<ruby>最短距離<rt>さいたんきょり</rt></ruby>', '<ruby>運営<rt>うんえい</rt></ruby>が<ruby>指定<rt>してい</rt></ruby>するコース', '<ruby>真<rt>ま</rt></ruby>っすぐ<ruby>風下<rt>かざしも</rt></ruby>'],
+    answer: 0,
+    explain: 'プロパーコース＝<ruby>他艇<rt>たてい</rt></ruby>がいないとして、<ruby>次<rt>つぎ</rt></ruby>のマークへできるだけ<ruby>早<rt>はや</rt></ruby>く<ruby>到達<rt>とうたつ</rt></ruby>するためのコース。<ruby>艇<rt>てい</rt></ruby>ごとに<ruby>違<rt>ちが</rt></ruby>うこともある。'
+  },
+  {
+    cat: 'rule',
+    q: 'OCS（On Course Side）の<ruby>意味<rt>いみ</rt></ruby>は？',
+    options: ['コース<ruby>上<rt>じょう</rt></ruby>のミス', 'スタート<ruby>時<rt>とき</rt></ruby>にラインの<ruby>前<rt>まえ</rt></ruby>にいた（フライング）', 'コース<ruby>外<rt>がい</rt></ruby>', 'コース<ruby>変更<rt>へんこう</rt></ruby>'],
+    answer: 1,
+    explain: 'OCS＝On Course Side。スタート<ruby>信号時<rt>しんごうじ</rt></ruby>にスタートラインの<ruby>コース側<rt>こーすがわ</rt></ruby>（<ruby>前<rt>まえ</rt></ruby>）にいた＝フライング。リターンして<ruby>戻<rt>もど</rt></ruby>らないと<ruby>失格<rt>しっかく</rt></ruby>。'
+  },
+  {
+    cat: 'rule',
+    q: 'UFDの<ruby>意味<rt>いみ</rt></ruby>は？',
+    options: ['U<ruby>旗<rt>はた</rt></ruby><ruby>失格<rt>しっかく</rt></ruby>（U Flag Disqualification）', 'アップウィンド・フォルト・ディスカリフィケーション', '<ruby>未確認<rt>みかくにん</rt></ruby><ruby>失格<rt>しっかく</rt></ruby>', 'アンダーフィニッシュ'],
+    answer: 0,
+    explain: 'UFD＝U Flag Disqualification。U<ruby>旗<rt>はた</rt></ruby><ruby>下<rt>か</rt></ruby>で1<ruby>分前<rt>ふんまえ</rt></ruby>から<ruby>出<rt>で</rt></ruby>てしまい<ruby>失格<rt>しっかく</rt></ruby>になったこと。'
+  },
+  {
+    cat: 'rule',
+    q: 'BFDの<ruby>意味<rt>いみ</rt></ruby>は？',
+    options: ['ブラックフラッグ<ruby>失格<rt>しっかく</rt></ruby>（Black Flag Disqualification）', 'バッド・フィニッシュ', 'ベスト・フリート・デイ', 'ボトムフィニッシュ'],
+    answer: 0,
+    explain: 'BFD＝Black Flag Disqualification。ブラック<ruby>旗下<rt>はたか</rt></ruby>で1<ruby>分前<rt>ふんまえ</rt></ruby>から<ruby>出<rt>で</rt></ruby>た<ruby>失格<rt>しっかく</rt></ruby>。<ruby>救済<rt>きゅうさい</rt></ruby>なし＋<ruby>次<rt>つぎ</rt></ruby>のレース<ruby>不可<rt>ふか</rt></ruby>。'
+  },
+  {
+    cat: 'rule',
+    q: 'DNFの<ruby>意味<rt>いみ</rt></ruby>は？',
+    options: ['Did Not Finish（フィニッシュしなかった）', 'Did Not Float', 'Disqualified No Fault', 'Double No Flag'],
+    answer: 0,
+    explain: 'DNF＝Did Not Finish。レースをフィニッシュできなかった<ruby>場合<rt>ばあい</rt></ruby>のスコア。'
+  },
+  {
+    cat: 'rule',
+    q: 'DNSの<ruby>意味<rt>いみ</rt></ruby>は？',
+    options: ['Did Not Start（スタートしなかった）', 'Did Not Sail', 'Disqualified No Score', 'Don\'t Need Speed'],
+    answer: 0,
+    explain: 'DNS＝Did Not Start。スタートエリアに<ruby>来<rt>こ</rt></ruby>なかった、またはスタートしなかった<ruby>場合<rt>ばあい</rt></ruby>。'
+  },
+  {
+    cat: 'rule',
+    q: '「スカリング」（<ruby>舵<rt>かじ</rt></ruby>を<ruby>左右<rt>さゆう</rt></ruby>に<ruby>振<rt>ふ</rt></ruby>って<ruby>艇<rt>てい</rt></ruby>を<ruby>進<rt>すす</rt></ruby>める）はレース<ruby>中<rt>ちゅう</rt></ruby>OK？',
+    options: ['いつでもOK', '<ruby>禁止<rt>きんし</rt></ruby>（<ruby>反則<rt>はんそく</rt></ruby>）', '<ruby>微風<rt>びふう</rt></ruby>のみOK', 'スタート<ruby>前<rt>まえ</rt></ruby>のみOK'],
+    answer: 1,
+    explain: 'RRS<ruby>第<rt>だい</rt></ruby>42<ruby>条<rt>じょう</rt></ruby>。スカリングは<ruby>禁止<rt>きんし</rt></ruby>。<ruby>風<rt>かぜ</rt></ruby>と<ruby>水<rt>みず</rt></ruby>の<ruby>力<rt>ちから</rt></ruby>だけで<ruby>進<rt>すす</rt></ruby>むのが<ruby>原則<rt>げんそく</rt></ruby>。'
+  },
+  {
+    cat: 'rule',
+    q: '「パンピング」（セールを<ruby>繰<rt>く</rt></ruby>り<ruby>返<rt>かえ</rt></ruby>し<ruby>煽<rt>あお</rt></ruby>って<ruby>推進<rt>すいしん</rt></ruby>）はOK？',
+    options: ['いつでもOK', '<ruby>禁止<rt>きんし</rt></ruby>（<ruby>反則<rt>はんそく</rt></ruby>）', '<ruby>強風<rt>きょうふう</rt></ruby>のみOK', '1<ruby>回<rt>かい</rt></ruby>だけOK'],
+    answer: 1,
+    explain: 'RRS<ruby>第<rt>だい</rt></ruby>42<ruby>条<rt>じょう</rt></ruby>。パンピングは<ruby>禁止<rt>きんし</rt></ruby>。<ruby>風<rt>かぜ</rt></ruby>に<ruby>応<rt>おう</rt></ruby>じた1<ruby>回<rt>かい</rt></ruby>のシートワークはOKだが、<ruby>連続<rt>れんぞく</rt></ruby>はNG。'
+  },
+  {
+    cat: 'rule',
+    q: '「ロッキング」（<ruby>体<rt>からだ</rt></ruby>を<ruby>左右<rt>さゆう</rt></ruby>に<ruby>振<rt>ふ</rt></ruby>って<ruby>推進<rt>すいしん</rt></ruby>）はOK？',
+    options: ['いつでもOK', '<ruby>禁止<rt>きんし</rt></ruby>（<ruby>反則<rt>はんそく</rt></ruby>）', '<ruby>沈<rt>ちん</rt></ruby><ruby>復帰<rt>ふっき</rt></ruby>時<ruby>のみ<rt>のみ</rt></ruby>OK', 'スタート<ruby>前<rt>まえ</rt></ruby>のみOK'],
+    answer: 1,
+    explain: 'RRS<ruby>第<rt>だい</rt></ruby>42<ruby>条<rt>じょう</rt></ruby>。ロッキング（<ruby>艇<rt>てい</rt></ruby>を<ruby>意図的<rt>いとてき</rt></ruby>に<ruby>揺<rt>ゆ</rt></ruby>らして<ruby>推進<rt>すいしん</rt></ruby>）も<ruby>禁止<rt>きんし</rt></ruby>。'
+  },
+  {
+    cat: 'rule',
+    q: '<ruby>他艇<rt>たてい</rt></ruby>が<ruby>沈<rt>ちん</rt></ruby>して<ruby>困<rt>こま</rt></ruby>っている。レース<ruby>中<rt>ちゅう</rt></ruby>でも<ruby>助<rt>たす</rt></ruby>けるべき？',
+    options: ['レース<ruby>続行<rt>ぞっこう</rt></ruby>', '<ruby>救助義務<rt>きゅうじょぎむ</rt></ruby>あり（できる<ruby>限<rt>かぎ</rt></ruby>り<ruby>助<rt>たす</rt></ruby>ける）', 'コーチに<ruby>任<rt>まか</rt></ruby>せる', '<ruby>無視<rt>むし</rt></ruby>'],
+    answer: 1,
+    explain: 'RRS<ruby>第<rt>だい</rt></ruby>1<ruby>条<rt>じょう</rt></ruby>（<ruby>基本<rt>きほん</rt></ruby>ルール）。<ruby>危険<rt>きけん</rt></ruby>な<ruby>状況<rt>じょうきょう</rt></ruby>の<ruby>他艇<rt>たてい</rt></ruby>を<ruby>助<rt>たす</rt></ruby>けるのは<ruby>全<rt>すべ</rt></ruby>てのセーラーの<ruby>義務<rt>ぎむ</rt></ruby>。<ruby>命<rt>いのち</rt></ruby><ruby>優先<rt>ゆうせん</rt></ruby>！'
+  },
+  {
+    cat: 'rule',
+    q: 'リタイアしたい<ruby>時<rt>とき</rt></ruby>、レース<ruby>本部<rt>ほんぶ</rt></ruby>に<ruby>知<rt>し</rt></ruby>らせるためにどうする？',
+    options: ['<ruby>何<rt>なに</rt></ruby>もしなくていい', '<ruby>本船<rt>ほんせん</rt></ruby>の<ruby>近<rt>ちか</rt></ruby>くを<ruby>通<rt>とお</rt></ruby>って<ruby>合図<rt>あいず</rt></ruby>、または<ruby>陸<rt>りく</rt></ruby><ruby>戻<rt>もど</rt></ruby>り<ruby>後<rt>ご</rt></ruby><ruby>報告<rt>ほうこく</rt></ruby>', '<ruby>大声<rt>おおごえ</rt></ruby>で<ruby>叫<rt>さけ</rt></ruby>ぶだけ', 'マークを<ruby>逆方向<rt>ぎゃくほうこう</rt></ruby>に<ruby>回<rt>まわ</rt></ruby>る'],
+    answer: 1,
+    explain: 'リタイア（RAF）は<ruby>本船<rt>ほんせん</rt></ruby>に<ruby>知<rt>し</rt></ruby>らせること。<ruby>知<rt>し</rt></ruby>らせずに<ruby>陸<rt>りく</rt></ruby>に<ruby>戻<rt>もど</rt></ruby>るとDNFの<ruby>扱<rt>あつか</rt></ruby>いに。'
+  },
+
   // ===== 旗（テキスト）13問 =====
   {
     cat: 'flag',
     q: 'スタート5<ruby>分前<rt>ふんまえ</rt></ruby>にあがる<ruby>旗<rt>はた</rt></ruby>は？',
-    options: ['P<ruby>旗<rt>はた</rt></ruby>', 'OP<ruby>旗<rt>はた</rt></ruby>（オレンジ＋<ruby>黒丸<rt>くろまる</rt></ruby>）', 'AP<ruby>旗<rt>はた</rt></ruby>', 'I<ruby>旗<rt>はた</rt></ruby>'],
+    options: ['P<ruby>旗<rt>はた</rt></ruby>', 'OP<ruby>旗<rt>はた</rt></ruby>', 'AP<ruby>旗<rt>はた</rt></ruby>', 'I<ruby>旗<rt>はた</rt></ruby>'],
     answer: 1,
     explain: '<ruby>警告信号<rt>けいこくしんごう</rt></ruby>として5<ruby>分前<rt>ふんまえ</rt></ruby>にOP<ruby>旗<rt>はた</rt></ruby>があがる。スタート<ruby>時<rt>とき</rt></ruby>におりる。'
   },
@@ -828,64 +963,13 @@ const quizData = [
     explain: 'オレンジ<ruby>旗<rt>はた</rt></ruby>＝オレンジ<ruby>一色<rt>いっしょく</rt></ruby>。<ruby>本船<rt>ほんせん</rt></ruby>とアウター<ruby>艇<rt>てい</rt></ruby>にあがる「そろそろレースするよ」の<ruby>合図<rt>あいず</rt></ruby>。OP<ruby>旗<rt>はた</rt></ruby>（<ruby>白地<rt>しろじ</rt></ruby>にΦ）と<ruby>違<rt>ちが</rt></ruby>うよ！'
   },
 
-  // ===== ホイッスル 6問 =====
-  {
-    cat: 'whistle',
-    q: 'コーチボートからの<ruby>短<rt>たん</rt></ruby>1<ruby>回<rt>かい</rt></ruby>「ピッ」の<ruby>意味<rt>いみ</rt></ruby>は？',
-    options: ['<ruby>集合<rt>しゅうごう</rt></ruby>', 'クローズはタック、ランニング/アビームはジャイブ', 'ストップ', 'スタート'],
-    answer: 1,
-    explain: '<ruby>短<rt>たん</rt></ruby>1<ruby>回<rt>かい</rt></ruby>：クローズならタック、ランニング/アビームならジャイブ。'
-  },
-  {
-    cat: 'whistle',
-    q: '<ruby>短<rt>たん</rt></ruby>2<ruby>回<rt>かい</rt></ruby>「ピッピッ」は？',
-    options: ['ジャイブ／バイザリー／ランニング<ruby>切<rt>き</rt></ruby>り<ruby>替<rt>か</rt></ruby>え', '<ruby>集合<rt>しゅうごう</rt></ruby>', '720°', 'シバー'],
-    answer: 0,
-    explain: '<ruby>短<rt>たん</rt></ruby>2<ruby>回<rt>かい</rt></ruby>：ジャイブ・バイザリー・ランニング<ruby>切<rt>き</rt></ruby>り<ruby>替<rt>か</rt></ruby>え。'
-  },
-  {
-    cat: 'whistle',
-    q: '<ruby>短<rt>たん</rt></ruby>3<ruby>回<rt>かい</rt></ruby>「ピッピッピッ」は？',
-    options: ['シバー（クローズの<ruby>角度<rt>かくど</rt></ruby>）／<ruby>減速<rt>げんそく</rt></ruby>（シート<ruby>引<rt>ひ</rt></ruby>き<ruby>気味<rt>ぎみ</rt></ruby>）', 'タック', '360°', '<ruby>集合<rt>しゅうごう</rt></ruby>'],
-    answer: 0,
-    explain: '<ruby>短<rt>たん</rt></ruby>3<ruby>回<rt>かい</rt></ruby>：シバー／<ruby>減速<rt>げんそく</rt></ruby>の<ruby>合図<rt>あいず</rt></ruby>。'
-  },
-  {
-    cat: 'whistle',
-    q: '「ピ～ピッ」（<ruby>長<rt>ちょう</rt></ruby>1<ruby>回<rt>かい</rt></ruby>＋<ruby>短<rt>たん</rt></ruby>1<ruby>回<rt>かい</rt></ruby>）は？',
-    options: ['360°', '720°', '<ruby>集合<rt>しゅうごう</rt></ruby>', '<ruby>停止<rt>ていし</rt></ruby>'],
-    answer: 0,
-    explain: '<ruby>長<rt>ちょう</rt></ruby>1<ruby>回<rt>かい</rt></ruby><ruby>短<rt>たん</rt></ruby>1<ruby>回<rt>かい</rt></ruby>＝360°。'
-  },
-  {
-    cat: 'whistle',
-    q: '「ピ～ピッピッ」（<ruby>長<rt>ちょう</rt></ruby>1<ruby>回<rt>かい</rt></ruby>＋<ruby>短<rt>たん</rt></ruby>2<ruby>回<rt>かい</rt></ruby>）は？',
-    options: ['360°', '720°', 'スタート', '<ruby>停止<rt>ていし</rt></ruby>'],
-    answer: 1,
-    explain: '<ruby>長<rt>ちょう</rt></ruby>1<ruby>回<rt>かい</rt></ruby><ruby>短<rt>たん</rt></ruby>2<ruby>回<rt>かい</rt></ruby>＝720°。'
-  },
-  {
-    cat: 'whistle',
-    q: '<ruby>連続音<rt>れんぞくおん</rt></ruby>「ピピピピピピ」は？',
-    options: ['<ruby>緊急事態<rt>きんきゅうじたい</rt></ruby>のみ', 'モーターボートに<ruby>集合<rt>しゅうごう</rt></ruby>（<ruby>競争<rt>きょうそう</rt></ruby>）', 'スタート', 'コース<ruby>短縮<rt>たんしゅく</rt></ruby>'],
-    answer: 1,
-    explain: '<ruby>連続音<rt>れんぞくおん</rt></ruby>＝モーターボートに<ruby>集合<rt>しゅうごう</rt></ruby>！<ruby>急<rt>いそ</rt></ruby>げ。'
-  },
-
-  // ===== セッティング基本 8問 =====
+  // ===== セッティング基本 =====
   {
     cat: 'setting',
     q: '<ruby>微風<rt>びふう</rt></ruby>と<ruby>呼<rt>よ</rt></ruby>ばれる<ruby>風速<rt>ふうそく</rt></ruby>は？',
     options: ['0〜4m', '4〜8m', '8〜12m', '12m〜'],
     answer: 0,
     explain: '<ruby>微風<rt>びふう</rt></ruby>=0〜4m、<ruby>中風<rt>ちゅうふう</rt></ruby>=4〜8m、<ruby>強風<rt>きょうふう</rt></ruby>=8〜12m、<ruby>超強風<rt>ちょうきょうふう</rt></ruby>=12m〜。'
-  },
-  {
-    cat: 'setting',
-    q: 'ハイクアウトで<ruby>艇<rt>てい</rt></ruby>をフラットにできる<ruby>風<rt>かぜ</rt></ruby>は？',
-    options: ['<ruby>微風<rt>びふう</rt></ruby>', '<ruby>中風<rt>ちゅうふう</rt></ruby>', '<ruby>強風<rt>きょうふう</rt></ruby>（8〜12m）', '<ruby>超強風<rt>ちょうきょうふう</rt></ruby>'],
-    answer: 2,
-    explain: '<ruby>強風<rt>きょうふう</rt></ruby>はハイクアウトでフラット<ruby>維持<rt>いじ</rt></ruby>。<ruby>超強風<rt>ちょうきょうふう</rt></ruby>はオーバーパワー。'
   },
   {
     cat: 'setting',
@@ -1000,6 +1084,223 @@ const quizData = [
     options: ['ひもをねじってかける', 'ひもをかけない', 'マストを<ruby>叩<rt>たた</rt></ruby>く', 'バングを<ruby>緩<rt>ゆる</rt></ruby>める'],
     answer: 1,
     explain: 'プリベンド：ひもをかけない＝<ruby>強<rt>つよ</rt></ruby>く、ねじってかける＝<ruby>弱<rt>よわ</rt></ruby>く。<ruby>強<rt>つよ</rt></ruby>くするほどトップリーチが<ruby>開<rt>ひら</rt></ruby>く。'
+  },
+
+  // ===== セッティング（ガイドベース）30問 =====
+  {
+    cat: 'setting',
+    q: 'OPセッティングで<ruby>操作<rt>そうさ</rt></ruby>している3つの<ruby>基本要素<rt>きほんようそ</rt></ruby>は？',
+    options: [
+      'ドラフト（<ruby>深<rt>ふか</rt></ruby>さ）・ツイスト（リーチの<ruby>開<rt>ひら</rt></ruby>き）・CE（<ruby>風圧中心<rt>ふうあつちゅうしん</rt></ruby>）',
+      'スピード・<ruby>高<rt>たか</rt></ruby>さ・<ruby>角度<rt>かくど</rt></ruby>',
+      'パワー・バランス・<ruby>速度<rt>そくど</rt></ruby>',
+      '<ruby>風<rt>かぜ</rt></ruby>・<ruby>波<rt>なみ</rt></ruby>・<ruby>潮<rt>しお</rt></ruby>'
+    ],
+    answer: 0,
+    explain: 'セッティングは「ドラフト（セールの<ruby>深<rt>ふか</rt></ruby>さ）」「ツイスト（リーチの<ruby>開<rt>ひら</rt></ruby>き）」「CE（セール<ruby>風圧中心<rt>ふうあつちゅうしん</rt></ruby>の<ruby>位置<rt>いち</rt></ruby>）」の3つを<ruby>調整<rt>ちょうせい</rt></ruby>している。'
+  },
+  {
+    cat: 'setting',
+    q: 'ドラフト（セールの<ruby>深<rt>ふか</rt></ruby>さ）が<ruby>深<rt>ふか</rt></ruby>いと？',
+    options: ['スピードが<ruby>出<rt>で</rt></ruby>る', 'パワーと<ruby>加速<rt>かそく</rt></ruby>が<ruby>出<rt>で</rt></ruby>る', '<ruby>角度<rt>かくど</rt></ruby>が<ruby>良<rt>よ</rt></ruby>くなる', 'デパワー'],
+    answer: 1,
+    explain: 'ドラフトが<ruby>深<rt>ふか</rt></ruby>い＝パワー・<ruby>加速<rt>かそく</rt></ruby>UP。<ruby>浅<rt>あさ</rt></ruby>い＝スピード・<ruby>角度<rt>かくど</rt></ruby>UP、オーバーパワー<ruby>回避<rt>かいひ</rt></ruby>。'
+  },
+  {
+    cat: 'setting',
+    q: 'ツイスト（リーチの<ruby>開<rt>ひら</rt></ruby>き）が<ruby>閉<rt>と</rt></ruby>じると？',
+    options: ['スピードUP', '<ruby>上<rt>のぼ</rt></ruby>り<ruby>角<rt>かく</rt></ruby>と<ruby>低速時<rt>ていそくじ</rt></ruby>のパワーUP', 'ガストへの<ruby>許容度<rt>きょようど</rt></ruby>UP', 'デパワー'],
+    answer: 1,
+    explain: 'リーチ<ruby>閉<rt>と</rt></ruby>じる＝<ruby>上<rt>のぼ</rt></ruby>り<ruby>角<rt>かく</rt></ruby>・<ruby>低速時<rt>ていそくじ</rt></ruby>パワーUP。<ruby>開<rt>ひら</rt></ruby>く＝スピードとデパワー、ガスト<ruby>許容度<rt>きょようど</rt></ruby>UP。'
+  },
+  {
+    cat: 'setting',
+    q: 'CE（セール<ruby>風圧中心<rt>ふうあつちゅうしん</rt></ruby>）が<ruby>後<rt>うし</rt></ruby>ろ・<ruby>上<rt>うえ</rt></ruby>に<ruby>行<rt>い</rt></ruby>くと？',
+    options: ['<ruby>艇<rt>てい</rt></ruby>が<ruby>速<rt>はや</rt></ruby>くなる', 'ウェザーヘルムとヒールモーメントが<ruby>増<rt>ふ</rt></ruby>える', '<ruby>艇<rt>てい</rt></ruby>が<ruby>下<rt>さが</rt></ruby>る', '<ruby>変<rt>か</rt></ruby>わらない'],
+    answer: 1,
+    explain: 'CEが<ruby>後<rt>うし</rt></ruby>ろ・<ruby>上<rt>うえ</rt></ruby>に<ruby>行<rt>い</rt></ruby>くほどウェザーヘルム（<ruby>風上<rt>かざかみ</rt></ruby>に<ruby>切<rt>き</rt></ruby>り<ruby>上<rt>あ</rt></ruby>がる<ruby>力<rt>ちから</rt></ruby>）とヒールが<ruby>増<rt>ふ</rt></ruby>える。'
+  },
+  {
+    cat: 'setting',
+    q: 'スプリットは<ruby>主<rt>おも</rt></ruby>に<ruby>何<rt>なに</rt></ruby>を<ruby>調整<rt>ちょうせい</rt></ruby>する？',
+    options: ['フットの<ruby>深<rt>ふか</rt></ruby>さ', 'アッパーリーチ（セール<ruby>上部<rt>じょうぶ</rt></ruby>）の<ruby>開閉<rt>かいへい</rt></ruby>', 'マストの<ruby>角度<rt>かくど</rt></ruby>', 'ブームの<ruby>位置<rt>いち</rt></ruby>'],
+    answer: 1,
+    explain: 'スプリットはピーク（セール<ruby>上部<rt>じょうぶ</rt></ruby>）の<ruby>張<rt>は</rt></ruby>りを<ruby>変<rt>か</rt></ruby>えて、アッパーリーチの<ruby>開閉<rt>かいへい</rt></ruby>を<ruby>支配<rt>しはい</rt></ruby>する。'
+  },
+  {
+    cat: 'setting',
+    q: 'クローズでスロート→クリュー<ruby>方向<rt>ほうこう</rt></ruby>に<ruby>斜<rt>なな</rt></ruby>めジワが<ruby>出<rt>で</rt></ruby>た。<ruby>原因<rt>げんいん</rt></ruby>は？',
+    options: ['スプリットが<ruby>足<rt>た</rt></ruby>りない（ピークが<ruby>落<rt>お</rt></ruby>ちて<ruby>上部<rt>じょうぶ</rt></ruby>が<ruby>開<rt>ひら</rt></ruby>きすぎ）', 'スプリット<ruby>張<rt>は</rt></ruby>りすぎ', 'バング<ruby>緩<rt>ゆる</rt></ruby>すぎ', 'アウトホール<ruby>緩<rt>ゆる</rt></ruby>すぎ'],
+    answer: 0,
+    explain: 'スロート→クリュー<ruby>方向<rt>ほうこう</rt></ruby>のジワ＝スプリット<ruby>不足<rt>ふそく</rt></ruby>。ピークが<ruby>落<rt>お</rt></ruby>ちて<ruby>上部<rt>じょうぶ</rt></ruby>が<ruby>開<rt>ひら</rt></ruby>きすぎ。<ruby>張<rt>は</rt></ruby>って<ruby>調整<rt>ちょうせい</rt></ruby>。'
+  },
+  {
+    cat: 'setting',
+    q: 'クローズでピーク→タック<ruby>方向<rt>ほうこう</rt></ruby>に<ruby>斜<rt>なな</rt></ruby>めジワが<ruby>出<rt>で</rt></ruby>た。<ruby>原因<rt>げんいん</rt></ruby>は？',
+    options: ['スプリット<ruby>不足<rt>ふそく</rt></ruby>', 'スプリット<ruby>張<rt>は</rt></ruby>りすぎ（<ruby>上部<rt>じょうぶ</rt></ruby>が<ruby>閉<rt>と</rt></ruby>じすぎ・リーチがフック）', 'バング<ruby>強<rt>つよ</rt></ruby>すぎ', 'プリベンダー<ruby>緩<rt>ゆる</rt></ruby>すぎ'],
+    answer: 1,
+    explain: 'ピーク→タック<ruby>方向<rt>ほうこう</rt></ruby>のジワ＝スプリット<ruby>張<rt>は</rt></ruby>りすぎ。<ruby>上部<rt>じょうぶ</rt></ruby>が<ruby>閉<rt>と</rt></ruby>じすぎてリーチがフック<ruby>状態<rt>じょうたい</rt></ruby>。<ruby>緩<rt>ゆる</rt></ruby>めて<ruby>調整<rt>ちょうせい</rt></ruby>。'
+  },
+  {
+    cat: 'setting',
+    q: 'スプリット<ruby>調整<rt>ちょうせい</rt></ruby>の<ruby>基準<rt>きじゅん</rt></ruby>は？',
+    options: ['ジワが<ruby>消<rt>き</rt></ruby>えるか、ごくわずかに<ruby>残<rt>のこ</rt></ruby>る<ruby>程度<rt>ていど</rt></ruby>', '<ruby>常<rt>つね</rt></ruby>に<ruby>全力<rt>ぜんりょく</rt></ruby>で<ruby>張<rt>は</rt></ruby>る', '<ruby>常<rt>つね</rt></ruby>に<ruby>完全<rt>かんぜん</rt></ruby>に<ruby>緩<rt>ゆる</rt></ruby>める', '<ruby>適当<rt>てきとう</rt></ruby>でOK'],
+    answer: 0,
+    explain: 'スプリットの<ruby>基準<rt>きじゅん</rt></ruby>は<ruby>斜<rt>なな</rt></ruby>めジワが<ruby>消<rt>き</rt></ruby>えるか、ごくわずかに<ruby>残<rt>のこ</rt></ruby>る<ruby>程度<rt>ていど</rt></ruby>。<ruby>両方向<rt>りょうほうこう</rt></ruby>のジワを<ruby>見<rt>み</rt></ruby>て<ruby>判断<rt>はんだん</rt></ruby>。'
+  },
+  {
+    cat: 'setting',
+    q: 'アウトホール（フットの<ruby>深<rt>ふか</rt></ruby>さ）、<ruby>中風<rt>ちゅうふう</rt></ruby>の<ruby>目安<rt>めやす</rt></ruby>は？',
+    options: ['0〜2cm', '5〜8cm', '8〜12cm（<ruby>最大<rt>さいだい</rt></ruby>パワー）', '15〜20cm'],
+    answer: 2,
+    explain: '<ruby>中風<rt>ちゅうふう</rt></ruby>はブーム-セール<ruby>最大距離<rt>さいだいきょり</rt></ruby>8〜12cmで<ruby>最大<rt>さいだい</rt></ruby>パワー。<ruby>微風<rt>びふう</rt></ruby>は5〜8cm（<ruby>浅<rt>あさ</rt></ruby>め）、<ruby>強風<rt>きょうふう</rt></ruby>は5cm<ruby>以下<rt>いか</rt></ruby>。'
+  },
+  {
+    cat: 'setting',
+    q: 'キッカー（バング）が<ruby>最<rt>もっと</rt></ruby>も<ruby>重要<rt>じゅうよう</rt></ruby>なコースは？',
+    options: ['クローズホールド<ruby>微風<rt>びふう</rt></ruby>', 'アビーム', 'ランニング（<ruby>下<rt>くだ</rt></ruby>り）', 'リーチング'],
+    answer: 2,
+    explain: 'バングはランニングで<ruby>最重要<rt>さいじゅうよう</rt></ruby>！<ruby>緩<rt>ゆる</rt></ruby>いとブームが<ruby>上<rt>あ</rt></ruby>がってセール<ruby>上部<rt>じょうぶ</rt></ruby>が<ruby>前<rt>まえ</rt></ruby>にツイスト→<ruby>不安定<rt>ふあんてい</rt></ruby>（デスロールの<ruby>原因<rt>げんいん</rt></ruby>）。'
+  },
+  {
+    cat: 'setting',
+    q: 'クローズで<ruby>中風以上<rt>ちゅうふういじょう</rt></ruby>のバングの<ruby>役割<rt>やくわり</rt></ruby>は？',
+    options: ['<ruby>不要<rt>ふよう</rt></ruby>', 'バングシーティング：シートを<ruby>出<rt>だ</rt></ruby>してもリーチが<ruby>開<rt>ひら</rt></ruby>きすぎない', 'スピードUP<ruby>専用<rt>せんよう</rt></ruby>', '<ruby>艇<rt>てい</rt></ruby>を<ruby>沈<rt>しず</rt></ruby>める'],
+    answer: 1,
+    explain: 'バングシーティング：<ruby>中風以上<rt>ちゅうふういじょう</rt></ruby>はバングを<ruby>張<rt>は</rt></ruby>っておくと、ガストでシートを<ruby>出<rt>だ</rt></ruby>してもリーチが<ruby>開<rt>ひら</rt></ruby>きすぎず、ブームが<ruby>横<rt>よこ</rt></ruby>に<ruby>出<rt>で</rt></ruby>るだけで<ruby>済<rt>す</rt></ruby>む。'
+  },
+  {
+    cat: 'setting',
+    q: 'プリベンダーの<ruby>役割<rt>やくわり</rt></ruby>は？',
+    options: ['ブームを<ruby>下<rt>した</rt></ruby>に<ruby>引<rt>ひ</rt></ruby>く', 'ブームジョー（<ruby>前端<rt>ぜんたん</rt></ruby>）がマスト<ruby>上方<rt>じょうほう</rt></ruby>へずり<ruby>上<rt>あ</rt></ruby>がるのを<ruby>止<rt>と</rt></ruby>める', 'セールを<ruby>下<rt>お</rt></ruby>ろす', 'ラダーを<ruby>固定<rt>こてい</rt></ruby>'],
+    answer: 1,
+    explain: 'プリベンダー＝ブーム<ruby>前端<rt>ぜんたん</rt></ruby>がマスト<ruby>上方<rt>じょうほう</rt></ruby>へずり<ruby>上<rt>あ</rt></ruby>がるのを<ruby>防<rt>ふせ</rt></ruby>ぐ。<ruby>緩<rt>ゆる</rt></ruby>いとガストでブームが<ruby>浮<rt>う</rt></ruby>き、セール<ruby>形<rt>かたち</rt></ruby>が<ruby>崩<rt>くず</rt></ruby>れる。<ruby>常<rt>つね</rt></ruby>にしっかり<ruby>固定<rt>こてい</rt></ruby>。'
+  },
+  {
+    cat: 'setting',
+    q: 'シートの<ruby>役割<rt>やくわり</rt></ruby>は？',
+    options: ['マストを<ruby>立<rt>た</rt></ruby>てる', 'ブーム<ruby>角度<rt>かくど</rt></ruby>とリーチテンションの<ruby>即応的<rt>そくおうてき</rt></ruby><ruby>調整<rt>ちょうせい</rt></ruby>', '<ruby>体重<rt>たいじゅう</rt></ruby>を<ruby>移動<rt>いどう</rt></ruby>', 'センターを<ruby>下<rt>お</rt></ruby>ろす'],
+    answer: 1,
+    explain: 'シートは<ruby>最<rt>もっと</rt></ruby>も<ruby>即応性<rt>そくおうせい</rt></ruby>の<ruby>高<rt>たか</rt></ruby>いパワー／ツイスト<ruby>調整<rt>ちょうせい</rt></ruby>。ガストで<ruby>出<rt>だ</rt></ruby>す→ハイクと<ruby>同時<rt>どうじ</rt></ruby>に<ruby>引<rt>ひ</rt></ruby>き<ruby>戻<rt>もど</rt></ruby>すシートワークが<ruby>体感速度<rt>たいかんそくど</rt></ruby>を<ruby>最<rt>もっと</rt></ruby>も<ruby>左右<rt>さゆう</rt></ruby>する。'
+  },
+  {
+    cat: 'setting',
+    q: 'クローズでシートを<ruby>引<rt>ひ</rt></ruby>きすぎるとどうなる？',
+    options: ['<ruby>角度<rt>かくど</rt></ruby>がもっと<ruby>良<rt>よ</rt></ruby>くなる', '<ruby>失速<rt>しっそく</rt></ruby>（ストール）する', 'スピードUP', '<ruby>関係<rt>かんけい</rt></ruby>ない'],
+    answer: 1,
+    explain: '<ruby>引<rt>ひ</rt></ruby>きすぎると<ruby>失速<rt>しっそく</rt></ruby>（ストール）。リーチが<ruby>立<rt>た</rt></ruby>って<ruby>角度<rt>かくど</rt></ruby>は<ruby>出<rt>で</rt></ruby>るがスピードが<ruby>落<rt>お</rt></ruby>ちて<ruby>結局<rt>けっきょく</rt></ruby><ruby>上<rt>のぼ</rt></ruby>れない。'
+  },
+  {
+    cat: 'setting',
+    q: 'レーキを<ruby>後傾<rt>こうけい</rt></ruby>（マストを<ruby>倒<rt>たお</rt></ruby>す）にすると？',
+    options: ['ヘルムが<ruby>軽<rt>かる</rt></ruby>くなる', 'CEが<ruby>後<rt>うし</rt></ruby>ろへ→ウェザーヘルム<ruby>増<rt>ぞう</rt></ruby>、<ruby>上<rt>のぼ</rt></ruby>り<ruby>感<rt>かん</rt></ruby>が<ruby>出<rt>で</rt></ruby>る', 'スピードUP', '<ruby>変<rt>か</rt></ruby>わらない'],
+    answer: 1,
+    explain: 'レーキ<ruby>後傾<rt>こうけい</rt></ruby>＝CE<ruby>後<rt>うし</rt></ruby>ろへ→ウェザーヘルム<ruby>増<rt>ぞう</rt></ruby>、<ruby>上<rt>のぼ</rt></ruby>り<ruby>感<rt>かん</rt></ruby>UP。<ruby>逆<rt>ぎゃく</rt></ruby>に<ruby>前傾<rt>ぜんけい</rt></ruby>＝ヘルム<ruby>軽<rt>かる</rt></ruby>くベアしやすい。'
+  },
+  {
+    cat: 'setting',
+    q: 'ガラミ（マストタイ）を<ruby>締<rt>し</rt></ruby>めるとセールのエントリー（<ruby>前縁<rt>まえふち</rt></ruby>）は？',
+    options: ['<ruby>丸<rt>まる</rt></ruby>くなる', '<ruby>鋭<rt>するど</rt></ruby>くなる（<ruby>上<rt>のぼ</rt></ruby>り<ruby>角<rt>かく</rt></ruby>UP、グルーヴ<ruby>狭<rt>せま</rt></ruby>くなる）', '<ruby>変<rt>か</rt></ruby>わらない', 'ねじれる'],
+    answer: 1,
+    explain: 'ガラミ<ruby>締<rt>し</rt></ruby>める＝エントリー<ruby>鋭<rt>するど</rt></ruby>く、<ruby>上<rt>のぼ</rt></ruby>り<ruby>角<rt>かく</rt></ruby>UPだが<ruby>操船<rt>そうせん</rt></ruby>グルーヴが<ruby>狭<rt>せま</rt></ruby>くなる。<ruby>強風<rt>きょうふう</rt></ruby>・フラット<ruby>水面向<rt>すいめんむ</rt></ruby>き。'
+  },
+  {
+    cat: 'setting',
+    q: 'ガラミを<ruby>緩<rt>ゆる</rt></ruby>めるとエントリーは？',
+    options: ['<ruby>鋭<rt>するど</rt></ruby>くなる', '<ruby>丸<rt>まる</rt></ruby>くなる（パワフルで<ruby>失速<rt>しっそく</rt></ruby>しにくい）', '<ruby>変<rt>か</rt></ruby>わらない', 'マスト<ruby>折<rt>お</rt></ruby>れる'],
+    answer: 1,
+    explain: 'ガラミ<ruby>緩<rt>ゆる</rt></ruby>める＝エントリー<ruby>丸<rt>まる</rt></ruby>く、パワフルで<ruby>失速<rt>しっそく</rt></ruby>しにくい。<ruby>微中風<rt>びちゅうふう</rt></ruby>・<ruby>波<rt>なみ</rt></ruby>がある<ruby>時向<rt>ときむ</rt></ruby>き。'
+  },
+  {
+    cat: 'setting',
+    q: '<ruby>柔<rt>やわ</rt></ruby>らかいマスト／スプリットの<ruby>長所<rt>ちょうしょ</rt></ruby>は？',
+    options: ['パワーを<ruby>逃<rt>に</rt></ruby>がさない', 'ガストで<ruby>自動<rt>じどう</rt></ruby>デパワー（<ruby>軽量<rt>けいりょう</rt></ruby>セーラー・<ruby>強風<rt>きょうふう</rt></ruby><ruby>有利<rt>ゆうり</rt></ruby>）', '<ruby>軽<rt>かる</rt></ruby>い', '<ruby>長持<rt>ながも</rt></ruby>ち'],
+    answer: 1,
+    explain: '<ruby>柔<rt>やわ</rt></ruby>らかいスパー＝ガストで<ruby>曲<rt>ま</rt></ruby>がってセールが<ruby>自動<rt>じどう</rt></ruby>フラット化、<ruby>上部<rt>じょうぶ</rt></ruby>も<ruby>開<rt>ひら</rt></ruby>く。<ruby>軽量<rt>けいりょう</rt></ruby>セーラー・<ruby>強風<rt>きょうふう</rt></ruby>で<ruby>有利<rt>ゆうり</rt></ruby>。'
+  },
+  {
+    cat: 'setting',
+    q: 'クローズ<ruby>中風<rt>ちゅうふう</rt></ruby>でリーチテルテール（<ruby>上部<rt>じょうぶ</rt></ruby>）はどう<ruby>流<rt>なが</rt></ruby>れるのが<ruby>理想<rt>りそう</rt></ruby>？',
+    options: ['<ruby>全部<rt>ぜんぶ</rt></ruby><ruby>裏<rt>うら</rt></ruby>に<ruby>巻<rt>ま</rt></ruby>く', '5〜7<ruby>割流<rt>わりなが</rt></ruby>れる<ruby>程度<rt>ていど</rt></ruby>', '<ruby>全<rt>まった</rt></ruby>く<ruby>流<rt>なが</rt></ruby>れない', '<ruby>常<rt>つね</rt></ruby>に100%'],
+    answer: 1,
+    explain: 'クローズ<ruby>中風<rt>ちゅうふう</rt></ruby>：<ruby>上部<rt>じょうぶ</rt></ruby>テルテールが5〜7<ruby>割流<rt>わりなが</rt></ruby>れるのが<ruby>理想<rt>りそう</rt></ruby>。<ruby>閉<rt>と</rt></ruby>じすぎ＝<ruby>裏<rt>うら</rt></ruby>に<ruby>巻<rt>ま</rt></ruby>く（<ruby>失速<rt>しっそく</rt></ruby>）、<ruby>開<rt>ひら</rt></ruby>きすぎ＝<ruby>上<rt>のぼ</rt></ruby>れない。'
+  },
+  {
+    cat: 'setting',
+    q: 'ドラフト<ruby>位置<rt>いち</rt></ruby>のベストはラフから<ruby>何<rt>なん</rt></ruby>%？',
+    options: ['10〜20%', '40〜50%', '70〜80%', '<ruby>後<rt>うし</rt></ruby>ろほど<ruby>速<rt>はや</rt></ruby>い'],
+    answer: 1,
+    explain: 'ドラフト<ruby>位置<rt>いち</rt></ruby>はラフから40〜50%が<ruby>理想<rt>りそう</rt></ruby>。<ruby>後<rt>うし</rt></ruby>ろに<ruby>移動<rt>いどう</rt></ruby>するとウェザーヘルム・ヒール<ruby>増<rt>ぞう</rt></ruby>で<ruby>遅<rt>おそ</rt></ruby>くなる。'
+  },
+  {
+    cat: 'setting',
+    q: '<ruby>強風<rt>きょうふう</rt></ruby>のスプリットは？',
+    options: ['<ruby>最大<rt>さいだい</rt></ruby><ruby>張<rt>は</rt></ruby>る', '<ruby>基準<rt>きじゅん</rt></ruby>〜わずかに<ruby>緩<rt>ゆる</rt></ruby>め', '<ruby>完全<rt>かんぜん</rt></ruby>に<ruby>緩<rt>ゆる</rt></ruby>める', 'スプリット<ruby>外<rt>はず</rt></ruby>す'],
+    answer: 1,
+    explain: '<ruby>強風<rt>きょうふう</rt></ruby>のスプリットは<ruby>基準<rt>きじゅん</rt></ruby>〜わずかに<ruby>緩<rt>ゆる</rt></ruby>め。オーバーパワーでは<ruby>緩<rt>ゆる</rt></ruby>めてピークを<ruby>落<rt>お</rt></ruby>とし、ツイストで<ruby>逃<rt>に</rt></ruby>がす。'
+  },
+  {
+    cat: 'setting',
+    q: 'オーバーパワー（18kt〜）のセンターボードは？',
+    options: ['フルダウン', '<ruby>変<rt>か</rt></ruby>えない', '5〜10cm<ruby>上<rt>あ</rt></ruby>げる（ヒールモーメント<ruby>減<rt>げん</rt></ruby>）', '<ruby>完全<rt>かんぜん</rt></ruby>に<ruby>上<rt>あ</rt></ruby>げる'],
+    answer: 2,
+    explain: 'オーバーパワーはセンターボードを5〜10cm<ruby>上<rt>あ</rt></ruby>げてヒールモーメントを<ruby>減<rt>へ</rt></ruby>らす。コントロール<ruby>確保<rt>かくほ</rt></ruby>のため。'
+  },
+  {
+    cat: 'setting',
+    q: 'クローズホールドの<ruby>理想<rt>りそう</rt></ruby>のヘルム<ruby>感<rt>かん</rt></ruby>は？',
+    options: ['<ruby>強<rt>つよ</rt></ruby>いウェザーヘルム', 'ごく<ruby>軽<rt>かる</rt></ruby>いウェザーヘルム（<ruby>舵角<rt>だかく</rt></ruby>3〜5°）', '<ruby>完全<rt>かんぜん</rt></ruby>に<ruby>中立<rt>ちゅうりつ</rt></ruby>', 'リーヘルム'],
+    answer: 1,
+    explain: '<ruby>理想<rt>りそう</rt></ruby>はごく<ruby>軽<rt>かる</rt></ruby>いウェザーヘルム（<ruby>舵角<rt>だかく</rt></ruby>3〜5°）。<ruby>強<rt>つよ</rt></ruby>すぎるとラダーがブレーキに、リーヘルムは<ruby>微風<rt>びふう</rt></ruby>で<ruby>起<rt>お</rt></ruby>きやすい。'
+  },
+  {
+    cat: 'setting',
+    q: 'アビーム（リーチング）のセールトリムは？',
+    options: ['<ruby>引<rt>ひ</rt></ruby>き<ruby>込<rt>こ</rt></ruby>む', 'パワー<ruby>全開<rt>ぜんかい</rt></ruby>：アウトホール・スプリットを<ruby>緩<rt>ゆる</rt></ruby>めて<ruby>深<rt>ふか</rt></ruby>く', 'フラットに', '<ruby>関係<rt>かんけい</rt></ruby>ない'],
+    answer: 1,
+    explain: 'アビームは<ruby>見<rt>み</rt></ruby>かけの<ruby>風<rt>かぜ</rt></ruby>が<ruby>落<rt>お</rt></ruby>ちる→パワー<ruby>全開<rt>ぜんかい</rt></ruby>。アウトホール・スプリットを<ruby>緩<rt>ゆる</rt></ruby>めて<ruby>深<rt>ふか</rt></ruby>く、シートはテルテール<ruby>基準<rt>きじゅん</rt></ruby>。'
+  },
+  {
+    cat: 'setting',
+    q: 'ランニングで<ruby>意図的<rt>いとてき</rt></ruby>な<ruby>風上<rt>かざかみ</rt></ruby>ヒール（ウィンドワードヒール）の<ruby>効果<rt>こうか</rt></ruby>は？',
+    options: ['<ruby>転覆<rt>てんぷく</rt></ruby>しやすい', 'CEがハル<ruby>中心線上<rt>ちゅうしんせんじょう</rt></ruby>に<ruby>乗<rt>の</rt></ruby>って<ruby>舵<rt>かじ</rt></ruby><ruby>中立<rt>ちゅうりつ</rt></ruby>＝ラダードラグ<ruby>消<rt>き</rt></ruby>えて<ruby>速<rt>はや</rt></ruby>い', '<ruby>遅<rt>おそ</rt></ruby>くなる', '<ruby>関係<rt>かんけい</rt></ruby>ない'],
+    answer: 1,
+    explain: 'ウィンドワードヒール＝CEがハル<ruby>中心線上<rt>ちゅうしんせんじょう</rt></ruby>に<ruby>乗<rt>の</rt></ruby>って<ruby>舵<rt>かじ</rt></ruby>が<ruby>中立<rt>ちゅうりつ</rt></ruby>→ラダードラグが<ruby>消<rt>き</rt></ruby>えて<ruby>速<rt>はや</rt></ruby>い。<ruby>強風<rt>きょうふう</rt></ruby>では<ruby>控<rt>ひか</rt></ruby>えめに。'
+  },
+  {
+    cat: 'setting',
+    q: 'ランニングのバングが<ruby>緩<rt>ゆる</rt></ruby>すぎると<ruby>起<rt>お</rt></ruby>こる<ruby>現象<rt>げんしょう</rt></ruby>は？',
+    options: ['スピードUP', 'デスロール（ローリング）：<ruby>風上<rt>かざかみ</rt></ruby>ヒール→<ruby>風下<rt>かざしも</rt></ruby>ヒールが<ruby>暴走<rt>ぼうそう</rt></ruby>', '<ruby>艇<rt>てい</rt></ruby><ruby>停止<rt>ていし</rt></ruby>', '<ruby>関係<rt>かんけい</rt></ruby>ない'],
+    answer: 1,
+    explain: 'バング<ruby>緩<rt>ゆる</rt></ruby>すぎ＝<ruby>上部<rt>じょうぶ</rt></ruby>が<ruby>前<rt>まえ</rt></ruby>に<ruby>倒<rt>たお</rt></ruby>れて<ruby>不安定<rt>ふあんてい</rt></ruby>→デスロール（ローリング）。<ruby>沈<rt>ちん</rt></ruby>の<ruby>原因<rt>げんいん</rt></ruby>。しっかり<ruby>張<rt>は</rt></ruby>って<ruby>安定<rt>あんてい</rt></ruby>させる。'
+  },
+  {
+    cat: 'setting',
+    q: 'ウェザーヘルムが<ruby>強<rt>つよ</rt></ruby>すぎる<ruby>時<rt>とき</rt></ruby>の<ruby>第一<rt>だいいち</rt></ruby>の<ruby>対策<rt>たいさく</rt></ruby>は？',
+    options: ['シートを<ruby>引<rt>ひ</rt></ruby>く', 'まずフラットに<ruby>乗<rt>の</rt></ruby>る（<ruby>艇<rt>てい</rt></ruby>を<ruby>平<rt>たい</rt></ruby>らに）', 'レーキを<ruby>後<rt>うし</rt></ruby>ろへ', 'バングを<ruby>強<rt>つよ</rt></ruby>く'],
+    answer: 1,
+    explain: 'ウェザーヘルム<ruby>過多<rt>かた</rt></ruby>はまずフラットに！その<ruby>後<rt>あと</rt></ruby>シート<ruby>出<rt>だ</rt></ruby>す／ツイスト<ruby>増<rt>ふ</rt></ruby>やす／フラット化／レーキ<ruby>前<rt>まえ</rt></ruby>の<ruby>順<rt>じゅん</rt></ruby>で<ruby>対処<rt>たいしょ</rt></ruby>。'
+  },
+  {
+    cat: 'setting',
+    q: '<ruby>微風<rt>びふう</rt></ruby>の<ruby>一行<rt>いちぎょう</rt></ruby>サマリーは？',
+    options: ['<ruby>開<rt>ひら</rt></ruby>いて・<ruby>浅<rt>あさ</rt></ruby>く・<ruby>静<rt>しず</rt></ruby>かに', '<ruby>最大<rt>さいだい</rt></ruby>パワー', 'フラットに・<ruby>閉<rt>と</rt></ruby>じすぎない', '<ruby>上<rt>うえ</rt></ruby>を<ruby>捨<rt>す</rt></ruby>てる'],
+    answer: 0,
+    explain: '<ruby>微風<rt>びふう</rt></ruby>＝「<ruby>開<rt>ひら</rt></ruby>いて・<ruby>浅<rt>あさ</rt></ruby>く・<ruby>静<rt>しず</rt></ruby>かに」。ツイストで<ruby>気流<rt>きりゅう</rt></ruby>を<ruby>付<rt>つ</rt></ruby>け、<ruby>艇<rt>てい</rt></ruby>を<ruby>動<rt>うご</rt></ruby>かさない。'
+  },
+  {
+    cat: 'setting',
+    q: '<ruby>中風<rt>ちゅうふう</rt></ruby>の<ruby>一行<rt>いちぎょう</rt></ruby>サマリーは？',
+    options: ['<ruby>開<rt>ひら</rt></ruby>いて<ruby>浅<rt>あさ</rt></ruby>く', '<ruby>最大<rt>さいだい</rt></ruby>パワー（ジワが<ruby>消<rt>き</rt></ruby>える<ruby>基準値<rt>きじゅんち</rt></ruby>・<ruby>深<rt>ふか</rt></ruby>さ<ruby>最大<rt>さいだい</rt></ruby>・フルハイク）', 'フェザリング', '<ruby>関係<rt>かんけい</rt></ruby>ない'],
+    answer: 1,
+    explain: '<ruby>中風<rt>ちゅうふう</rt></ruby>＝「<ruby>最大<rt>さいだい</rt></ruby>パワー」。ジワが<ruby>消<rt>き</rt></ruby>える<ruby>基準値<rt>きじゅんち</rt></ruby>、フット<ruby>深<rt>ふか</rt></ruby>さ<ruby>最大<rt>さいだい</rt></ruby>、フラットでフルハイク。'
+  },
+  {
+    cat: 'setting',
+    q: 'オーバーパワーの<ruby>一行<rt>いちぎょう</rt></ruby>サマリーは？',
+    options: ['<ruby>最大<rt>さいだい</rt></ruby>パワー', '<ruby>上<rt>うえ</rt></ruby>を<ruby>捨<rt>す</rt></ruby>てる（ピークを<ruby>落<rt>お</rt></ruby>とし、ボード<ruby>上<rt>あ</rt></ruby>げ、フェザリング）', 'パワーを<ruby>溜<rt>た</rt></ruby>める', 'いつも<ruby>同<rt>おな</rt></ruby>じ'],
+    answer: 1,
+    explain: 'オーバーパワー＝「<ruby>上<rt>うえ</rt></ruby>を<ruby>捨<rt>す</rt></ruby>てる」。ピーク<ruby>落<rt>お</rt></ruby>とし、ボード<ruby>上<rt>あ</rt></ruby>げ、フェザリング。<ruby>艇<rt>てい</rt></ruby>を<ruby>平<rt>たい</rt></ruby>らに<ruby>保<rt>たも</rt></ruby>つことが<ruby>最速<rt>さいそく</rt></ruby>。'
   },
 
   // ===== 艤装・パーツ 6問 =====
@@ -1197,7 +1498,7 @@ function renderStart() {
   quizScreen.classList.add('hidden');
   resultScreen.classList.add('hidden');
   progressEl.style.width = '0%';
-  subtitleEl.innerHTML = `<ruby>帆走<rt>はんそう</rt></ruby>ルール・<ruby>旗<rt>はた</rt></ruby>・ホイッスル・セッティングまで<ruby>全<rt>ぜん</rt></ruby>${quizData.length}<ruby>問<rt>もん</rt></ruby>`;
+  subtitleEl.innerHTML = `<ruby>帆走<rt>はんそう</rt></ruby>ルール・<ruby>旗<rt>はた</rt></ruby>・セッティングまで<ruby>全<rt>ぜん</rt></ruby>${quizData.length}<ruby>問<rt>もん</rt></ruby>`;
 
   catGrid.innerHTML = '';
 
