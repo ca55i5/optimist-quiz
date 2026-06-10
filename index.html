@@ -416,7 +416,7 @@ const quizData = [
   // ===== ルール（RRS）8問 =====
   {
     cat: 'rule',
-    q: 'スターボードタック<ruby>艇<rt>てい</rt></ruby>（<ruby>右舷<rt>うげん</rt></ruby>から<ruby>風<rt>かぜ</rt></ruby>を<ruby>受<rt>う</rt></ruby>ける<ruby>艇<rt>てい</rt></ruby>）とポートタック<ruby>艇<rt>てい</rt></ruby>がぶつかりそうになった。どちらが<ruby>避<rt>よ</rt></ruby>ける？',
+    q: 'スターボードタック<ruby>艇<rt>てい</rt></ruby>とポートタック<ruby>艇<rt>てい</rt></ruby>がぶつかりそうになった。どちらが<ruby>避<rt>よ</rt></ruby>ける？',
     options: ['スターボードタック<ruby>艇<rt>てい</rt></ruby>', 'ポートタック<ruby>艇<rt>てい</rt></ruby>', '<ruby>後<rt>うし</rt></ruby>ろの<ruby>艇<rt>てい</rt></ruby>', '<ruby>両方<rt>りょうほう</rt></ruby>とも<ruby>避<rt>よ</rt></ruby>ける'],
     answer: 1,
     explain: 'RRS<ruby>第<rt>だい</rt></ruby>10<ruby>条<rt>じょう</rt></ruby>。ポートタック<ruby>艇<rt>てい</rt></ruby>がスターボードタック<ruby>艇<rt>てい</rt></ruby>を<ruby>避<rt>よ</rt></ruby>けるのが<ruby>基本<rt>きほん</rt></ruby>。'
@@ -503,9 +503,9 @@ const quizData = [
   {
     cat: 'rule',
     q: '「オーバーラップ」とはどんな<ruby>状態<rt>じょうたい</rt></ruby>？',
-    options: ['2<ruby>艇<rt>てい</rt></ruby>が<ruby>接触<rt>せっしょく</rt></ruby>している', '<ruby>後続艇<rt>こうぞくてい</rt></ruby>の<ruby>艇首<rt>ていしゅ</rt></ruby>が<ruby>先行艇<rt>せんこうてい</rt></ruby>の<ruby>艇尾<rt>ていび</rt></ruby>を<ruby>越<rt>こ</rt></ruby>えて<ruby>横<rt>よこ</rt></ruby>に<ruby>並<rt>なら</rt></ruby>ぶ', '<ruby>同<rt>おな</rt></ruby>じスピード', '<ruby>同<rt>おな</rt></ruby>じタック'],
+    options: ['2<ruby>艇<rt>てい</rt></ruby>が<ruby>接触<rt>せっしょく</rt></ruby>している', '2<ruby>艇<rt>てい</rt></ruby>が<ruby>横並<rt>よこなら</rt></ruby>びで<ruby>重<rt>かさ</rt></ruby>なっている', '<ruby>同<rt>おな</rt></ruby>じスピード', '<ruby>同<rt>おな</rt></ruby>じタック'],
     answer: 1,
-    explain: 'オーバーラップ＝<ruby>横<rt>よこ</rt></ruby>に<ruby>並<rt>なら</rt></ruby>んだ<ruby>状態<rt>じょうたい</rt></ruby>。<ruby>後続艇<rt>こうぞくてい</rt></ruby>の<ruby>艇首<rt>ていしゅ</rt></ruby>が<ruby>前艇<rt>まえてい</rt></ruby>の<ruby>艇尾<rt>ていび</rt></ruby>より<ruby>前<rt>まえ</rt></ruby>にあると<ruby>成立<rt>せいりつ</rt></ruby>。'
+    explain: 'オーバーラップ＝2<ruby>艇<rt>てい</rt></ruby>が<ruby>横並<rt>よこなら</rt></ruby>びで<ruby>重<rt>かさ</rt></ruby>なっている<ruby>状態<rt>じょうたい</rt></ruby>。<ruby>正確<rt>せいかく</rt></ruby>には<ruby>後続艇<rt>こうぞくてい</rt></ruby>の<ruby>艇首<rt>ていしゅ</rt></ruby>が<ruby>前艇<rt>まえてい</rt></ruby>の<ruby>艇尾<rt>ていび</rt></ruby>より<ruby>前<rt>まえ</rt></ruby>にあると<ruby>成立<rt>せいりつ</rt></ruby>。'
   },
   {
     cat: 'rule',
@@ -1140,9 +1140,9 @@ const quizData = [
   {
     cat: 'setting',
     q: '<ruby>中風<rt>ちゅうふう</rt></ruby>〜<ruby>強風<rt>きょうふう</rt></ruby>でのヒールバランスは？',
-    options: ['<ruby>大<rt>おお</rt></ruby>きく<ruby>風下<rt>かざしも</rt></ruby>にヒール', '<ruby>若干<rt>じゃっかん</rt></ruby><ruby>風上<rt>かざかみ</rt></ruby>にヒール', 'フラット', '<ruby>大<rt>おお</rt></ruby>きく<ruby>風上<rt>かざかみ</rt></ruby>にヒール'],
+    options: ['<ruby>大<rt>おお</rt></ruby>きく<ruby>風下<rt>かざしも</rt></ruby>にヒール', '<ruby>若干<rt>じゃっかん</rt></ruby>アンヒール', 'フラット', '<ruby>大<rt>おお</rt></ruby>きくアンヒール'],
     answer: 2,
-    explain: '<ruby>中風<rt>ちゅうふう</rt></ruby>〜<ruby>強風<rt>きょうふう</rt></ruby>はフラットが<ruby>基本<rt>きほん</rt></ruby>。<ruby>微風<rt>びふう</rt></ruby>のみ<ruby>若干<rt>じゃっかん</rt></ruby>ヒール。'
+    explain: '<ruby>中風<rt>ちゅうふう</rt></ruby>〜<ruby>強風<rt>きょうふう</rt></ruby>はフラットが<ruby>基本<rt>きほん</rt></ruby>。<ruby>微風<rt>びふう</rt></ruby>のみ<ruby>若干<rt>じゃっかん</rt></ruby><ruby>風下<rt>かざしも</rt></ruby>にヒール（<ruby>形<rt>かたち</rt></ruby>を<ruby>作<rt>つく</rt></ruby>る）。アンヒール（<ruby>風上<rt>かざかみ</rt></ruby>へヒール）はランニング<ruby>時<rt>とき</rt></ruby>の<ruby>特殊技術<rt>とくしゅぎじゅつ</rt></ruby>。'
   },
 
   // ===== セッティング詳細（数値）10問 =====
@@ -1393,15 +1393,15 @@ const quizData = [
   },
   {
     cat: 'setting',
-    q: 'ランニングで<ruby>意図的<rt>いとてき</rt></ruby>な<ruby>風上<rt>かざかみ</rt></ruby>ヒール（ウィンドワードヒール）の<ruby>効果<rt>こうか</rt></ruby>は？',
+    q: 'ランニングで<ruby>意図的<rt>いとてき</rt></ruby>なアンヒール（<ruby>風上<rt>かざかみ</rt></ruby>へヒール）の<ruby>効果<rt>こうか</rt></ruby>は？',
     options: ['<ruby>転覆<rt>てんぷく</rt></ruby>しやすい', 'CEがハル<ruby>中心線上<rt>ちゅうしんせんじょう</rt></ruby>に<ruby>乗<rt>の</rt></ruby>って<ruby>舵<rt>かじ</rt></ruby><ruby>中立<rt>ちゅうりつ</rt></ruby>＝ラダードラグ<ruby>消<rt>き</rt></ruby>えて<ruby>速<rt>はや</rt></ruby>い', '<ruby>遅<rt>おそ</rt></ruby>くなる', '<ruby>関係<rt>かんけい</rt></ruby>ない'],
     answer: 1,
-    explain: 'ウィンドワードヒール＝CEがハル<ruby>中心線上<rt>ちゅうしんせんじょう</rt></ruby>に<ruby>乗<rt>の</rt></ruby>って<ruby>舵<rt>かじ</rt></ruby>が<ruby>中立<rt>ちゅうりつ</rt></ruby>→ラダードラグが<ruby>消<rt>き</rt></ruby>えて<ruby>速<rt>はや</rt></ruby>い。<ruby>強風<rt>きょうふう</rt></ruby>では<ruby>控<rt>ひか</rt></ruby>えめに。'
+    explain: 'アンヒール＝CEがハル<ruby>中心線上<rt>ちゅうしんせんじょう</rt></ruby>に<ruby>乗<rt>の</rt></ruby>って<ruby>舵<rt>かじ</rt></ruby>が<ruby>中立<rt>ちゅうりつ</rt></ruby>→ラダードラグが<ruby>消<rt>き</rt></ruby>えて<ruby>速<rt>はや</rt></ruby>い。<ruby>強風<rt>きょうふう</rt></ruby>では<ruby>控<rt>ひか</rt></ruby>えめに。'
   },
   {
     cat: 'setting',
     q: 'ランニングのバングが<ruby>緩<rt>ゆる</rt></ruby>すぎると<ruby>起<rt>お</rt></ruby>こる<ruby>現象<rt>げんしょう</rt></ruby>は？',
-    options: ['スピードUP', 'デスロール（ローリング）：<ruby>風上<rt>かざかみ</rt></ruby>ヒール→<ruby>風下<rt>かざしも</rt></ruby>ヒールが<ruby>暴走<rt>ぼうそう</rt></ruby>', '<ruby>艇<rt>てい</rt></ruby><ruby>停止<rt>ていし</rt></ruby>', '<ruby>関係<rt>かんけい</rt></ruby>ない'],
+    options: ['スピードUP', 'デスロール（ローリング）：アンヒール→<ruby>風下<rt>かざしも</rt></ruby>ヒールが<ruby>暴走<rt>ぼうそう</rt></ruby>', '<ruby>艇<rt>てい</rt></ruby><ruby>停止<rt>ていし</rt></ruby>', '<ruby>関係<rt>かんけい</rt></ruby>ない'],
     answer: 1,
     explain: 'バング<ruby>緩<rt>ゆる</rt></ruby>すぎ＝<ruby>上部<rt>じょうぶ</rt></ruby>が<ruby>前<rt>まえ</rt></ruby>に<ruby>倒<rt>たお</rt></ruby>れて<ruby>不安定<rt>ふあんてい</rt></ruby>→デスロール（ローリング）。<ruby>沈<rt>ちん</rt></ruby>の<ruby>原因<rt>げんいん</rt></ruby>。しっかり<ruby>張<rt>は</rt></ruby>って<ruby>安定<rt>あんてい</rt></ruby>させる。'
   },
