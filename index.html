@@ -290,7 +290,7 @@
 <div class="container">
   <header>
     <h1>Optimistディンギー クイズ</h1>
-    <div class="subtitle" id="subtitle"><ruby>帆走<rt>はんそう</rt></ruby>ルール・<ruby>旗<rt>はた</rt></ruby>・ホイッスル・セッティングまで<ruby>全<rt>ぜん</rt></ruby>70<ruby>問<rt>もん</rt></ruby></div>
+    <div class="subtitle" id="subtitle"><ruby>帆走<rt>はんそう</rt></ruby>ルール・<ruby>旗<rt>はた</rt></ruby>・ホイッスル・セッティングまで<ruby>全<rt>ぜん</rt></ruby>90<ruby>問<rt>もん</rt></ruby></div>
     <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
   </header>
   <main>
@@ -356,8 +356,9 @@ function flagSvg(type, cls = 'flag') {
   }
 
   const defs = {
-    orange: '<rect width="90" height="60" fill="#ff5a1f"/>',
-    op: '<rect width="90" height="60" fill="#ff5a1f"/><circle cx="45" cy="30" r="14" fill="#000"/>',
+    orange: '<rect width="90" height="60" fill="#f08020"/>',
+    // OP旗：白地に黒いΦ（ファイ）マーク
+    op: '<rect width="90" height="60" fill="#fff"/><circle cx="45" cy="30" r="15" fill="none" stroke="#000" stroke-width="5"/><line x1="45" y1="7" x2="45" y2="53" stroke="#000" stroke-width="5" stroke-linecap="round"/>',
     n: (() => {
       let s = '';
       for (let r = 0; r < 4; r++) for (let c = 0; c < 4; c++) {
@@ -365,24 +366,33 @@ function flagSvg(type, cls = 'flag') {
       }
       return s;
     })(),
-    p: '<rect width="90" height="60" fill="#003a8c"/><rect x="27" y="20" width="36" height="20" fill="#fff"/>',
-    h: '<rect width="90" height="30" fill="#fff"/><rect y="30" width="90" height="30" fill="#e60012"/>',
+    p: '<rect width="90" height="60" fill="#0033aa"/><rect x="22" y="18" width="46" height="24" fill="#fff"/>',
+    // H旗：縦半分（左白・右赤）
+    h: '<rect width="45" height="60" fill="#fff"/><rect x="45" width="45" height="60" fill="#e60012"/>',
     // I旗：黄色地に黒丸（白じゃなくて黄色！）
     i: '<rect width="90" height="60" fill="#ffd700"/><circle cx="45" cy="30" r="14" fill="#000"/>',
     a: '<rect width="45" height="60" fill="#fff"/><polygon points="45,0 90,0 70,30 90,60 45,60" fill="#003a8c"/>',
     // U旗：左上＝赤、右上＝白、左下＝白、右下＝赤
     u: '<rect width="45" height="30" fill="#e60012"/><rect x="45" width="45" height="30" fill="#fff"/><rect y="30" width="45" height="30" fill="#fff"/><rect x="45" y="30" width="45" height="30" fill="#e60012"/>',
+    // C旗：青(細)・白(細)・赤(太)・白(細)・青(細)の比率（中央の赤が太い）
     c: (() => {
       let s = '';
-      const colors = ['#003a8c','#fff','#e60012','#fff','#003a8c'];
-      for (let i = 0; i < 5; i++) s += `<rect y="${i*12}" width="90" height="12" fill="${colors[i]}"/>`;
+      const stripes = [
+        { y: 0,  h: 10, fill: '#003a8c' },
+        { y: 10, h: 10, fill: '#fff' },
+        { y: 20, h: 20, fill: '#e60012' },
+        { y: 40, h: 10, fill: '#fff' },
+        { y: 50, h: 10, fill: '#003a8c' }
+      ];
+      stripes.forEach(st => { s += `<rect y="${st.y}" width="90" height="${st.h}" fill="${st.fill}"/>`; });
       return s;
     })(),
     black: '<rect width="90" height="60" fill="#000"/>',
-    s: '<rect width="90" height="60" fill="#003a8c"/><rect x="18" y="12" width="54" height="36" fill="#fff"/>',
+    // S旗：白地に中央の青い四角（色が逆だった）
+    s: '<rect width="90" height="60" fill="#fff"/><rect x="22" y="14" width="46" height="32" fill="#003a8c"/>',
     x: '<rect width="90" height="60" fill="#fff"/><rect x="40" width="10" height="60" fill="#003a8c"/><rect y="25" width="90" height="10" fill="#003a8c"/>',
     l: '<rect width="45" height="30" fill="#ffd700"/><rect x="45" width="45" height="30" fill="#000"/><rect y="30" width="45" height="30" fill="#000"/><rect x="45" y="30" width="45" height="30" fill="#ffd700"/>',
-    m: '<rect width="90" height="60" fill="#003a8c"/><line x1="0" y1="0" x2="90" y2="60" stroke="#fff" stroke-width="14"/><line x1="90" y1="0" x2="0" y2="60" stroke="#fff" stroke-width="14"/>'
+    m: '<rect width="90" height="60" fill="#0033aa"/><line x1="0" y1="0" x2="90" y2="60" stroke="#fff" stroke-width="18" stroke-linecap="square"/><line x1="90" y1="0" x2="0" y2="60" stroke="#fff" stroke-width="18" stroke-linecap="square"/>'
   };
   return `<svg class="${cls}" viewBox="0 0 90 60">${defs[type] || ''}</svg>`;
 }
@@ -419,10 +429,10 @@ const quizData = [
   },
   {
     cat: 'rule',
-    q: '<ruby>同<rt>おな</rt></ruby>じタックで<ruby>後<rt>うし</rt></ruby>ろから<ruby>追<rt>お</rt></ruby>いついた<ruby>艇<rt>てい</rt></ruby>（クリアアスターン）と<ruby>前<rt>まえ</rt></ruby>を<ruby>走<rt>はし</rt></ruby>る<ruby>艇<rt>てい</rt></ruby>。どちらが<ruby>避<rt>よ</rt></ruby>ける？',
-    options: ['<ruby>前<rt>まえ</rt></ruby>の<ruby>艇<rt>てい</rt></ruby>', '<ruby>後<rt>うし</rt></ruby>ろの<ruby>艇<rt>てい</rt></ruby>', '<ruby>速<rt>はや</rt></ruby>い<ruby>方<rt>ほう</rt></ruby>', 'どっちでもOK'],
+    q: '<ruby>同<rt>おな</rt></ruby>じタックで<ruby>後<rt>うし</rt></ruby>ろから<ruby>追<rt>お</rt></ruby>いついた<ruby>艇<rt>てい</rt></ruby>（クリアアスターン<ruby>艇<rt>てい</rt></ruby>）と<ruby>前<rt>まえ</rt></ruby>を<ruby>走<rt>はし</rt></ruby>る<ruby>艇<rt>てい</rt></ruby>（クリアアヘッド<ruby>艇<rt>てい</rt></ruby>）。どちらが<ruby>避<rt>よ</rt></ruby>ける？',
+    options: ['クリアアヘッド<ruby>艇<rt>てい</rt></ruby>（<ruby>前<rt>まえ</rt></ruby>の<ruby>艇<rt>てい</rt></ruby>）', 'クリアアスターン<ruby>艇<rt>てい</rt></ruby>（<ruby>後<rt>うし</rt></ruby>ろの<ruby>艇<rt>てい</rt></ruby>）', '<ruby>速<rt>はや</rt></ruby>い<ruby>方<rt>ほう</rt></ruby>', 'どっちでもOK'],
     answer: 1,
-    explain: 'RRS<ruby>第<rt>だい</rt></ruby>12<ruby>条<rt>じょう</rt></ruby>。<ruby>後<rt>うし</rt></ruby>ろから<ruby>来<rt>く</rt></ruby>た<ruby>艇<rt>てい</rt></ruby>が<ruby>避<rt>よ</rt></ruby>ける。'
+    explain: 'RRS<ruby>第<rt>だい</rt></ruby>12<ruby>条<rt>じょう</rt></ruby>。クリアアスターン<ruby>艇<rt>てい</rt></ruby>（<ruby>後<rt>うし</rt></ruby>ろの<ruby>艇<rt>てい</rt></ruby>）が、クリアアヘッド<ruby>艇<rt>てい</rt></ruby>（<ruby>前<rt>まえ</rt></ruby>の<ruby>艇<rt>てい</rt></ruby>）を<ruby>避<rt>よ</rt></ruby>ける。'
   },
   {
     cat: 'rule',
@@ -652,6 +662,170 @@ const quizData = [
     options: ['N<ruby>旗<rt>はた</rt></ruby>', 'U<ruby>旗<rt>はた</rt></ruby>（4<ruby>分前<rt>ふんまえ</rt></ruby>・1<ruby>分前<rt>ふんまえ</rt></ruby>から<ruby>出<rt>で</rt></ruby>たら<ruby>失格<rt>しっかく</rt></ruby>）', 'L<ruby>旗<rt>はた</rt></ruby>', 'X<ruby>旗<rt>はた</rt></ruby>'],
     answer: 1,
     explain: 'U<ruby>旗<rt>はた</rt></ruby>（<ruby>白<rt>しろ</rt></ruby>と<ruby>赤<rt>あか</rt></ruby>の4<ruby>分割<rt>ぶんかつ</rt></ruby>、<ruby>対角<rt>たいかく</rt></ruby>）。P<ruby>旗<rt>はた</rt></ruby>より<ruby>厳<rt>きび</rt></ruby>しいスタートシグナル。'
+  },
+
+  // ===== 旗（追加・テキスト）10問 =====
+  {
+    cat: 'flag',
+    q: 'オレンジ<ruby>旗<rt>はた</rt></ruby>があがった。これは<ruby>何<rt>なん</rt></ruby>のサイン？',
+    options: ['そろそろレースが<ruby>始<rt>はじ</rt></ruby>まる', 'レース<ruby>中止<rt>ちゅうし</rt></ruby>', 'コース<ruby>短縮<rt>たんしゅく</rt></ruby>', '<ruby>集合<rt>しゅうごう</rt></ruby>'],
+    answer: 0,
+    explain: 'オレンジ<ruby>旗<rt>はた</rt></ruby>は<ruby>本船<rt>ほんせん</rt></ruby>とアウター<ruby>艇<rt>てい</rt></ruby>に<ruby>上<rt>あ</rt></ruby>がる「そろそろレースするよ」の<ruby>合図<rt>あいず</rt></ruby>。これが<ruby>下<rt>お</rt></ruby>りるとスタートシーケンス<ruby>開始<rt>かいし</rt></ruby>。'
+  },
+  {
+    cat: 'flag',
+    q: 'ブラック<ruby>旗<rt>はた</rt></ruby>があがるタイミングは？',
+    options: ['5<ruby>分前<rt>ふんまえ</rt></ruby>', '4<ruby>分前<rt>ふんまえ</rt></ruby>', '1<ruby>分前<rt>ふんまえ</rt></ruby>', 'レース<ruby>中<rt>ちゅう</rt></ruby>'],
+    answer: 1,
+    explain: 'ブラック<ruby>旗<rt>はた</rt></ruby>はスタート4<ruby>分前<rt>ふんまえ</rt></ruby>にあがり1<ruby>分前<rt>ふんまえ</rt></ruby>で<ruby>降<rt>お</rt></ruby>りる<ruby>準備信号<rt>じゅんびしんごう</rt></ruby>。1<ruby>分前<rt>ふんまえ</rt></ruby>から<ruby>出<rt>で</rt></ruby>たら<ruby>失格<rt>しっかく</rt></ruby>でゼネリコでも<ruby>消<rt>き</rt></ruby>えない。'
+  },
+  {
+    cat: 'flag',
+    q: 'スタート<ruby>準備信号<rt>じゅんびしんごう</rt></ruby>4<ruby>種<rt>しゅ</rt></ruby>、フライング<ruby>厳<rt>きび</rt></ruby>しい<ruby>順番<rt>じゅんばん</rt></ruby>は？',
+    options: ['P＜I＜U＜ブラック', 'ブラック＜U＜I＜P', 'I＜P＜U＜ブラック', '<ruby>同<rt>おな</rt></ruby>じくらい'],
+    answer: 0,
+    explain: 'P＜I＜U＜ブラックの<ruby>順<rt>じゅん</rt></ruby>に<ruby>厳<rt>きび</rt></ruby>しい。P：<ruby>戻<rt>もど</rt></ruby>ればOK / I：<ruby>本船<rt>ほんせん</rt></ruby>か<ruby>アウター艇<rt>てい</rt></ruby><ruby>回<rt>まわ</rt></ruby>って<ruby>復帰<rt>ふっき</rt></ruby> / U：ゼネリコで<ruby>救済<rt>きゅうさい</rt></ruby> / ブラック：<ruby>救済<rt>きゅうさい</rt></ruby>なし<ruby>＋次<rt>つぎ</rt></ruby>のレースも<ruby>出<rt>で</rt></ruby>られない。'
+  },
+  {
+    cat: 'flag',
+    q: 'AP<ruby>旗<rt>はた</rt></ruby>の<ruby>下<rt>した</rt></ruby>にH<ruby>旗<rt>はた</rt></ruby>がついた（AP・H<ruby>旗<rt>はた</rt></ruby>）。<ruby>意味<rt>いみ</rt></ruby>は？',
+    options: ['<ruby>今日<rt>きょう</rt></ruby>のレース<ruby>終<rt>お</rt></ruby>わり', '<ruby>次<rt>つぎ</rt></ruby>のレース<ruby>延期<rt>えんき</rt></ruby>＋<ruby>陸<rt>りく</rt></ruby>に<ruby>戻<rt>もど</rt></ruby>れ（まだやるかも）', 'スタート<ruby>戻<rt>もど</rt></ruby>れ', '<ruby>集合<rt>しゅうごう</rt></ruby>'],
+    answer: 1,
+    explain: 'AP（<ruby>延期<rt>えんき</rt></ruby>）+ H（<ruby>陸<rt>りく</rt></ruby>に<ruby>戻<rt>もど</rt></ruby>れ）= まだレースやるかもしれないけど、いったん<ruby>陸<rt>りく</rt></ruby>に<ruby>戻<rt>もど</rt></ruby>る。'
+  },
+  {
+    cat: 'flag',
+    q: 'AP<ruby>旗<rt>はた</rt></ruby>の<ruby>下<rt>した</rt></ruby>にA<ruby>旗<rt>はた</rt></ruby>がついた（AP・A<ruby>旗<rt>はた</rt></ruby>）。<ruby>意味<rt>いみ</rt></ruby>は？',
+    options: ['まだレースやるかも', '<ruby>今日<rt>きょう</rt></ruby>のレースはおしまい（<ruby>延期<rt>えんき</rt></ruby>＋<ruby>陸<rt>りく</rt></ruby><ruby>戻<rt>もど</rt></ruby>れ）', 'スタート<ruby>戻<rt>もど</rt></ruby>れ', 'コース<ruby>変更<rt>へんこう</rt></ruby>'],
+    answer: 1,
+    explain: 'AP（<ruby>延期<rt>えんき</rt></ruby>）+ A（<ruby>陸戻<rt>りくもど</rt></ruby>れ・<ruby>今日<rt>きょう</rt></ruby><ruby>終<rt>お</rt></ruby>わり）= <ruby>今日<rt>きょう</rt></ruby>のレースは<ruby>全部終了<rt>ぜんぶしゅうりょう</rt></ruby>。'
+  },
+  {
+    cat: 'flag',
+    q: 'N・H<ruby>旗<rt>はた</rt></ruby>（N<ruby>旗<rt>はた</rt></ruby>の<ruby>下<rt>した</rt></ruby>にH<ruby>旗<rt>はた</rt></ruby>）の<ruby>意味<rt>いみ</rt></ruby>は？',
+    options: ['<ruby>次<rt>つぎ</rt></ruby>のレース<ruby>延期<rt>えんき</rt></ruby>', 'レース<ruby>中止<rt>ちゅうし</rt></ruby>＋<ruby>陸<rt>りく</rt></ruby>に<ruby>戻<rt>もど</rt></ruby>れ（まだやるかも）', '<ruby>今日<rt>きょう</rt></ruby><ruby>終<rt>お</rt></ruby>わり', 'スタートやり<ruby>直<rt>なお</rt></ruby>し'],
+    answer: 1,
+    explain: 'N（<ruby>中止<rt>ちゅうし</rt></ruby>）+ H（<ruby>陸<rt>りく</rt></ruby><ruby>戻<rt>もど</rt></ruby>れ）= レース<ruby>中止<rt>ちゅうし</rt></ruby>して<ruby>陸<rt>りく</rt></ruby>に<ruby>戻<rt>もど</rt></ruby>る。まだやる<ruby>可能性<rt>かのうせい</rt></ruby>あり。'
+  },
+  {
+    cat: 'flag',
+    q: 'N・A<ruby>旗<rt>はた</rt></ruby>（N<ruby>旗<rt>はた</rt></ruby>の<ruby>下<rt>した</rt></ruby>にA<ruby>旗<rt>はた</rt></ruby>）の<ruby>意味<rt>いみ</rt></ruby>は？',
+    options: ['<ruby>次<rt>つぎ</rt></ruby>のレース<ruby>延期<rt>えんき</rt></ruby>', 'レース<ruby>中止<rt>ちゅうし</rt></ruby>＋<ruby>今日<rt>きょう</rt></ruby>のレースおしまい', 'まだやるかも', 'コース<ruby>変更<rt>へんこう</rt></ruby>'],
+    answer: 1,
+    explain: 'N（<ruby>中止<rt>ちゅうし</rt></ruby>）+ A（<ruby>陸戻<rt>りくもど</rt></ruby>れ・<ruby>今日終<rt>きょうお</rt></ruby>わり）= <ruby>今日<rt>きょう</rt></ruby>のレース<ruby>全部終了<rt>ぜんぶしゅうりょう</rt></ruby>。'
+  },
+  {
+    cat: 'flag',
+    q: 'ゼネリコ<ruby>旗<rt>はた</rt></ruby>があがった<ruby>瞬間<rt>しゅんかん</rt></ruby>、<ruby>選手<rt>せんしゅ</rt></ruby>は<ruby>何<rt>なに</rt></ruby>する？',
+    options: ['<ruby>続行<rt>ぞっこう</rt></ruby>', 'スタートに<ruby>戻<rt>もど</rt></ruby>る', 'リタイア', '<ruby>集合<rt>しゅうごう</rt></ruby>'],
+    answer: 1,
+    explain: 'ゼネリコ＝スタートやり<ruby>直<rt>なお</rt></ruby>し。みんなスタートラインに<ruby>戻<rt>もど</rt></ruby>って<ruby>再<rt>さい</rt></ruby>スタートを<ruby>待<rt>ま</rt></ruby>つ。'
+  },
+  {
+    cat: 'flag',
+    q: 'P<ruby>旗<rt>はた</rt></ruby>の「P」の<ruby>正式名<rt>せいしきめい</rt></ruby>は？',
+    options: ['プレパラトリーシグナル（<ruby>準備信号<rt>じゅんびしんごう</rt></ruby>）', 'プロテストフラッグ', 'ピース<ruby>旗<rt>はた</rt></ruby>', 'パワー<ruby>旗<rt>はた</rt></ruby>'],
+    answer: 0,
+    explain: 'P<ruby>旗<rt>はた</rt></ruby> = Preparatory Signal（<ruby>準備信号<rt>じゅんびしんごう</rt></ruby>）。スタート4<ruby>分前<rt>ふんまえ</rt></ruby>にあがり1<ruby>分前<rt>ふんまえ</rt></ruby>で<ruby>降<rt>お</rt></ruby>りる。'
+  },
+  {
+    cat: 'flag',
+    q: 'I<ruby>旗<rt>はた</rt></ruby>のルールの<ruby>正式名<rt>せいしきめい</rt></ruby>は？',
+    options: ['ラウンドアンエンドルール', 'ブラックフラッグルール', 'ペナルティルール', 'マークルームルール'],
+    answer: 0,
+    explain: 'I<ruby>旗<rt>はた</rt></ruby>のルール = Round-an-end rule（ラウンドアンエンドルール）。1<ruby>分前<rt>ふんまえ</rt></ruby>から<ruby>出<rt>で</rt></ruby>ても<ruby>本船<rt>ほんせん</rt></ruby>か<ruby>アウター艇<rt>てい</rt></ruby>を<ruby>回<rt>まわ</rt></ruby>れば<ruby>復帰<rt>ふっき</rt></ruby><ruby>可能<rt>かのう</rt></ruby>。'
+  },
+
+  // ===== 旗を見る（追加・ビジュアル）10問 =====
+  {
+    cat: 'flagimg',
+    q: `この<ruby>旗<rt>はた</rt></ruby>は？<br>${flagSvg('n','flag flag-big')}`,
+    options: ['N<ruby>旗<rt>はた</rt></ruby>（レース<ruby>中止<rt>ちゅうし</rt></ruby>・<ruby>本船<rt>ほんせん</rt></ruby>に<ruby>戻<rt>もど</rt></ruby>れ）', 'L<ruby>旗<rt>はた</rt></ruby>', 'U<ruby>旗<rt>はた</rt></ruby>', 'P<ruby>旗<rt>はた</rt></ruby>'],
+    answer: 0,
+    explain: 'N<ruby>旗<rt>はた</rt></ruby>（<ruby>青<rt>あお</rt></ruby>と<ruby>白<rt>しろ</rt></ruby>の<ruby>市松<rt>いちまつ</rt></ruby>4×4）。レース<ruby>中止<rt>ちゅうし</rt></ruby>・<ruby>本船<rt>ほんせん</rt></ruby>に<ruby>戻<rt>もど</rt></ruby>れの<ruby>合図<rt>あいず</rt></ruby>。'
+  },
+  {
+    cat: 'flagimg',
+    q: `この<ruby>旗<rt>はた</rt></ruby>は？<br>${flagSvg('h','flag flag-big')}`,
+    options: ['H<ruby>旗<rt>はた</rt></ruby>（<ruby>陸<rt>りく</rt></ruby>に<ruby>戻<rt>もど</rt></ruby>れ・AP/Nとセット）', 'X<ruby>旗<rt>はた</rt></ruby>', 'U<ruby>旗<rt>はた</rt></ruby>', 'C<ruby>旗<rt>はた</rt></ruby>'],
+    answer: 0,
+    explain: 'H<ruby>旗<rt>はた</rt></ruby>（<ruby>縦半分<rt>たてはんぶん</rt></ruby>・<ruby>左白<rt>ひだりしろ</rt></ruby>・<ruby>右赤<rt>みぎあか</rt></ruby>）。<ruby>単独<rt>たんどく</rt></ruby>では<ruby>使<rt>つか</rt></ruby>われず、APやNとセットで「<ruby>陸<rt>りく</rt></ruby>に<ruby>戻<rt>もど</rt></ruby>れ」の<ruby>意味<rt>いみ</rt></ruby>。'
+  },
+  {
+    cat: 'flagimg',
+    q: `この<ruby>旗<rt>はた</rt></ruby>は？<br>${flagSvg('s','flag flag-big')}`,
+    options: ['P<ruby>旗<rt>はた</rt></ruby>', 'S<ruby>旗<rt>はた</rt></ruby>（コース<ruby>短縮<rt>たんしゅく</rt></ruby>）', 'OP<ruby>旗<rt>はた</rt></ruby>', 'AP<ruby>旗<rt>はた</rt></ruby>'],
+    answer: 1,
+    explain: 'S<ruby>旗<rt>はた</rt></ruby>（<ruby>白地<rt>しろじ</rt></ruby>に<ruby>中央<rt>ちゅうおう</rt></ruby><ruby>青四角<rt>あおしかく</rt></ruby>）。コース<ruby>短縮<rt>たんしゅく</rt></ruby>のサイン。P<ruby>旗<rt>はた</rt></ruby>と<ruby>色<rt>いろ</rt></ruby>が<ruby>逆<rt>ぎゃく</rt></ruby>なので<ruby>注意<rt>ちゅうい</rt></ruby>！'
+  },
+  {
+    cat: 'flagimg',
+    q: `この<ruby>旗<rt>はた</rt></ruby>は？<br>${flagSvg('l','flag flag-big')}`,
+    options: ['N<ruby>旗<rt>はた</rt></ruby>', 'M<ruby>旗<rt>はた</rt></ruby>', 'L<ruby>旗<rt>はた</rt></ruby>（<ruby>集合<rt>しゅうごう</rt></ruby>）', 'X<ruby>旗<rt>はた</rt></ruby>'],
+    answer: 2,
+    explain: 'L<ruby>旗<rt>はた</rt></ruby>（<ruby>黄色<rt>きいろ</rt></ruby>と<ruby>黒<rt>くろ</rt></ruby>の4<ruby>分割<rt>ぶんかつ</rt></ruby>）。<ruby>集合<rt>しゅうごう</rt></ruby>のサイン。<ruby>陸上<rt>りくじょう</rt></ruby>は<ruby>運営<rt>うんえい</rt></ruby><ruby>連絡<rt>れんらく</rt></ruby>、<ruby>海上<rt>かいじょう</rt></ruby>はその<ruby>船<rt>ふね</rt></ruby>に<ruby>集合<rt>しゅうごう</rt></ruby>。'
+  },
+  {
+    cat: 'flagimg',
+    q: `<ruby>下<rt>した</rt></ruby>の4つから「N<ruby>旗<rt>はた</rt></ruby>」を<ruby>選<rt>えら</rt></ruby>んで！`,
+    options: [
+      flagSvg('l') + ' <ruby>黄黒市松<rt>きいくろいちまつ</rt></ruby>4<ruby>分割<rt>ぶんかつ</rt></ruby>',
+      flagSvg('n') + ' <ruby>青白市松<rt>あおしろいちまつ</rt></ruby>4×4',
+      flagSvg('u') + ' <ruby>赤白<rt>あかしろ</rt></ruby>4<ruby>分割<rt>ぶんかつ</rt></ruby>',
+      flagSvg('c') + ' <ruby>青白赤白青横縞<rt>あおしろあかしろあおよこじま</rt></ruby>'
+    ],
+    answer: 1,
+    explain: 'N<ruby>旗<rt>はた</rt></ruby>＝<ruby>青<rt>あお</rt></ruby>と<ruby>白<rt>しろ</rt></ruby>の<ruby>細<rt>こま</rt></ruby>かい<ruby>市松<rt>いちまつ</rt></ruby>4×4。L<ruby>旗<rt>はた</rt></ruby>（<ruby>黄黒<rt>きいくろ</rt></ruby>2×2）と<ruby>区別<rt>くべつ</rt></ruby>！'
+  },
+  {
+    cat: 'flagimg',
+    q: `<ruby>下<rt>した</rt></ruby>の4つから「S<ruby>旗<rt>はた</rt></ruby>（コース<ruby>短縮<rt>たんしゅく</rt></ruby>）」を<ruby>選<rt>えら</rt></ruby>んで！`,
+    options: [
+      flagSvg('p') + ' <ruby>青地<rt>あおじ</rt></ruby>に<ruby>白四角<rt>しろしかく</rt></ruby>',
+      flagSvg('s') + ' <ruby>白地<rt>しろじ</rt></ruby>に<ruby>青四角<rt>あおしかく</rt></ruby>',
+      flagSvg('i') + ' <ruby>黄地<rt>きじ</rt></ruby>に<ruby>黒丸<rt>くろまる</rt></ruby>',
+      flagSvg('op') + ' <ruby>白地<rt>しろじ</rt></ruby>にΦマーク'
+    ],
+    answer: 1,
+    explain: 'S<ruby>旗<rt>はた</rt></ruby>＝<ruby>白地<rt>しろじ</rt></ruby>に<ruby>中央<rt>ちゅうおう</rt></ruby><ruby>青四角<rt>あおしかく</rt></ruby>。P<ruby>旗<rt>はた</rt></ruby>（<ruby>青地<rt>あおじ</rt></ruby>に<ruby>白四角<rt>しろしかく</rt></ruby>）と<ruby>色<rt>いろ</rt></ruby>が<ruby>完全<rt>かんぜん</rt></ruby>に<ruby>逆<rt>ぎゃく</rt></ruby>！'
+  },
+  {
+    cat: 'flagimg',
+    q: `<ruby>下<rt>した</rt></ruby>の4つから「M<ruby>旗<rt>はた</rt></ruby>（マーク<ruby>代<rt>か</rt></ruby>わり）」を<ruby>選<rt>えら</rt></ruby>んで！`,
+    options: [
+      flagSvg('x') + ' <ruby>白地<rt>しろじ</rt></ruby>に<ruby>青十字<rt>あおじゅうじ</rt></ruby>',
+      flagSvg('m') + ' <ruby>青地<rt>あおじ</rt></ruby>に<ruby>白<rt>しろ</rt></ruby>いX',
+      flagSvg('p') + ' <ruby>青地<rt>あおじ</rt></ruby>に<ruby>白四角<rt>しろしかく</rt></ruby>',
+      flagSvg('n') + ' <ruby>青白市松<rt>あおしろいちまつ</rt></ruby>'
+    ],
+    answer: 1,
+    explain: 'M<ruby>旗<rt>はた</rt></ruby>＝<ruby>青地<rt>あおじ</rt></ruby>に<ruby>白<rt>しろ</rt></ruby>いX。マーク<ruby>異常時<rt>いじょうじ</rt></ruby>にこの<ruby>船<rt>ふね</rt></ruby>がマークの<ruby>代<rt>か</rt></ruby>わりに。X<ruby>旗<rt>はた</rt></ruby>（<ruby>白地<rt>しろじ</rt></ruby>に<ruby>青十字<rt>あおじゅうじ</rt></ruby>）と<ruby>色<rt>いろ</rt></ruby>が<ruby>逆<rt>ぎゃく</rt></ruby>！'
+  },
+  {
+    cat: 'flagimg',
+    q: `<ruby>下<rt>した</rt></ruby>の4つから「ブラック<ruby>旗<rt>はた</rt></ruby>」を<ruby>選<rt>えら</rt></ruby>んで！`,
+    options: [
+      flagSvg('black') + ' <ruby>真<rt>ま</rt></ruby>っ<ruby>黒<rt>くろ</rt></ruby>',
+      flagSvg('m') + ' <ruby>青地<rt>あおじ</rt></ruby>に<ruby>白<rt>しろ</rt></ruby>いX',
+      flagSvg('n') + ' <ruby>青白市松<rt>あおしろいちまつ</rt></ruby>',
+      flagSvg('p') + ' <ruby>青地<rt>あおじ</rt></ruby>に<ruby>白四角<rt>しろしかく</rt></ruby>'
+    ],
+    answer: 0,
+    explain: 'ブラック<ruby>旗<rt>はた</rt></ruby>＝<ruby>真<rt>ま</rt></ruby>っ<ruby>黒一色<rt>くろいっしょく</rt></ruby>。<ruby>一目<rt>ひとめ</rt></ruby>でわかる！スタート<ruby>最厳格<rt>さいげんかく</rt></ruby>シグナル。'
+  },
+  {
+    cat: 'flagimg',
+    q: 'ペナント（<ruby>三角形<rt>さんかくけい</rt></ruby>）の<ruby>旗<rt>はた</rt></ruby>はどれ？',
+    options: ['P<ruby>旗<rt>はた</rt></ruby>', 'ゼネリコ<ruby>旗<rt>はた</rt></ruby>とAP<ruby>旗<rt>はた</rt></ruby>', 'N<ruby>旗<rt>はた</rt></ruby>', 'C<ruby>旗<rt>はた</rt></ruby>'],
+    answer: 1,
+    explain: 'ゼネリコ（<ruby>第一代表旗<rt>だいいちだいひょうき</rt></ruby>）とAP（<ruby>回答旗<rt>かいとうき</rt></ruby>）はペナント（<ruby>三角形<rt>さんかくけい</rt></ruby>）。<ruby>他<rt>ほか</rt></ruby>の<ruby>旗<rt>はた</rt></ruby>は<ruby>四角形<rt>しかくけい</rt></ruby>。<ruby>形<rt>かたち</rt></ruby>でも<ruby>見分<rt>みわ</rt></ruby>けられる！'
+  },
+  {
+    cat: 'flagimg',
+    q: `この<ruby>旗<rt>はた</rt></ruby>は？<br>${flagSvg('orange','flag flag-big')}`,
+    options: ['OP<ruby>旗<rt>はた</rt></ruby>', 'オレンジ<ruby>旗<rt>はた</rt></ruby>（そろそろレース<ruby>始<rt>はじ</rt></ruby>まる）', 'M<ruby>旗<rt>はた</rt></ruby>', 'AP<ruby>旗<rt>はた</rt></ruby>'],
+    answer: 1,
+    explain: 'オレンジ<ruby>旗<rt>はた</rt></ruby>＝オレンジ<ruby>一色<rt>いっしょく</rt></ruby>。<ruby>本船<rt>ほんせん</rt></ruby>とアウター<ruby>艇<rt>てい</rt></ruby>にあがる「そろそろレースするよ」の<ruby>合図<rt>あいず</rt></ruby>。OP<ruby>旗<rt>はた</rt></ruby>（<ruby>白地<rt>しろじ</rt></ruby>にΦ）と<ruby>違<rt>ちが</rt></ruby>うよ！'
   },
 
   // ===== ホイッスル 6問 =====
