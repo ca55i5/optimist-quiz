@@ -68,6 +68,38 @@
     margin-top: 16px;
     overflow: hidden;
   }
+  /* 言語切替トグル */
+  .lang-toggle {
+    position: absolute;
+    top: 20px;
+    right: 80px;
+    display: flex;
+    gap: 4px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 20px;
+    padding: 4px;
+    z-index: 2;
+  }
+  .lang-btn {
+    background: transparent;
+    border: none;
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 16px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: inherit;
+    transition: all 0.2s;
+  }
+  .lang-btn.active {
+    background: #fff;
+    color: var(--sea);
+  }
+  .lang-btn:hover:not(.active) { background: rgba(255,255,255,0.2); }
+  /* 英語モード時はrubyのrtを非表示 */
+  body.lang-en rt { display: none; }
+  body.lang-en ruby { ruby-position: under; }
   .progress-fill { height: 100%; background: var(--sun); width: 0%; transition: width 0.4s ease; }
   main { padding: 28px; }
 
@@ -289,7 +321,11 @@
 <body>
 <div class="container">
   <header>
-    <h1>Optimistディンギー クイズ</h1>
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="lang-ja" data-lang="ja">日本語</button>
+      <button class="lang-btn" id="lang-en" data-lang="en">EN</button>
+    </div>
+    <h1 id="title">Optimistディンギー クイズ</h1>
     <div class="subtitle" id="subtitle"><ruby>帆走<rt>はんそう</rt></ruby>ルール・<ruby>旗<rt>はた</rt></ruby>・セッティング・<ruby>戦略<rt>せんりゃく</rt></ruby>まで<ruby>全<rt>ぜん</rt></ruby>232<ruby>問<rt>もん</rt></ruby></div>
     <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
   </header>
@@ -332,6 +368,76 @@
 </div>
 
 <script>
+// ===== i18n（多言語）辞書 =====
+const i18n = {
+  ja: {
+    title: 'Optimistディンギー クイズ',
+    subtitle: '帆走ルール・旗・セッティング・戦略まで全{n}問',
+    catSelectTitle: 'カテゴリをえらんでね',
+    catSelectDesc: '気になるテーマだけ練習することもできるよ！',
+    allChallenge: '全問チャレンジ',
+    allDesc: '{n}問全部（シャッフル）',
+    random10: 'ランダム10問',
+    random10Desc: '全カテゴリから10問ピック',
+    questionsLabel: '問',
+    quit: '← やめる',
+    quitConfirm: 'やめると今のスコアは消えるよ。もどっていい？',
+    nextBtn: '次の問題 →',
+    seeResult: '結果を見る →',
+    correct: '⛵ せいかい！',
+    wrong: '🌊 ざんねん...',
+    perfect: 'パーフェクト！君はもうOptimistマスター！',
+    great: 'すばらしい！基本はバッチリだね。',
+    good: 'いい感じ！間違えたところを復習しよう。',
+    keepGoing: 'まだまだ伸びしろあり！苦手カテゴリだけ練習するのもおすすめ。',
+    startOver: 'まずは基本から！カテゴリ別に少しずつやっていこう。',
+    retry: 'もう一度',
+    backHome: 'カテゴリ選択に戻る',
+    reviewTitle: '📝 解答の振り返り',
+    yourAnswer: 'きみの答え',
+    correctAnswer: '正解'
+  },
+  en: {
+    title: 'Optimist Dinghy Quiz',
+    subtitle: 'Sailing rules, flags, settings & strategy - {n} questions total',
+    catSelectTitle: 'Choose a category',
+    catSelectDesc: 'You can also practice just one topic!',
+    allChallenge: 'All Questions',
+    allDesc: 'All {n} questions (shuffled)',
+    random10: 'Random 10',
+    random10Desc: '10 picks from all categories',
+    questionsLabel: 'Q',
+    quit: '← Quit',
+    quitConfirm: 'Quitting will erase your current score. Go back?',
+    nextBtn: 'Next →',
+    seeResult: 'See Result →',
+    correct: '⛵ Correct!',
+    wrong: '🌊 Wrong...',
+    perfect: 'Perfect! You\'re an Optimist Master!',
+    great: 'Excellent! You\'ve got the basics down.',
+    good: 'Not bad! Review the ones you missed.',
+    keepGoing: 'Lots of room to grow! Practice weak categories.',
+    startOver: 'Start with the basics! Take it category by category.',
+    retry: 'Try Again',
+    backHome: 'Back to Categories',
+    reviewTitle: '📝 Answer Review',
+    yourAnswer: 'Your answer',
+    correctAnswer: 'Correct'
+  }
+};
+
+let currentLang = 'ja';
+const t = (key, vars = {}) => {
+  let s = i18n[currentLang][key] || i18n.ja[key] || key;
+  Object.keys(vars).forEach(k => { s = s.replace(`{${k}}`, vars[k]); });
+  return s;
+};
+// 問題データから現在言語のテキストを取得（_enがなければ日本語にフォールバック）
+const getQ = (q) => (currentLang === 'en' && q.q_en) ? q.q_en : q.q;
+const getOptions = (q) => (currentLang === 'en' && q.options_en) ? q.options_en : q.options;
+const getExplain = (q) => (currentLang === 'en' && q.explain_en) ? q.explain_en : q.explain;
+const getCatName = (cat) => (currentLang === 'en' && cat.name_en) ? cat.name_en : cat.name;
+
 // ===== 旗SVG定義（クラスを差し込めるよう関数化） =====
 let _flagIdCounter = 0;
 function flagSvg(type, cls = 'flag') {
@@ -399,17 +505,17 @@ function flagSvg(type, cls = 'flag') {
 
 // カテゴリ定義
 const categories = {
-  rule:     { name: 'ルール', emoji: '⚖️' },
-  flag:     { name: '<ruby>旗<rt>はた</rt></ruby>', emoji: '🚩' },
-  flagimg:  { name: '<ruby>旗<rt>はた</rt></ruby>を<ruby>見<rt>み</rt></ruby>る', emoji: '👀' },
-  whistle:  { name: 'ホイッスル', emoji: '📣' },
-  setting:  { name: 'セッティング<ruby>基本<rt>きほん</rt></ruby>', emoji: '🔧' },
-  setdetail:{ name: 'セッティング<ruby>詳細<rt>しょうさい</rt></ruby>', emoji: '📐' },
-  parts:    { name: '<ruby>艤装<rt>ぎそう</rt></ruby>・パーツ', emoji: '⛵' },
-  sail:     { name: '<ruby>風<rt>かぜ</rt></ruby>・<ruby>操船<rt>そうせん</rt></ruby>', emoji: '💨' },
-  strategy: { name: '<ruby>戦略<rt>せんりゃく</rt></ruby>・<ruby>練習<rt>れんしゅう</rt></ruby>', emoji: '🧠' },
-  safety:   { name: '<ruby>安全<rt>あんぜん</rt></ruby>', emoji: '🦺' },
-  class:    { name: 'クラス<ruby>知識<rt>ちしき</rt></ruby>', emoji: '📚' }
+  rule:     { name: 'ルール', name_en: 'Rules', emoji: '⚖️' },
+  flag:     { name: '<ruby>旗<rt>はた</rt></ruby>', name_en: 'Flags', emoji: '🚩' },
+  flagimg:  { name: '<ruby>旗<rt>はた</rt></ruby>を<ruby>見<rt>み</rt></ruby>る', name_en: 'Flag Visual', emoji: '👀' },
+  whistle:  { name: 'ホイッスル', name_en: 'Whistles', emoji: '📣' },
+  setting:  { name: 'セッティング<ruby>基本<rt>きほん</rt></ruby>', name_en: 'Setting Basics', emoji: '🔧' },
+  setdetail:{ name: 'セッティング<ruby>詳細<rt>しょうさい</rt></ruby>', name_en: 'Setting Details', emoji: '📐' },
+  parts:    { name: '<ruby>艤装<rt>ぎそう</rt></ruby>・パーツ', name_en: 'Parts & Rigging', emoji: '⛵' },
+  sail:     { name: '<ruby>風<rt>かぜ</rt></ruby>・<ruby>操船<rt>そうせん</rt></ruby>', name_en: 'Wind & Handling', emoji: '💨' },
+  strategy: { name: '<ruby>戦略<rt>せんりゃく</rt></ruby>・<ruby>練習<rt>れんしゅう</rt></ruby>', name_en: 'Strategy & Training', emoji: '🧠' },
+  safety:   { name: '<ruby>安全<rt>あんぜん</rt></ruby>', name_en: 'Safety', emoji: '🦺' },
+  class:    { name: 'クラス<ruby>知識<rt>ちしき</rt></ruby>', name_en: 'Class Knowledge', emoji: '📚' }
 };
 
 const quizData = [
@@ -417,16 +523,22 @@ const quizData = [
   {
     cat: 'rule',
     q: 'スターボードタック<ruby>艇<rt>てい</rt></ruby>とポートタック<ruby>艇<rt>てい</rt></ruby>がぶつかりそうになった。どちらが<ruby>避<rt>よ</rt></ruby>ける？',
+    q_en: 'A starboard-tack boat and a port-tack boat are about to collide. Which must keep clear?',
     options: ['スターボードタック<ruby>艇<rt>てい</rt></ruby>', 'ポートタック<ruby>艇<rt>てい</rt></ruby>', '<ruby>後<rt>うし</rt></ruby>ろの<ruby>艇<rt>てい</rt></ruby>', '<ruby>両方<rt>りょうほう</rt></ruby>とも<ruby>避<rt>よ</rt></ruby>ける'],
+    options_en: ['Starboard-tack boat', 'Port-tack boat', 'The one behind', 'Both must avoid'],
     answer: 1,
-    explain: 'RRS<ruby>第<rt>だい</rt></ruby>10<ruby>条<rt>じょう</rt></ruby>。ポートタック<ruby>艇<rt>てい</rt></ruby>がスターボードタック<ruby>艇<rt>てい</rt></ruby>を<ruby>避<rt>よ</rt></ruby>けるのが<ruby>基本<rt>きほん</rt></ruby>。'
+    explain: 'RRS<ruby>第<rt>だい</rt></ruby>10<ruby>条<rt>じょう</rt></ruby>。ポートタック<ruby>艇<rt>てい</rt></ruby>がスターボードタック<ruby>艇<rt>てい</rt></ruby>を<ruby>避<rt>よ</rt></ruby>けるのが<ruby>基本<rt>きほん</rt></ruby>。',
+    explain_en: 'RRS Rule 10. The port-tack boat must keep clear of the starboard-tack boat. Basic right-of-way rule.'
   },
   {
     cat: 'rule',
     q: '<ruby>同<rt>おな</rt></ruby>じタックで<ruby>風上艇<rt>かざかみてい</rt></ruby>と<ruby>風下艇<rt>かざしもてい</rt></ruby>が<ruby>並<rt>なら</rt></ruby>んで<ruby>走<rt>はし</rt></ruby>っているとき、どちらが<ruby>避<rt>よ</rt></ruby>ける？',
+    q_en: 'On the same tack, a windward boat and leeward boat are overlapped. Which must keep clear?',
     options: ['<ruby>風上艇<rt>かざかみてい</rt></ruby>', '<ruby>風下艇<rt>かざしもてい</rt></ruby>', '<ruby>速<rt>はや</rt></ruby>い<ruby>方<rt>ほう</rt></ruby>', '<ruby>遅<rt>おそ</rt></ruby>い<ruby>方<rt>ほう</rt></ruby>'],
+    options_en: ['Windward boat', 'Leeward boat', 'The faster one', 'The slower one'],
     answer: 0,
-    explain: 'RRS<ruby>第<rt>だい</rt></ruby>11<ruby>条<rt>じょう</rt></ruby>。<ruby>風上艇<rt>かざかみてい</rt></ruby>が<ruby>風下艇<rt>かざしもてい</rt></ruby>を<ruby>避<rt>よ</rt></ruby>ける。<ruby>風下艇<rt>かざしもてい</rt></ruby>に<ruby>優先権<rt>ゆうせんけん</rt></ruby>。'
+    explain: 'RRS<ruby>第<rt>だい</rt></ruby>11<ruby>条<rt>じょう</rt></ruby>。<ruby>風上艇<rt>かざかみてい</rt></ruby>が<ruby>風下艇<rt>かざしもてい</rt></ruby>を<ruby>避<rt>よ</rt></ruby>ける。<ruby>風下艇<rt>かざしもてい</rt></ruby>に<ruby>優先権<rt>ゆうせんけん</rt></ruby>。',
+    explain_en: 'RRS Rule 11. The windward boat keeps clear of the leeward boat. Leeward has right of way.'
   },
   {
     cat: 'rule',
@@ -438,9 +550,12 @@ const quizData = [
   {
     cat: 'rule',
     q: 'マーク（ブイ）に<ruby>艇<rt>てい</rt></ruby>が<ruby>触<rt>ふ</rt></ruby>れた。ペナルティは？',
+    q_en: 'Your boat touched a mark (buoy). What penalty applies?',
     options: ['すぐリタイア', '360°ターン1<ruby>回<rt>かい</rt></ruby>', '720°ターン2<ruby>回<rt>かい</rt></ruby>', '<ruby>何<rt>なに</rt></ruby>もしなくてよい'],
+    options_en: ['Retire immediately', 'One 360° turn', 'Two 720° turns', 'Nothing required'],
     answer: 1,
-    explain: 'マーク<ruby>接触<rt>せっしょく</rt></ruby>は360°ターン1<ruby>回<rt>かい</rt></ruby>。'
+    explain: 'マーク<ruby>接触<rt>せっしょく</rt></ruby>は360°ターン1<ruby>回<rt>かい</rt></ruby>。',
+    explain_en: 'Touching a mark = one 360° penalty turn.'
   },
   {
     cat: 'rule',
@@ -1545,9 +1660,12 @@ const quizData = [
   {
     cat: 'parts',
     q: 'Optimistのセールを<ruby>支<rt>ささ</rt></ruby>えている<ruby>斜<rt>なな</rt></ruby>めの<ruby>棒<rt>ぼう</rt></ruby>の<ruby>名前<rt>なまえ</rt></ruby>は？',
+    q_en: 'What is the diagonal spar that supports the Optimist sail called?',
     options: ['ブーム', 'マスト', 'スプリット', 'ティラー'],
+    options_en: ['Boom', 'Mast', 'Sprit', 'Tiller'],
     answer: 2,
-    explain: 'スプリット<ruby>棒<rt>ぼう</rt></ruby>。Optimistの<ruby>特徴<rt>とくちょう</rt></ruby>。'
+    explain: 'スプリット<ruby>棒<rt>ぼう</rt></ruby>。Optimistの<ruby>特徴<rt>とくちょう</rt></ruby>。',
+    explain_en: 'The sprit — the iconic diagonal spar of the Optimist rig.'
   },
   {
     cat: 'parts',
@@ -1703,9 +1821,12 @@ const quizData = [
   {
     cat: 'sail',
     q: '<ruby>風<rt>かぜ</rt></ruby>が<ruby>真正面<rt>ましょうめん</rt></ruby>から<ruby>吹<rt>ふ</rt></ruby>いて<ruby>進<rt>すす</rt></ruby>めないエリアは？',
+    q_en: 'What is the area directly into the wind where you cannot sail called?',
     options: ['ランニングゾーン', 'ノーゴーゾーン（ダメダメゾーン）', 'クローズホールド', 'デッドゾーン'],
+    options_en: ['Running zone', 'No-Go Zone', 'Close-hauled', 'Dead zone'],
     answer: 1,
-    explain: 'ノーゴーゾーン（<ruby>別名<rt>べつめい</rt></ruby>「ダメダメゾーン」）。<ruby>風<rt>かぜ</rt></ruby>の<ruby>向<rt>む</rt></ruby>きを<ruby>中心<rt>ちゅうしん</rt></ruby>に±45<ruby>度<rt>ど</rt></ruby>の<ruby>範囲<rt>はんい</rt></ruby>はセールが<ruby>機能<rt>きのう</rt></ruby>せず<ruby>前<rt>まえ</rt></ruby>に<ruby>進<rt>すす</rt></ruby>めない。タッキングで<ruby>風上<rt>かざかみ</rt></ruby>に<ruby>進<rt>すす</rt></ruby>む。'
+    explain: 'ノーゴーゾーン（<ruby>別名<rt>べつめい</rt></ruby>「ダメダメゾーン」）。<ruby>風<rt>かぜ</rt></ruby>の<ruby>向<rt>む</rt></ruby>きを<ruby>中心<rt>ちゅうしん</rt></ruby>に±45<ruby>度<rt>ど</rt></ruby>の<ruby>範囲<rt>はんい</rt></ruby>はセールが<ruby>機能<rt>きのう</rt></ruby>せず<ruby>前<rt>まえ</rt></ruby>に<ruby>進<rt>すす</rt></ruby>めない。タッキングで<ruby>風上<rt>かざかみ</rt></ruby>に<ruby>進<rt>すす</rt></ruby>む。',
+    explain_en: 'No-Go Zone — about ±45° around the wind direction. The sail cannot function here. Use tacking to make progress upwind.'
   },
   {
     cat: 'sail',
@@ -1961,9 +2082,12 @@ const quizData = [
   {
     cat: 'safety',
     q: '<ruby>必<rt>かなら</rt></ruby>ず<ruby>着<rt>つ</rt></ruby>けるものは？',
+    q_en: 'What MUST you always wear when sailing?',
     options: ['<ruby>手袋<rt>てぶくろ</rt></ruby>', 'ライフジャケット', 'ヘルメット', '<ruby>長靴<rt>ながぐつ</rt></ruby>'],
+    options_en: ['Gloves', 'Life jacket (PFD)', 'Helmet', 'Boots'],
     answer: 1,
-    explain: 'ライフジャケット（PFD）<ruby>絶対<rt>ぜったい</rt></ruby>。クラスルールでも<ruby>義務<rt>ぎむ</rt></ruby>。'
+    explain: 'ライフジャケット（PFD）<ruby>絶対<rt>ぜったい</rt></ruby>。クラスルールでも<ruby>義務<rt>ぎむ</rt></ruby>。',
+    explain_en: 'Life jacket (PFD) is mandatory. Required by class rules.'
   },
   {
     cat: 'safety',
@@ -2063,9 +2187,12 @@ const quizData = [
   {
     cat: 'class',
     q: 'Optimistの<ruby>乗員数<rt>じょういんすう</rt></ruby>は？',
+    q_en: 'How many crew sail an Optimist?',
     options: ['1<ruby>名<rt>めい</rt></ruby>（シングルハンド）', '2<ruby>名<rt>めい</rt></ruby>', '1〜2<ruby>名<rt>めい</rt></ruby>', '<ruby>決<rt>き</rt></ruby>まりなし'],
+    options_en: ['1 sailor (single-handed)', '2 sailors', '1 or 2 sailors', 'No limit'],
     answer: 0,
-    explain: 'Optimistは1<ruby>人乗<rt>ひとの</rt></ruby>り（シングルハンド）。'
+    explain: 'Optimistは1<ruby>人乗<rt>ひとの</rt></ruby>り（シングルハンド）。',
+    explain_en: 'The Optimist is a single-handed dinghy (one sailor only).'
   },
   {
     cat: 'class',
@@ -2219,19 +2346,24 @@ function renderStart() {
   quizScreen.classList.add('hidden');
   resultScreen.classList.add('hidden');
   progressEl.style.width = '0%';
-  subtitleEl.innerHTML = `<ruby>帆走<rt>はんそう</rt></ruby>ルール・<ruby>旗<rt>はた</rt></ruby>・セッティング・<ruby>戦略<rt>せんりゃく</rt></ruby>まで<ruby>全<rt>ぜん</rt></ruby>${quizData.length}<ruby>問<rt>もん</rt></ruby>`;
+
+  // タイトル＆字幕の言語対応
+  document.getElementById('title').textContent = t('title');
+  subtitleEl.textContent = t('subtitle', { n: quizData.length });
+  document.querySelector('#start-screen .start-intro h2').textContent = t('catSelectTitle');
+  document.querySelector('#start-screen .start-intro p').textContent = t('catSelectDesc');
 
   catGrid.innerHTML = '';
 
   const allBtn = document.createElement('button');
   allBtn.className = 'cat-btn all';
-  allBtn.innerHTML = `<span class="emoji">🏆</span><ruby>全<rt>ぜん</rt></ruby><ruby>問<rt>もん</rt></ruby>チャレンジ<span class="count">${quizData.length}<ruby>問<rt>もん</rt></ruby><ruby>全部<rt>ぜんぶ</rt></ruby>（シャッフル）</span>`;
+  allBtn.innerHTML = `<span class="emoji">🏆</span>${t('allChallenge')}<span class="count">${t('allDesc', { n: quizData.length })}</span>`;
   allBtn.onclick = () => startQuiz('all');
   catGrid.appendChild(allBtn);
 
   const randBtn = document.createElement('button');
   randBtn.className = 'cat-btn random';
-  randBtn.innerHTML = `<span class="emoji">🎲</span>ランダム10<ruby>問<rt>もん</rt></ruby><span class="count"><ruby>全<rt>ぜん</rt></ruby>カテゴリから10<ruby>問<rt>もん</rt></ruby>ピック</span>`;
+  randBtn.innerHTML = `<span class="emoji">🎲</span>${t('random10')}<span class="count">${t('random10Desc')}</span>`;
   randBtn.onclick = () => startQuiz('random');
   catGrid.appendChild(randBtn);
 
@@ -2240,7 +2372,8 @@ function renderStart() {
     if (count === 0) return;
     const btn = document.createElement('button');
     btn.className = 'cat-btn';
-    btn.innerHTML = `<span class="emoji">${cat.emoji}</span>${cat.name}<span class="count">${count}<ruby>問<rt>もん</rt></ruby></span>`;
+    const label = currentLang === 'en' ? (cat.name_en || cat.name) : cat.name;
+    btn.innerHTML = `<span class="emoji">${cat.emoji}</span>${label}<span class="count">${count} ${t('questionsLabel')}</span>`;
     btn.onclick = () => startQuiz(key);
     catGrid.appendChild(btn);
   });
@@ -2265,14 +2398,17 @@ function startQuiz(mode) {
 function renderQuestion() {
   const q = state.questions[state.current];
   qnumEl.textContent = `Q${state.current + 1} / ${state.questions.length}`;
-  qcatEl.innerHTML = `${categories[q.cat].emoji} ${categories[q.cat].name}`;
-  questionEl.innerHTML = q.q;
+  const cat = categories[q.cat];
+  qcatEl.innerHTML = `${cat.emoji} ${getCatName(cat)}`;
+  questionEl.innerHTML = getQ(q);
   optionsEl.innerHTML = '';
   feedbackEl.classList.remove('show', 'correct', 'wrong');
   feedbackEl.innerHTML = '';
   nextBtn.classList.add('hidden');
 
-  q.options.forEach((opt, idx) => {
+  quitBtn.textContent = t('quit');
+
+  getOptions(q).forEach((opt, idx) => {
     const btn = document.createElement('button');
     btn.className = 'option';
     btn.innerHTML = `${String.fromCharCode(65 + idx)}. ${opt}`;
@@ -2285,6 +2421,7 @@ function renderQuestion() {
 
 function selectAnswer(idx) {
   const q = state.questions[state.current];
+  const opts = getOptions(q);
   const buttons = optionsEl.querySelectorAll('.option');
   buttons.forEach((b, i) => {
     b.disabled = true;
@@ -2294,15 +2431,20 @@ function selectAnswer(idx) {
 
   const isCorrect = idx === q.answer;
   if (isCorrect) state.score++;
-  state.history.push({ q: q.q, cat: q.cat, picked: q.options[idx], correct: q.options[q.answer], isCorrect, explain: q.explain });
+  state.history.push({
+    q: getQ(q),
+    cat: q.cat,
+    picked: opts[idx],
+    correct: opts[q.answer],
+    isCorrect,
+    explain: getExplain(q)
+  });
 
   feedbackEl.classList.add('show', isCorrect ? 'correct' : 'wrong');
-  feedbackEl.innerHTML = `<strong>${isCorrect ? '⛵ せいかい！' : '🌊 ざんねん...'}</strong><br>${q.explain}`;
+  feedbackEl.innerHTML = `<strong>${isCorrect ? t('correct') : t('wrong')}</strong><br>${getExplain(q)}`;
 
   nextBtn.classList.remove('hidden');
-  nextBtn.innerHTML = state.current === state.questions.length - 1
-    ? '<ruby>結果<rt>けっか</rt></ruby>を<ruby>見<rt>み</rt></ruby>る →'
-    : '<ruby>次<rt>つぎ</rt></ruby>の<ruby>問題<rt>もんだい</rt></ruby> →';
+  nextBtn.textContent = state.current === state.questions.length - 1 ? t('seeResult') : t('nextBtn');
 }
 
 function nextQuestion() {
@@ -2318,34 +2460,57 @@ function showResult() {
   scoreEl.textContent = state.score;
   totalEl.textContent = state.questions.length;
 
-  let emoji, msg;
+  let emoji, msgKey;
   const ratio = state.score / state.questions.length;
-  if (ratio === 1) { emoji = '🏆'; msg = 'パーフェクト！<ruby>君<rt>きみ</rt></ruby>はもうOptimistマスター！'; }
-  else if (ratio >= 0.8) { emoji = '⛵'; msg = 'すばらしい！<ruby>基本<rt>きほん</rt></ruby>はバッチリだね。'; }
-  else if (ratio >= 0.6) { emoji = '🌊'; msg = 'いい<ruby>感<rt>かん</rt></ruby>じ！<ruby>間違<rt>まちが</rt></ruby>えたところを<ruby>復習<rt>ふくしゅう</rt></ruby>しよう。'; }
-  else if (ratio >= 0.4) { emoji = '🐟'; msg = 'まだまだ<ruby>伸<rt>の</rt></ruby>びしろあり！<ruby>苦手<rt>にがて</rt></ruby>カテゴリだけ<ruby>練習<rt>れんしゅう</rt></ruby>するのもおすすめ。'; }
-  else { emoji = '🏖️'; msg = 'まずは<ruby>基本<rt>きほん</rt></ruby>から！カテゴリ<ruby>別<rt>べつ</rt></ruby>に<ruby>少<rt>すこ</rt></ruby>しずつやっていこう。'; }
+  if (ratio === 1) { emoji = '🏆'; msgKey = 'perfect'; }
+  else if (ratio >= 0.8) { emoji = '⛵'; msgKey = 'great'; }
+  else if (ratio >= 0.6) { emoji = '🌊'; msgKey = 'good'; }
+  else if (ratio >= 0.4) { emoji = '🐟'; msgKey = 'keepGoing'; }
+  else { emoji = '🏖️'; msgKey = 'startOver'; }
   resultEmojiEl.textContent = emoji;
-  resultMessageEl.innerHTML = msg;
+  resultMessageEl.textContent = t(msgKey);
 
-  reviewEl.innerHTML = '<h3 style="margin:0 0 12px;font-size:14px;">📝 <ruby>解答<rt>かいとう</rt></ruby>の<ruby>振<rt>ふ</rt></ruby>り<ruby>返<rt>かえ</rt></ruby>り</h3>' +
-    state.history.map((h, i) => `
+  restartBtn.textContent = t('retry');
+  homeBtn.textContent = t('backHome');
+
+  reviewEl.innerHTML = `<h3 style="margin:0 0 12px;font-size:14px;">${t('reviewTitle')}</h3>` +
+    state.history.map((h, i) => {
+      const cat = categories[h.cat];
+      return `
       <div class="review-item">
-        <div class="q">${h.isCorrect ? '✅' : '❌'} Q${i + 1}. ${h.q} <span class="review-cat">${categories[h.cat].emoji}${categories[h.cat].name}</span></div>
-        <div>きみの<ruby>答<rt>こた</rt></ruby>え: <span class="ans ${h.isCorrect ? '' : 'miss'}">${h.picked}</span>${h.isCorrect ? '' : ` → <ruby>正解<rt>せいかい</rt></ruby>: <span class="ans">${h.correct}</span>`}</div>
+        <div class="q">${h.isCorrect ? '✅' : '❌'} Q${i + 1}. ${h.q} <span class="review-cat">${cat.emoji}${getCatName(cat)}</span></div>
+        <div>${t('yourAnswer')}: <span class="ans ${h.isCorrect ? '' : 'miss'}">${h.picked}</span>${h.isCorrect ? '' : ` → ${t('correctAnswer')}: <span class="ans">${h.correct}</span>`}</div>
       </div>
-    `).join('');
+    `;
+    }).join('');
 }
 
 function quitToHome() {
-  if (state.history.length > 0 && !confirm('やめると今のスコアは消えるよ。もどっていい？')) return;
+  if (state.history.length > 0 && !confirm(t('quitConfirm'))) return;
   renderStart();
+}
+
+// 言語切替
+function switchLang(lang) {
+  if (lang === currentLang) return;
+  currentLang = lang;
+  document.body.classList.toggle('lang-en', lang === 'en');
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.lang === lang);
+  });
+  // 現在の画面を再描画
+  if (!quizScreen.classList.contains('hidden')) renderQuestion();
+  else if (!resultScreen.classList.contains('hidden')) showResult();
+  else renderStart();
 }
 
 nextBtn.addEventListener('click', nextQuestion);
 quitBtn.addEventListener('click', quitToHome);
 restartBtn.addEventListener('click', () => startQuiz(state.mode));
 homeBtn.addEventListener('click', renderStart);
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => switchLang(btn.dataset.lang));
+});
 
 renderStart();
 </script>
