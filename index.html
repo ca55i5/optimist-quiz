@@ -316,6 +316,72 @@
   }
   .review-item .flag { width: 40px; height: 27px; }
   .hidden { display: none !important; }
+
+  /* ランキング画面 */
+  .ranking-list { margin-top: 16px; }
+  .ranking-item {
+    display: grid;
+    grid-template-columns: 32px 1fr auto auto;
+    gap: 10px;
+    align-items: center;
+    padding: 10px 12px;
+    border-bottom: 1px solid #eee;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .ranking-rank {
+    font-weight: bold;
+    color: var(--sea);
+    text-align: center;
+    font-size: 16px;
+  }
+  .ranking-rank.top1 { color: #f4b400; font-size: 20px; }
+  .ranking-rank.top2 { color: #9aa0a6; font-size: 18px; }
+  .ranking-rank.top3 { color: #cd7f32; font-size: 18px; }
+  .ranking-mode { font-weight: 600; }
+  .ranking-score {
+    background: var(--sea);
+    color: #fff;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 13px;
+  }
+  .ranking-pct { font-size: 11px; color: #888; }
+  .ranking-date { font-size: 11px; color: #999; }
+  .ranking-empty {
+    text-align: center;
+    color: #999;
+    padding: 40px 20px;
+    font-size: 14px;
+    line-height: 2;
+  }
+  .ranking-clear {
+    margin-top: 16px;
+    padding: 6px 16px;
+    background: transparent;
+    color: #d63384;
+    border: 1px solid #d63384;
+    border-radius: 14px;
+    font-size: 11px;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .new-record-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #f4b400 0%, #d99500 100%);
+    color: #fff;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 14px;
+    margin: 12px 0;
+    animation: pulse 1s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
 </style>
 </head>
 <body>
@@ -352,9 +418,22 @@
       </div>
     </div>
 
+    <!-- ランキング画面 -->
+    <div id="ranking-screen" class="hidden">
+      <div class="start-intro">
+        <h2 id="ranking-title">スコアランキング</h2>
+      </div>
+      <div class="ranking-list" id="ranking-list"></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:8px;flex-wrap:wrap;">
+        <button class="btn ghost" id="ranking-home">← カテゴリへ</button>
+        <button class="ranking-clear" id="ranking-clear">記録を消す</button>
+      </div>
+    </div>
+
     <div id="result-screen" class="hidden">
       <div class="result">
         <div class="result-emoji" id="result-emoji">⛵</div>
+        <div id="new-record-area"></div>
         <div class="result-score"><span id="score">0</span><small>/<span id="total">10</span></small></div>
         <div class="result-message" id="result-message"></div>
         <div class="result-buttons">
@@ -379,6 +458,19 @@ const i18n = {
     allDesc: '{n}問全部（シャッフル）',
     random10: 'ランダム10問',
     random10Desc: '全カテゴリから10問ピック',
+    random50: 'ランダム50問',
+    random50Desc: '全カテゴリから50問ピック',
+    random100: 'ランダム100問',
+    random100Desc: '全カテゴリから100問ピック',
+    ranking: '🏆 ランキング',
+    rankingTitle: 'スコアランキング',
+    noRanking: 'まだ記録がないよ。チャレンジしてみよう！',
+    score: 'スコア',
+    mode: 'モード',
+    date: '日付',
+    clearRanking: '記録を消す',
+    clearConfirm: 'すべての記録を消すよ。いい？',
+    newRecord: '🎉 ニューレコード！',
     questionsLabel: '問',
     quit: '← やめる',
     quitConfirm: 'やめると今のスコアは消えるよ。もどっていい？',
@@ -406,6 +498,19 @@ const i18n = {
     allDesc: 'All {n} questions (shuffled)',
     random10: 'Random 10',
     random10Desc: '10 picks from all categories',
+    random50: 'Random 50',
+    random50Desc: '50 picks from all categories',
+    random100: 'Random 100',
+    random100Desc: '100 picks from all categories',
+    ranking: '🏆 Ranking',
+    rankingTitle: 'Score Ranking',
+    noRanking: 'No records yet. Take the challenge!',
+    score: 'Score',
+    mode: 'Mode',
+    date: 'Date',
+    clearRanking: 'Clear records',
+    clearConfirm: 'Clear all records. OK?',
+    newRecord: '🎉 New Record!',
     questionsLabel: 'Q',
     quit: '← Quit',
     quitConfirm: 'Quitting will erase your current score. Go back?',
@@ -508,13 +613,10 @@ const categories = {
   rule:     { name: 'ルール', name_en: 'Rules', emoji: '⚖️' },
   flag:     { name: '<ruby>旗<rt>はた</rt></ruby>', name_en: 'Flags', emoji: '🚩' },
   flagimg:  { name: '<ruby>旗<rt>はた</rt></ruby>を<ruby>見<rt>み</rt></ruby>る', name_en: 'Flag Visual', emoji: '👀' },
-  whistle:  { name: 'ホイッスル', name_en: 'Whistles', emoji: '📣' },
-  setting:  { name: 'セッティング<ruby>基本<rt>きほん</rt></ruby>', name_en: 'Setting Basics', emoji: '🔧' },
-  setdetail:{ name: 'セッティング<ruby>詳細<rt>しょうさい</rt></ruby>', name_en: 'Setting Details', emoji: '📐' },
+  setting:  { name: 'セッティング', name_en: 'Settings', emoji: '🔧' },
   parts:    { name: '<ruby>艤装<rt>ぎそう</rt></ruby>・パーツ', name_en: 'Parts & Rigging', emoji: '⛵' },
-  sail:     { name: '<ruby>風<rt>かぜ</rt></ruby>・<ruby>操船<rt>そうせん</rt></ruby>', name_en: 'Wind & Handling', emoji: '💨' },
+  sail:     { name: '<ruby>風<rt>かぜ</rt></ruby>・<ruby>操船<rt>そうせん</rt></ruby>・<ruby>安全<rt>あんぜん</rt></ruby>', name_en: 'Sailing & Safety', emoji: '💨' },
   strategy: { name: '<ruby>戦略<rt>せんりゃく</rt></ruby>・<ruby>練習<rt>れんしゅう</rt></ruby>', name_en: 'Strategy & Training', emoji: '🧠' },
-  safety:   { name: '<ruby>安全<rt>あんぜん</rt></ruby>', name_en: 'Safety', emoji: '🦺' },
   class:    { name: 'クラス<ruby>知識<rt>ちしき</rt></ruby>', name_en: 'Class Knowledge', emoji: '📚' }
 };
 
@@ -543,9 +645,12 @@ const quizData = [
   {
     cat: 'rule',
     q: '<ruby>同<rt>おな</rt></ruby>じタックで<ruby>後<rt>うし</rt></ruby>ろから<ruby>追<rt>お</rt></ruby>いついた<ruby>艇<rt>てい</rt></ruby>（クリアアスターン<ruby>艇<rt>てい</rt></ruby>）と<ruby>前<rt>まえ</rt></ruby>を<ruby>走<rt>はし</rt></ruby>る<ruby>艇<rt>てい</rt></ruby>（クリアアヘッド<ruby>艇<rt>てい</rt></ruby>）。どちらが<ruby>避<rt>よ</rt></ruby>ける？',
+    q_en: 'On the same tack, a clear-astern boat and a clear-ahead boat. Which must keep clear?',
     options: ['クリアアヘッド<ruby>艇<rt>てい</rt></ruby>', 'クリアアスターン<ruby>艇<rt>てい</rt></ruby>', '<ruby>速<rt>はや</rt></ruby>い<ruby>方<rt>ほう</rt></ruby>が<ruby>避<rt>よ</rt></ruby>ける', '<ruby>遅<rt>おそ</rt></ruby>い<ruby>方<rt>ほう</rt></ruby>が<ruby>避<rt>よ</rt></ruby>ける'],
+    options_en: ['Clear-ahead boat', 'Clear-astern boat', 'The faster one', 'The slower one'],
     answer: 1,
-    explain: 'RRS<ruby>第<rt>だい</rt></ruby>12<ruby>条<rt>じょう</rt></ruby>。クリアアスターン<ruby>艇<rt>てい</rt></ruby>（<ruby>後<rt>うし</rt></ruby>ろの<ruby>艇<rt>てい</rt></ruby>）が、クリアアヘッド<ruby>艇<rt>てい</rt></ruby>（<ruby>前<rt>まえ</rt></ruby>の<ruby>艇<rt>てい</rt></ruby>）を<ruby>避<rt>よ</rt></ruby>ける。'
+    explain: 'RRS<ruby>第<rt>だい</rt></ruby>12<ruby>条<rt>じょう</rt></ruby>。クリアアスターン<ruby>艇<rt>てい</rt></ruby>（<ruby>後<rt>うし</rt></ruby>ろの<ruby>艇<rt>てい</rt></ruby>）が、クリアアヘッド<ruby>艇<rt>てい</rt></ruby>（<ruby>前<rt>まえ</rt></ruby>の<ruby>艇<rt>てい</rt></ruby>）を<ruby>避<rt>よ</rt></ruby>ける。',
+    explain_en: 'RRS Rule 12. The clear-astern boat keeps clear of the clear-ahead boat.'
   },
   {
     cat: 'rule',
@@ -560,9 +665,12 @@ const quizData = [
   {
     cat: 'rule',
     q: '<ruby>他<rt>ほか</rt></ruby>の<ruby>艇<rt>てい</rt></ruby>と<ruby>接触<rt>せっしょく</rt></ruby>してしまった。ペナルティターンは？',
+    q_en: 'You contacted another boat. What penalty turn is required?',
     options: ['360°', '720°', '1080°', 'リタイアのみ'],
+    options_en: ['360°', '720°', '1080°', 'Retire only'],
     answer: 1,
-    explain: '<ruby>他艇<rt>たてい</rt></ruby>との<ruby>接触<rt>せっしょく</rt></ruby>は720°（タック1<ruby>回<rt>かい</rt></ruby>＋ジャイブ1<ruby>回<rt>かい</rt></ruby>を<ruby>含<rt>ふく</rt></ruby>む2<ruby>回転<rt>かいてん</rt></ruby>）。'
+    explain: '<ruby>他艇<rt>たてい</rt></ruby>との<ruby>接触<rt>せっしょく</rt></ruby>は720°（タック1<ruby>回<rt>かい</rt></ruby>＋ジャイブ1<ruby>回<rt>かい</rt></ruby>を<ruby>含<rt>ふく</rt></ruby>む2<ruby>回転<rt>かいてん</rt></ruby>）。',
+    explain_en: 'Boat-to-boat contact = 720° (two turns including one tack and one jibe).'
   },
   {
     cat: 'rule',
@@ -939,9 +1047,12 @@ const quizData = [
   {
     cat: 'flag',
     q: 'スタート5<ruby>分前<rt>ふんまえ</rt></ruby>にあがる<ruby>旗<rt>き</rt></ruby>は？',
+    q_en: 'Which flag is raised 5 minutes before the start?',
     options: ['P<ruby>旗<rt>き</rt></ruby>', 'OP<ruby>旗<rt>き</rt></ruby>', 'AP<ruby>旗<rt>き</rt></ruby>', 'I<ruby>旗<rt>き</rt></ruby>'],
+    options_en: ['P flag', 'OP flag', 'AP flag', 'I flag'],
     answer: 1,
-    explain: '<ruby>警告信号<rt>けいこくしんごう</rt></ruby>として5<ruby>分前<rt>ふんまえ</rt></ruby>にOP<ruby>旗<rt>き</rt></ruby>があがる。スタート<ruby>時<rt>とき</rt></ruby>におりる。'
+    explain: '<ruby>警告信号<rt>けいこくしんごう</rt></ruby>として5<ruby>分前<rt>ふんまえ</rt></ruby>にOP<ruby>旗<rt>き</rt></ruby>があがる。スタート<ruby>時<rt>とき</rt></ruby>におりる。',
+    explain_en: 'The OP flag is the warning signal, raised 5 minutes before the start and lowered at the start.'
   },
   {
     cat: 'flag',
@@ -1427,9 +1538,12 @@ const quizData = [
   {
     cat: 'setting',
     q: '<ruby>微風<rt>びふう</rt></ruby>と<ruby>呼<rt>よ</rt></ruby>ばれる<ruby>風速<rt>ふうそく</rt></ruby>は？',
+    q_en: 'What wind speed range is called "light wind"?',
     options: ['0〜4m', '4〜8m', '8〜12m', '12m〜'],
+    options_en: ['0–4 m/s', '4–8 m/s', '8–12 m/s', '12 m/s+'],
     answer: 0,
-    explain: '<ruby>微風<rt>びふう</rt></ruby>=0〜4m、<ruby>中風<rt>ちゅうふう</rt></ruby>=4〜8m、<ruby>強風<rt>きょうふう</rt></ruby>=8〜12m、<ruby>超強風<rt>ちょうきょうふう</rt></ruby>=12m〜。'
+    explain: '<ruby>微風<rt>びふう</rt></ruby>=0〜4m、<ruby>中風<rt>ちゅうふう</rt></ruby>=4〜8m、<ruby>強風<rt>きょうふう</rt></ruby>=8〜12m、<ruby>超強風<rt>ちょうきょうふう</rt></ruby>=12m〜。',
+    explain_en: 'Light = 0–4 m/s, Medium = 4–8, Strong = 8–12, Very strong (overpowered) = 12+.'
   },
   {
     cat: 'setting',
@@ -1476,70 +1590,70 @@ const quizData = [
 
   // ===== セッティング詳細（数値）10問 =====
   {
-    cat: 'setdetail',
+    cat: 'setting',
     q: '<ruby>微風<rt>びふう</rt></ruby>（0〜4m）のレーキの<ruby>目安<rt>めやす</rt></ruby>は？',
     options: ['2740〜2820', '2780〜2800', '2800〜2840', '2820〜2860'],
     answer: 1,
     explain: '<ruby>微風<rt>びふう</rt></ruby>のレーキは2780〜2800<ruby>mm<rt>みりめーとる</rt></ruby>くらい。<ruby>若干<rt>じゃっかん</rt></ruby><ruby>横<rt>よこ</rt></ruby>シワが<ruby>出<rt>で</rt></ruby>る<ruby>程度<rt>ていど</rt></ruby>。'
   },
   {
-    cat: 'setdetail',
+    cat: 'setting',
     q: '<ruby>強風<rt>きょうふう</rt></ruby>（8〜12m）のレーキの<ruby>目安<rt>めやす</rt></ruby>は？',
     options: ['2780〜2800', '2800〜2840', '2820〜2860', '2740〜2820'],
     answer: 2,
     explain: '<ruby>強風<rt>きょうふう</rt></ruby>のレーキは2820〜2860<ruby>mm<rt>みりめーとる</rt></ruby>。レーキを<ruby>起<rt>お</rt></ruby>こしてウェザーを<ruby>弱<rt>よわ</rt></ruby>める。'
   },
   {
-    cat: 'setdetail',
+    cat: 'setting',
     q: '<ruby>超強風<rt>ちょうきょうふう</rt></ruby>（12m〜）のレーキは<ruby>強風<rt>きょうふう</rt></ruby>と<ruby>比<rt>くら</rt></ruby>べてどうする？',
     options: ['もっと<ruby>起<rt>お</rt></ruby>こす', '<ruby>倒<rt>たお</rt></ruby>す（2740〜2820）', '<ruby>変<rt>か</rt></ruby>えない', '<ruby>関係<rt>かんけい</rt></ruby>ない'],
     answer: 1,
     explain: '<ruby>超強風<rt>ちょうきょうふう</rt></ruby>はレーキを<ruby>倒<rt>たお</rt></ruby>して（2740〜2820）<ruby>艇<rt>てい</rt></ruby>を<ruby>抑<rt>おさ</rt></ruby>えやすくする。'
   },
   {
-    cat: 'setdetail',
+    cat: 'setting',
     q: '<ruby>微風<rt>びふう</rt></ruby>でのアウトホール<ruby>調整<rt>ちょうせい</rt></ruby>（ブーム<ruby>端距離<rt>たんきょり</rt></ruby>）の<ruby>目安<rt>めやす</rt></ruby>は？',
     options: ['0mm（フルテンション）', '0〜30mm（フット<ruby>横<rt>よこ</rt></ruby>シワ）', '30〜60mm（フットシワなし）', '40〜80mm（フット<ruby>若干<rt>じゃっかん</rt></ruby><ruby>縦<rt>たて</rt></ruby>シワ）'],
     answer: 2,
     explain: '<ruby>微風<rt>びふう</rt></ruby>はアウトホール<ruby>緩<rt>ゆる</rt></ruby>めに30〜60mm。フットにシワがない<ruby>状態<rt>じょうたい</rt></ruby>。'
   },
   {
-    cat: 'setdetail',
+    cat: 'setting',
     q: '<ruby>強風<rt>きょうふう</rt></ruby>でのアウトホールは？',
     options: ['0〜30mm（フット<ruby>横<rt>よこ</rt></ruby>シワ）', '30〜60mm（シワなし）', '40〜80mm（<ruby>縦<rt>たて</rt></ruby>シワ）', '<ruby>引<rt>ひ</rt></ruby>かない'],
     answer: 0,
     explain: '<ruby>強風<rt>きょうふう</rt></ruby>はアウトホール<ruby>強<rt>つよ</rt></ruby>めに<ruby>引<rt>ひ</rt></ruby>く（0〜30mm）。フットに<ruby>横<rt>よこ</rt></ruby>シワが<ruby>出<rt>で</rt></ruby>るくらい。'
   },
   {
-    cat: 'setdetail',
+    cat: 'setting',
     q: '<ruby>超強風<rt>ちょうきょうふう</rt></ruby>でのアウトホールは？',
     options: ['<ruby>全開放<rt>ぜんかいほう</rt></ruby>', '30mm', '<ruby>フルテンション<rt>ふるてんしょん</rt></ruby>（0mm）', '<ruby>変<rt>か</rt></ruby>えない'],
     answer: 2,
     explain: '<ruby>超強風<rt>ちょうきょうふう</rt></ruby>はフルテンション（0mm）！セールをペッタンコにする。'
   },
   {
-    cat: 'setdetail',
+    cat: 'setting',
     q: '<ruby>微風<rt>びふう</rt></ruby>〜<ruby>中風<rt>ちゅうふう</rt></ruby>でセンターボード（クローズ<ruby>時<rt>とき</rt></ruby>の<ruby>上<rt>あ</rt></ruby>げ<ruby>具合<rt>ぐあい</rt></ruby>）は？',
     options: ['0mm（<ruby>完全<rt>かんぜん</rt></ruby>に<ruby>下<rt>お</rt></ruby>ろす）', '5mm<ruby>上<rt>あ</rt></ruby>げる', '7mm<ruby>上<rt>あ</rt></ruby>げる', '<ruby>半分<rt>はんぶん</rt></ruby><ruby>上<rt>あ</rt></ruby>げる'],
     answer: 0,
     explain: '<ruby>微風<rt>びふう</rt></ruby>〜<ruby>中風<rt>ちゅうふう</rt></ruby>はセンター0mm（フルダウン）が<ruby>基本<rt>きほん</rt></ruby>。'
   },
   {
-    cat: 'setdetail',
+    cat: 'setting',
     q: '<ruby>超強風<rt>ちょうきょうふう</rt></ruby>でのセンターボード<ruby>上<rt>あ</rt></ruby>げ<ruby>具合<rt>ぐあい</rt></ruby>は？',
     options: ['0mm', '5mm', '7mm', '<ruby>完全<rt>かんぜん</rt></ruby>に<ruby>上<rt>あ</rt></ruby>げる'],
     answer: 2,
     explain: '<ruby>超強風<rt>ちょうきょうふう</rt></ruby>はセンター7mm<ruby>上<rt>あ</rt></ruby>げる。ウェザー<ruby>軽減<rt>けいげん</rt></ruby>とコントロール<ruby>性向上<rt>せいこうじょう</rt></ruby>のため。'
   },
   {
-    cat: 'setdetail',
+    cat: 'setting',
     q: 'Sモード（スピードモード）とPモード（ピッチモード）の<ruby>違<rt>ちが</rt></ruby>いは？',
     options: ['Sはスピード<ruby>優先<rt>ゆうせん</rt></ruby>、Pは<ruby>高<rt>たか</rt></ruby>さ（<ruby>上<rt>のぼ</rt></ruby>り）<ruby>優先<rt>ゆうせん</rt></ruby>', 'Sは<ruby>高<rt>たか</rt></ruby>さ<ruby>優先<rt>ゆうせん</rt></ruby>、Pはスピード<ruby>優先<rt>ゆうせん</rt></ruby>', '<ruby>同<rt>おな</rt></ruby>じ<ruby>意味<rt>いみ</rt></ruby>', '<ruby>艇<rt>てい</rt></ruby>のサイズが<ruby>違<rt>ちが</rt></ruby>う'],
     answer: 0,
     explain: 'S=スピードモード（<ruby>速<rt>はや</rt></ruby>さ<ruby>重視<rt>じゅうし</rt></ruby>、シート<ruby>緩<rt>ゆる</rt></ruby>め）、P=ピッチモード（<ruby>高<rt>たか</rt></ruby>さ<ruby>重視<rt>じゅうし</rt></ruby>、シート<ruby>引<rt>ひ</rt></ruby>く）。<ruby>強風<rt>きょうふう</rt></ruby>はPモード<ruby>優先<rt>ゆうせん</rt></ruby>。'
   },
   {
-    cat: 'setdetail',
+    cat: 'setting',
     q: 'ラフのテンションを<ruby>強<rt>つよ</rt></ruby>くしたい<ruby>時<rt>とき</rt></ruby>、プリベンダーはどうする？',
     options: ['ひもをねじって<ruby>巻<rt>ま</rt></ruby>いてかける', 'ひもを<ruby>巻<rt>ま</rt></ruby>かないでかける', 'マストを<ruby>叩<rt>たた</rt></ruby>く', 'バングを<ruby>緩<rt>ゆる</rt></ruby>める'],
     answer: 1,
@@ -2187,7 +2301,7 @@ const quizData = [
 
   // ===== 安全 4問 =====
   {
-    cat: 'safety',
+    cat: 'sail',
     q: '<ruby>必<rt>かなら</rt></ruby>ず<ruby>着<rt>つ</rt></ruby>けるものは？',
     q_en: 'What MUST you always wear when sailing?',
     options: ['<ruby>手袋<rt>てぶくろ</rt></ruby>', 'ライフジャケット', 'ヘルメット', '<ruby>長靴<rt>ながぐつ</rt></ruby>'],
@@ -2197,21 +2311,24 @@ const quizData = [
     explain_en: 'Life jacket (PFD) is mandatory. Required by class rules.'
   },
   {
-    cat: 'safety',
+    cat: 'sail',
     q: '<ruby>沈<rt>ちん</rt></ruby>（キャプサイズ）した！<ruby>最初<rt>さいしょ</rt></ruby>にやることは？',
+    q_en: 'You capsized! What\'s the first thing to do?',
     options: ['セールを<ruby>外<rt>はず</rt></ruby>す', '<ruby>泳<rt>およ</rt></ruby>いで<ruby>岸<rt>きし</rt></ruby>に<ruby>戻<rt>もど</rt></ruby>る', 'センターボードに<ruby>乗<rt>の</rt></ruby>って<ruby>艇<rt>てい</rt></ruby>を<ruby>起<rt>お</rt></ruby>こす', '<ruby>大声<rt>おおごえ</rt></ruby>で<ruby>叫<rt>さけ</rt></ruby>ぶだけ'],
+    options_en: ['Remove the sail', 'Swim back to shore', 'Climb onto the centerboard and right the boat', 'Just shout for help'],
     answer: 2,
-    explain: 'センターボードに<ruby>乗<rt>の</rt></ruby>って、てこの<ruby>原理<rt>げんり</rt></ruby>で<ruby>艇<rt>てい</rt></ruby>を<ruby>起<rt>お</rt></ruby>こす。'
+    explain: 'センターボードに<ruby>乗<rt>の</rt></ruby>って、てこの<ruby>原理<rt>げんり</rt></ruby>で<ruby>艇<rt>てい</rt></ruby>を<ruby>起<rt>お</rt></ruby>こす。',
+    explain_en: 'Climb onto the centerboard and use leverage to right the boat. Stay with the boat — never leave it.'
   },
   {
-    cat: 'safety',
+    cat: 'sail',
     q: 'タートル（<ruby>完全<rt>かんぜん</rt></ruby>にひっくり<ruby>返<rt>かえ</rt></ruby>った<ruby>状態<rt>じょうたい</rt></ruby>）の<ruby>時<rt>とき</rt></ruby>、まずやるべきは？',
     options: ['<ruby>艇<rt>てい</rt></ruby>から<ruby>離<rt>はな</rt></ruby>れる', 'センターボードを<ruby>引<rt>ひ</rt></ruby>っ<ruby>張<rt>ぱ</rt></ruby>って<ruby>艇<rt>てい</rt></ruby>を<ruby>横<rt>よこ</rt></ruby>に<ruby>戻<rt>もど</rt></ruby>す', '<ruby>泳<rt>およ</rt></ruby>いで<ruby>逃<rt>に</rt></ruby>げる', '<ruby>叫<rt>さけ</rt></ruby>ぶ'],
     answer: 1,
     explain: 'タートルはセンターボードを<ruby>下<rt>した</rt></ruby>に<ruby>引<rt>ひ</rt></ruby>っ<ruby>張<rt>ぱ</rt></ruby>って<ruby>艇<rt>てい</rt></ruby>を<ruby>横倒<rt>よこだお</rt></ruby>しに<ruby>戻<rt>もど</rt></ruby>す。'
   },
   {
-    cat: 'safety',
+    cat: 'sail',
     q: 'コーチボートから<ruby>連続音<rt>れんぞくおん</rt></ruby>ホイッスル。どうする？',
     options: ['コース<ruby>続行<rt>ぞっこう</rt></ruby>', 'モーターボートまで<ruby>急<rt>いそ</rt></ruby>いで<ruby>集合<rt>しゅうごう</rt></ruby>', '<ruby>岸<rt>きし</rt></ruby>に<ruby>戻<rt>もど</rt></ruby>る', '<ruby>無視<rt>むし</rt></ruby>'],
     answer: 1,
@@ -2220,70 +2337,70 @@ const quizData = [
 
   // ===== 安全追加 10問 =====
   {
-    cat: 'safety',
+    cat: 'sail',
     q: '<ruby>春<rt>はる</rt></ruby>や<ruby>秋<rt>あき</rt></ruby>の<ruby>海上<rt>かいじょう</rt></ruby>は<ruby>意外<rt>いがい</rt></ruby>と<ruby>寒<rt>さむ</rt></ruby>い。<ruby>艇<rt>てい</rt></ruby>に<ruby>用意<rt>ようい</rt></ruby>しておくと<ruby>良<rt>よ</rt></ruby>いのは？',
     options: ['<ruby>傘<rt>かさ</rt></ruby>と<ruby>長靴<rt>ながぐつ</rt></ruby>', '<ruby>予備<rt>よび</rt></ruby>の<ruby>着替<rt>きが</rt></ruby>えとウィンドブレーカー', '<ruby>厚手<rt>あつで</rt></ruby>のジャケットのみ', '<ruby>何<rt>なに</rt></ruby>も<ruby>不要<rt>ふよう</rt></ruby>'],
     answer: 1,
     explain: '<ruby>海上<rt>かいじょう</rt></ruby>は<ruby>陸<rt>りく</rt></ruby>より<ruby>気温<rt>きおん</rt></ruby>が<ruby>低<rt>ひく</rt></ruby>く、<ruby>濡<rt>ぬ</rt></ruby>れると<ruby>体温<rt>たいおん</rt></ruby>が<ruby>急<rt>きゅう</rt></ruby>に<ruby>奪<rt>うば</rt></ruby>われる。<ruby>予備<rt>よび</rt></ruby>の<ruby>着替<rt>きが</rt></ruby>えとウィンドブレーカーで<ruby>低体温症<rt>ていたいおんしょう</rt></ruby>を<ruby>防<rt>ふせ</rt></ruby>ぐ。'
   },
   {
-    cat: 'safety',
+    cat: 'sail',
     q: '<ruby>防波堤<rt>ぼうはてい</rt></ruby>や<ruby>岩礁<rt>がんしょう</rt></ruby><ruby>付近<rt>ふきん</rt></ruby>でのセーリングはどうする？',
     options: ['<ruby>近<rt>ちか</rt></ruby>くを<ruby>走<rt>はし</rt></ruby>るとカッコいい', '<ruby>近<rt>ちか</rt></ruby>づかない（<ruby>波<rt>なみ</rt></ruby>が<ruby>反射<rt>はんしゃ</rt></ruby>して<ruby>危険<rt>きけん</rt></ruby>・<ruby>沈<rt>ちん</rt></ruby>すると<ruby>艇<rt>てい</rt></ruby>が<ruby>壊<rt>こわ</rt></ruby>れる）', '<ruby>常<rt>つね</rt></ruby>に<ruby>沿<rt>そ</rt></ruby>って<ruby>走<rt>はし</rt></ruby>る', '<ruby>波打<rt>なみう</rt></ruby>ちで<ruby>波乗<rt>なみの</rt></ruby>り<ruby>練習<rt>れんしゅう</rt></ruby>'],
     answer: 1,
     explain: '<ruby>防波堤<rt>ぼうはてい</rt></ruby>や<ruby>岩礁<rt>がんしょう</rt></ruby>は<ruby>波<rt>なみ</rt></ruby>が<ruby>反射<rt>はんしゃ</rt></ruby>して<ruby>複雑<rt>ふくざつ</rt></ruby>に<ruby>動<rt>うご</rt></ruby>き、<ruby>沈<rt>ちん</rt></ruby>すると<ruby>艇<rt>てい</rt></ruby>が<ruby>叩<rt>たた</rt></ruby>きつけられて<ruby>壊<rt>こわ</rt></ruby>れる<ruby>危険<rt>きけん</rt></ruby>。<ruby>近<rt>ちか</rt></ruby>づかないのが<ruby>鉄則<rt>てっそく</rt></ruby>。'
   },
   {
-    cat: 'safety',
+    cat: 'sail',
     q: '<ruby>大型船<rt>おおがたせん</rt></ruby>（タンカー・フェリー<ruby>等<rt>とう</rt></ruby>）が<ruby>近<rt>ちか</rt></ruby>づいてきた。どうする？',
     options: ['<ruby>大型船<rt>おおがたせん</rt></ruby>が<ruby>避<rt>よ</rt></ruby>けてくれる', '<ruby>大型船<rt>おおがたせん</rt></ruby>は<ruby>急<rt>きゅう</rt></ruby>に<ruby>進路<rt>しんろ</rt></ruby>を<ruby>変<rt>か</rt></ruby>えられないので、OPが<ruby>早<rt>はや</rt></ruby>めに<ruby>気<rt>き</rt></ruby>づいて<ruby>避<rt>よ</rt></ruby>ける', '<ruby>競争<rt>きょうそう</rt></ruby>する', '<ruby>停止<rt>ていし</rt></ruby>して<ruby>待<rt>ま</rt></ruby>つ'],
     answer: 1,
     explain: '<ruby>大型船<rt>おおがたせん</rt></ruby>は<ruby>停止<rt>ていし</rt></ruby>距離も<ruby>旋回距離<rt>せんかいきょり</rt></ruby>も<ruby>大<rt>おお</rt></ruby>きく、<ruby>小<rt>ちい</rt></ruby>さなOPは<ruby>死角<rt>しかく</rt></ruby>に<ruby>入<rt>はい</rt></ruby>ると<ruby>見<rt>み</rt></ruby>えない。OPが<ruby>早<rt>はや</rt></ruby>めに<ruby>気<rt>き</rt></ruby>づいて<ruby>大<rt>おお</rt></ruby>きく<ruby>避<rt>よ</rt></ruby>ける。'
   },
   {
-    cat: 'safety',
+    cat: 'sail',
     q: '<ruby>夏<rt>なつ</rt></ruby>のセーリング、<ruby>水分<rt>すいぶん</rt></ruby><ruby>補給<rt>ほきゅう</rt></ruby>のタイミングは？',
     options: ['コーチに<ruby>言<rt>い</rt></ruby>われたら', 'のどが<ruby>渇<rt>かわ</rt></ruby>いたら', '<ruby>自分<rt>じぶん</rt></ruby>の<ruby>判断<rt>はんだん</rt></ruby>でこまめに（のどが<ruby>渇<rt>かわ</rt></ruby>く<ruby>前<rt>まえ</rt></ruby>）', '<ruby>陸<rt>りく</rt></ruby>に<ruby>戻<rt>もど</rt></ruby>ってから'],
     answer: 2,
     explain: '<ruby>海上<rt>かいじょう</rt></ruby>は<ruby>日差<rt>ひざ</rt></ruby>しと<ruby>汗<rt>あせ</rt></ruby>で<ruby>脱水症<rt>だっすいしょう</rt></ruby>になりやすい。のどが<ruby>渇<rt>かわ</rt></ruby>いたと<ruby>感<rt>かん</rt></ruby>じる<ruby>頃<rt>ころ</rt></ruby>には<ruby>既<rt>すで</rt></ruby>に<ruby>脱水<rt>だっすい</rt></ruby><ruby>状態<rt>じょうたい</rt></ruby>。<ruby>自分<rt>じぶん</rt></ruby>の<ruby>判断<rt>はんだん</rt></ruby>でこまめに<ruby>補給<rt>ほきゅう</rt></ruby>！'
   },
   {
-    cat: 'safety',
+    cat: 'sail',
     q: '<ruby>日焼<rt>ひや</rt></ruby>け<ruby>止<rt>ど</rt></ruby>めを<ruby>塗<rt>ぬ</rt></ruby>る<ruby>理由<rt>りゆう</rt></ruby>は？',
     options: ['<ruby>肌<rt>はだ</rt></ruby>が<ruby>白<rt>しろ</rt></ruby>くなる', '<ruby>日焼<rt>ひや</rt></ruby>けによる<ruby>体力消耗<rt>たいりょくしょうもう</rt></ruby>を<ruby>防<rt>ふせ</rt></ruby>げる', 'スピードUP', '<ruby>水<rt>みず</rt></ruby>を<ruby>弾<rt>はじ</rt></ruby>く'],
     answer: 1,
     explain: '<ruby>強<rt>つよ</rt></ruby>い<ruby>紫外線<rt>しがいせん</rt></ruby>は<ruby>肌<rt>はだ</rt></ruby>にダメージ＋<ruby>体力<rt>たいりょく</rt></ruby>を<ruby>大<rt>おお</rt></ruby>きく<ruby>消耗<rt>しょうもう</rt></ruby>する。<ruby>日焼<rt>ひや</rt></ruby>け<ruby>止<rt>ど</rt></ruby>めで<ruby>守<rt>まも</rt></ruby>るとレース<ruby>後半<rt>こうはん</rt></ruby>もパフォーマンスを<ruby>維持<rt>いじ</rt></ruby>できる。'
   },
   {
-    cat: 'safety',
+    cat: 'sail',
     q: 'サングラスをかけるメリットは？',
     options: ['カッコいい', 'ブロー（<ruby>水面<rt>すいめん</rt></ruby>の<ruby>変化<rt>へんか</rt></ruby>）が<ruby>見<rt>み</rt></ruby>やすくなる＋<ruby>紫外線<rt>しがいせん</rt></ruby>から<ruby>目<rt>め</rt></ruby>を<ruby>守<rt>まも</rt></ruby>る', '<ruby>暗<rt>くら</rt></ruby>くなって<ruby>眠<rt>ねむ</rt></ruby>くなる', '<ruby>水<rt>みず</rt></ruby>を<ruby>避<rt>よ</rt></ruby>けられる'],
     answer: 1,
     explain: '<ruby>偏光<rt>へんこう</rt></ruby>サングラスは<ruby>水面<rt>すいめん</rt></ruby>のギラつきを<ruby>抑<rt>おさ</rt></ruby>えてブローや<ruby>波<rt>なみ</rt></ruby>の<ruby>動<rt>うご</rt></ruby>きを<ruby>見<rt>み</rt></ruby>やすくする。<ruby>紫外線<rt>しがいせん</rt></ruby>から<ruby>目<rt>め</rt></ruby>を<ruby>守<rt>まも</rt></ruby>る<ruby>効果<rt>こうか</rt></ruby>も。'
   },
   {
-    cat: 'safety',
+    cat: 'sail',
     q: 'グローブをつけるメリットは？',
     options: ['<ruby>手<rt>て</rt></ruby>が<ruby>大<rt>おお</rt></ruby>きく<ruby>見<rt>み</rt></ruby>える', 'シートが<ruby>引<rt>ひ</rt></ruby>きやすい＋<ruby>手<rt>て</rt></ruby>のマメや<ruby>怪我<rt>けが</rt></ruby>を<ruby>防<rt>ふせ</rt></ruby>げる', '<ruby>水<rt>みず</rt></ruby>をはじく', 'スピードUP'],
     answer: 1,
     explain: 'グローブは<ruby>濡<rt>ぬ</rt></ruby>れたシートでも<ruby>滑<rt>すべ</rt></ruby>りにくく、<ruby>強<rt>つよ</rt></ruby>く<ruby>引<rt>ひ</rt></ruby>きやすい。<ruby>長時間<rt>ちょうじかん</rt></ruby><ruby>使<rt>つか</rt></ruby>う<ruby>手<rt>て</rt></ruby>のマメや<ruby>怪我<rt>けが</rt></ruby>を<ruby>防<rt>ふせ</rt></ruby>ぐ<ruby>効果<rt>こうか</rt></ruby>もある。'
   },
   {
-    cat: 'safety',
+    cat: 'sail',
     q: '<ruby>雷<rt>かみなり</rt></ruby>が<ruby>近<rt>ちか</rt></ruby>づいてきた。どうする？',
     options: ['レース<ruby>続行<rt>ぞっこう</rt></ruby>', 'すぐに<ruby>陸<rt>りく</rt></ruby>に<ruby>戻<rt>もど</rt></ruby>る（マストが<ruby>避雷針<rt>ひらいしん</rt></ruby><ruby>状態<rt>じょうたい</rt></ruby>になる）', '<ruby>沈<rt>しず</rt></ruby>めて<ruby>避<rt>さ</rt></ruby>ける', '<ruby>水<rt>みず</rt></ruby>に<ruby>潜<rt>もぐ</rt></ruby>る'],
     answer: 1,
     explain: '<ruby>海上<rt>かいじょう</rt></ruby>のマストは<ruby>避雷針<rt>ひらいしん</rt></ruby>のように<ruby>雷<rt>かみなり</rt></ruby>を<ruby>引<rt>ひ</rt></ruby>き<ruby>寄<rt>よ</rt></ruby>せる<ruby>危険<rt>きけん</rt></ruby>がある。<ruby>遠<rt>とお</rt></ruby>くで<ruby>雷鳴<rt>らいめい</rt></ruby>が<ruby>聞<rt>き</rt></ruby>こえたら<ruby>即座<rt>そくざ</rt></ruby>に<ruby>陸<rt>りく</rt></ruby>へ。'
   },
   {
-    cat: 'safety',
+    cat: 'sail',
     q: '<ruby>帽子<rt>ぼうし</rt></ruby>を<ruby>被<rt>かぶ</rt></ruby>る<ruby>意味<rt>いみ</rt></ruby>は？',
     options: ['オシャレ', '<ruby>熱中症予防<rt>ねっちゅうしょうよぼう</rt></ruby>＋<ruby>頭<rt>あたま</rt></ruby>をブームから<ruby>守<rt>まも</rt></ruby>る', '<ruby>髪型<rt>かみがた</rt></ruby><ruby>キープ<rt>きーぷ</rt></ruby>', '<ruby>軽<rt>かる</rt></ruby>くする'],
     answer: 1,
     explain: '<ruby>強<rt>つよ</rt></ruby>い<ruby>日差<rt>ひざ</rt></ruby>しは<ruby>熱中症<rt>ねっちゅうしょう</rt></ruby>の<ruby>原因<rt>げんいん</rt></ruby>。<ruby>帽子<rt>ぼうし</rt></ruby>で<ruby>頭<rt>あたま</rt></ruby>を<ruby>守<rt>まも</rt></ruby>る＋ジャイブ<ruby>時<rt>とき</rt></ruby>のブームから<ruby>頭<rt>あたま</rt></ruby>を<ruby>守<rt>まも</rt></ruby>るクッションにも。<ruby>顎<rt>あご</rt></ruby>ヒモで<ruby>固定<rt>こてい</rt></ruby>するのが<ruby>鉄則<rt>てっそく</rt></ruby>。'
   },
   {
-    cat: 'safety',
+    cat: 'sail',
     q: '<ruby>海上<rt>かいじょう</rt></ruby>で<ruby>体調<rt>たいちょう</rt></ruby>が<ruby>悪<rt>わる</rt></ruby>くなった。<ruby>最初<rt>さいしょ</rt></ruby>にすべきことは？',
     options: ['<ruby>頑張<rt>がんば</rt></ruby>って<ruby>続<rt>つづ</rt></ruby>ける', 'コーチボートに<ruby>合図<rt>あいず</rt></ruby>を<ruby>送<rt>おく</rt></ruby>る（<ruby>手<rt>て</rt></ruby>を<ruby>振<rt>ふ</rt></ruby>る・<ruby>声<rt>こえ</rt></ruby>を<ruby>出<rt>だ</rt></ruby>す）', '<ruby>沈<rt>しず</rt></ruby>めて<ruby>休<rt>やす</rt></ruby>む', '<ruby>泳<rt>およ</rt></ruby>いで<ruby>戻<rt>もど</rt></ruby>る'],
     answer: 1,
@@ -2304,16 +2421,22 @@ const quizData = [
   {
     cat: 'class',
     q: 'Optimistの<ruby>対象年齢<rt>たいしょうねんれい</rt></ruby>は？',
+    q_en: 'What is the age limit for Optimist sailors?',
     options: ['6<ruby>歳<rt>さい</rt></ruby>まで', '15<ruby>歳以下<rt>さいいか</rt></ruby>', '12<ruby>歳<rt>さい</rt></ruby>から', '<ruby>制限<rt>せいげん</rt></ruby>なし'],
+    options_en: ['Up to 6 years old', '15 years old or younger', '12 and above', 'No limit'],
     answer: 1,
-    explain: 'Optimistは15<ruby>歳以下<rt>さいいか</rt></ruby>が<ruby>対象<rt>たいしょう</rt></ruby>。<ruby>卒業後<rt>そつぎょうご</rt></ruby>は420や29erなど<ruby>次<rt>つぎ</rt></ruby>のクラスへ。'
+    explain: 'Optimistは15<ruby>歳以下<rt>さいいか</rt></ruby>が<ruby>対象<rt>たいしょう</rt></ruby>。<ruby>卒業後<rt>そつぎょうご</rt></ruby>は420や29erなど<ruby>次<rt>つぎ</rt></ruby>のクラスへ。',
+    explain_en: 'The Optimist is for sailors 15 and under. Graduates move on to classes like 420 or 29er.'
   },
   {
     cat: 'class',
     q: 'Optimistは<ruby>何<rt>なに</rt></ruby>クラス？',
+    q_en: 'What type of class is the Optimist?',
     options: ['オープンクラス', 'デベロップメントクラス', 'ワン・デザインクラス', 'カスタムクラス'],
+    options_en: ['Open Class', 'Development Class', 'One-Design Class', 'Custom Class'],
     answer: 2,
-    explain: 'ワン・デザインクラス。<ruby>艇<rt>てい</rt></ruby>のサイズ・<ruby>重<rt>おも</rt></ruby>さ・セールなど<ruby>全部規格<rt>ぜんぶきかく</rt></ruby><ruby>同<rt>おな</rt></ruby>じ。'
+    explain: 'ワン・デザインクラス。<ruby>艇<rt>てい</rt></ruby>のサイズ・<ruby>重<rt>おも</rt></ruby>さ・セールなど<ruby>全部規格<rt>ぜんぶきかく</rt></ruby><ruby>同<rt>おな</rt></ruby>じ。',
+    explain_en: 'One-Design Class. All boats have identical hull size, weight, sail, etc. — racing is decided by skill.'
   },
   {
     cat: 'class',
@@ -2550,10 +2673,41 @@ const quizData = [
 // 状態管理
 const state = { current: 0, score: 0, history: [], questions: [], mode: null };
 
+// ===== ランキング機能 =====
+const RANKING_KEY = 'optimist-quiz-ranking-v1';
+function saveRanking(mode, score, total) {
+  const ranking = JSON.parse(localStorage.getItem(RANKING_KEY) || '[]');
+  const pct = Math.round(score / total * 100);
+  const entry = { mode, score, total, pct, date: new Date().toISOString() };
+  ranking.push(entry);
+  ranking.sort((a, b) => b.pct - a.pct || b.score - a.score);
+  localStorage.setItem(RANKING_KEY, JSON.stringify(ranking.slice(0, 50)));
+  return ranking.findIndex(r => r === entry) + 1; // 1〜50位
+}
+function getRanking() {
+  return JSON.parse(localStorage.getItem(RANKING_KEY) || '[]');
+}
+function clearRankingData() {
+  localStorage.removeItem(RANKING_KEY);
+}
+function getModeLabel(mode) {
+  const map = {
+    all: '🏆 ' + t('allChallenge'),
+    random10: '🎲 ' + t('random10'),
+    random: '🎲 ' + t('random10'),
+    random50: '🎲 ' + t('random50'),
+    random100: '🎲 ' + t('random100')
+  };
+  if (map[mode]) return map[mode];
+  const cat = categories[mode];
+  return cat ? `${cat.emoji} ${getCatName(cat)}` : mode;
+}
+
 const $ = id => document.getElementById(id);
 const startScreen = $('start-screen');
 const quizScreen = $('quiz-screen');
 const resultScreen = $('result-screen');
+const rankingScreen = $('ranking-screen');
 const qnumEl = $('qnum');
 const qcatEl = $('qcat');
 const questionEl = $('question');
@@ -2596,6 +2750,7 @@ function renderStart() {
   startScreen.classList.remove('hidden');
   quizScreen.classList.add('hidden');
   resultScreen.classList.add('hidden');
+  rankingScreen.classList.add('hidden');
   progressEl.style.width = '0%';
 
   // タイトル＆字幕の言語対応
@@ -2615,8 +2770,20 @@ function renderStart() {
   const randBtn = document.createElement('button');
   randBtn.className = 'cat-btn random';
   randBtn.innerHTML = `<span class="emoji">🎲</span>${t('random10')}<span class="count">${t('random10Desc')}</span>`;
-  randBtn.onclick = () => startQuiz('random');
+  randBtn.onclick = () => startQuiz('random10');
   catGrid.appendChild(randBtn);
+
+  const rand50Btn = document.createElement('button');
+  rand50Btn.className = 'cat-btn random';
+  rand50Btn.innerHTML = `<span class="emoji">🎲</span>${t('random50')}<span class="count">${t('random50Desc')}</span>`;
+  rand50Btn.onclick = () => startQuiz('random50');
+  catGrid.appendChild(rand50Btn);
+
+  const rand100Btn = document.createElement('button');
+  rand100Btn.className = 'cat-btn random';
+  rand100Btn.innerHTML = `<span class="emoji">🎲</span>${t('random100')}<span class="count">${t('random100Desc')}</span>`;
+  rand100Btn.onclick = () => startQuiz('random100');
+  catGrid.appendChild(rand100Btn);
 
   Object.entries(categories).forEach(([key, cat]) => {
     const count = quizData.filter(q => q.cat === key).length;
@@ -2628,6 +2795,49 @@ function renderStart() {
     btn.onclick = () => startQuiz(key);
     catGrid.appendChild(btn);
   });
+
+  // ランキングボタン（全カテゴリ下）
+  const rankBtn = document.createElement('button');
+  rankBtn.className = 'cat-btn all';
+  rankBtn.style.background = 'linear-gradient(135deg, #f4b400 0%, #d99500 100%)';
+  rankBtn.innerHTML = `<span class="emoji">🏆</span>${t('ranking')}<span class="count">${getRanking().length} records</span>`;
+  rankBtn.onclick = renderRanking;
+  catGrid.appendChild(rankBtn);
+}
+
+function renderRanking() {
+  startScreen.classList.add('hidden');
+  quizScreen.classList.add('hidden');
+  resultScreen.classList.add('hidden');
+  rankingScreen.classList.remove('hidden');
+  document.getElementById('ranking-title').textContent = t('rankingTitle');
+  document.getElementById('ranking-home').textContent = '← ' + (currentLang === 'en' ? 'Categories' : 'カテゴリへ');
+  document.getElementById('ranking-clear').textContent = t('clearRanking');
+
+  const list = document.getElementById('ranking-list');
+  const ranking = getRanking();
+  if (ranking.length === 0) {
+    list.innerHTML = `<div class="ranking-empty">${t('noRanking')}</div>`;
+    return;
+  }
+  list.innerHTML = ranking.slice(0, 20).map((r, i) => {
+    const rank = i + 1;
+    const rankClass = rank === 1 ? 'top1' : rank === 2 ? 'top2' : rank === 3 ? 'top3' : '';
+    const medal = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : rank;
+    const d = new Date(r.date);
+    const dateStr = `${d.getMonth()+1}/${d.getDate()}`;
+    return `
+      <div class="ranking-item">
+        <div class="ranking-rank ${rankClass}">${medal}</div>
+        <div>
+          <div class="ranking-mode">${getModeLabel(r.mode)}</div>
+          <div class="ranking-date">${dateStr}</div>
+        </div>
+        <div class="ranking-pct">${r.pct}%</div>
+        <div class="ranking-score">${r.score}/${r.total}</div>
+      </div>
+    `;
+  }).join('');
 }
 
 function startQuiz(mode) {
@@ -2637,7 +2847,9 @@ function startQuiz(mode) {
   state.history = [];
 
   if (mode === 'all') state.questions = shuffle(quizData).map(shuffleOptions);
-  else if (mode === 'random') state.questions = shuffle(quizData).slice(0, 10).map(shuffleOptions);
+  else if (mode === 'random10' || mode === 'random') state.questions = shuffle(quizData).slice(0, 10).map(shuffleOptions);
+  else if (mode === 'random50') state.questions = shuffle(quizData).slice(0, 50).map(shuffleOptions);
+  else if (mode === 'random100') state.questions = shuffle(quizData).slice(0, 100).map(shuffleOptions);
   else state.questions = shuffle(quizData.filter(q => q.cat === mode)).map(shuffleOptions);
 
   startScreen.classList.add('hidden');
@@ -2711,6 +2923,16 @@ function showResult() {
   scoreEl.textContent = state.score;
   totalEl.textContent = state.questions.length;
 
+  // ランキング保存＆ニューレコード判定
+  const rank = saveRanking(state.mode, state.score, state.questions.length);
+  const newRecordArea = document.getElementById('new-record-area');
+  if (rank <= 3) {
+    const medal = rank === 1 ? '🥇' : rank === 2 ? '🥈' : '🥉';
+    newRecordArea.innerHTML = `<div class="new-record-badge">${medal} ${t('newRecord')} (${rank})</div>`;
+  } else {
+    newRecordArea.innerHTML = '';
+  }
+
   let emoji, msgKey;
   const ratio = state.score / state.questions.length;
   if (ratio === 1) { emoji = '🏆'; msgKey = 'perfect'; }
@@ -2759,6 +2981,10 @@ nextBtn.addEventListener('click', nextQuestion);
 quitBtn.addEventListener('click', quitToHome);
 restartBtn.addEventListener('click', () => startQuiz(state.mode));
 homeBtn.addEventListener('click', renderStart);
+document.getElementById('ranking-home').addEventListener('click', renderStart);
+document.getElementById('ranking-clear').addEventListener('click', () => {
+  if (confirm(t('clearConfirm'))) { clearRankingData(); renderRanking(); }
+});
 document.querySelectorAll('.lang-btn').forEach(btn => {
   btn.addEventListener('click', () => switchLang(btn.dataset.lang));
 });
