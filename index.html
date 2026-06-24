@@ -1801,333 +1801,476 @@ const quizData = [
   {
     cat: 'setting',
     q: 'レーキを<ruby>起<rt>お</rt></ruby>こす（マストを<ruby>立<rt>た</rt></ruby>てる）と？',
+    q_en: 'What happens when you stand the rake more upright?',
     options: ['ウェザーが<ruby>強<rt>つよ</rt></ruby>くなる', 'ウェザーが<ruby>弱<rt>よわ</rt></ruby>くなり<ruby>重心<rt>じゅうしん</rt></ruby>が<ruby>前<rt>まえ</rt></ruby>に', '<ruby>速<rt>はや</rt></ruby>くなる', 'ヒールが<ruby>大<rt>おお</rt></ruby>きくなる'],
+    options_en: ['Weather helm increases', 'Weather helm decreases, sail CE moves forward', 'Boat gets faster', 'Heel increases'],
     answer: 1,
-    explain: 'レーキを<ruby>起<rt>お</rt></ruby>こすほどウェザーが<ruby>弱<rt>よわ</rt></ruby>くなり、セールの<ruby>重心<rt>じゅうしん</rt></ruby>が<ruby>前<rt>まえ</rt></ruby>に<ruby>行<rt>い</rt></ruby>く。'
+    explain: 'レーキを<ruby>起<rt>お</rt></ruby>こすほどウェザーが<ruby>弱<rt>よわ</rt></ruby>くなり、セールの<ruby>重心<rt>じゅうしん</rt></ruby>が<ruby>前<rt>まえ</rt></ruby>に<ruby>行<rt>い</rt></ruby>く。',
+    explain_en: 'The more upright the rake, the less weather helm. The sail\'s center of effort moves forward.'
   },
   {
     cat: 'setting',
     q: 'スプリットを<ruby>強<rt>つよ</rt></ruby>く<ruby>引<rt>ひ</rt></ruby>くとセールは？',
+    q_en: 'What happens to the sail when you tension the sprit?',
     options: ['トップリーチが<ruby>開<rt>ひら</rt></ruby>く', 'トップリーチが<ruby>閉<rt>と</rt></ruby>じる', 'ボトムが<ruby>閉<rt>と</rt></ruby>じる', '<ruby>変<rt>か</rt></ruby>わらない'],
+    options_en: ['Top leech opens', 'Top leech closes', 'Bottom leech closes', 'No change'],
     answer: 1,
-    explain: 'スプリットを<ruby>強<rt>つよ</rt></ruby>くするとトップリーチが<ruby>閉<rt>と</rt></ruby>じる。'
+    explain: 'スプリットを<ruby>強<rt>つよ</rt></ruby>くするとトップリーチが<ruby>閉<rt>と</rt></ruby>じる。',
+    explain_en: 'Tensioning the sprit closes the top leech.'
   },
   {
     cat: 'setting',
     q: 'バングを<ruby>強<rt>つよ</rt></ruby>く<ruby>引<rt>ひ</rt></ruby>くとトップリーチは？',
+    q_en: 'When you tension the vang, what happens to the top leech?',
     options: ['<ruby>閉<rt>と</rt></ruby>じる', '<ruby>開<rt>ひら</rt></ruby>く', '<ruby>変<rt>か</rt></ruby>わらない', 'ねじれる'],
+    options_en: ['Closes', 'Opens', 'No change', 'Twists'],
     answer: 0,
-    explain: 'バングはブームを<ruby>下<rt>した</rt></ruby>に<ruby>引<rt>ひ</rt></ruby>っ<ruby>張<rt>ぱ</rt></ruby>る<ruby>装置<rt>そうち</rt></ruby>。<ruby>強<rt>つよ</rt></ruby>く<ruby>引<rt>ひ</rt></ruby>くとリーチが<ruby>立<rt>た</rt></ruby>って<ruby>閉<rt>と</rt></ruby>じる。シートを<ruby>緩<rt>ゆる</rt></ruby>めてもリーチが<ruby>開<rt>ひら</rt></ruby>きすぎない（バングシーティング）。'
+    explain: 'バングはブームを<ruby>下<rt>した</rt></ruby>に<ruby>引<rt>ひ</rt></ruby>っ<ruby>張<rt>ぱ</rt></ruby>る<ruby>装置<rt>そうち</rt></ruby>。<ruby>強<rt>つよ</rt></ruby>く<ruby>引<rt>ひ</rt></ruby>くとリーチが<ruby>立<rt>た</rt></ruby>って<ruby>閉<rt>と</rt></ruby>じる。シートを<ruby>緩<rt>ゆる</rt></ruby>めてもリーチが<ruby>開<rt>ひら</rt></ruby>きすぎない（バングシーティング）。',
+    explain_en: 'The vang pulls the boom down. Tensioning it stands up the leech and closes it — even when the sheet is eased the leech doesn\'t open too much (vang sheeting).'
   },
   {
     cat: 'setting',
     q: 'アウトホールを<ruby>強<rt>つよ</rt></ruby>く<ruby>引<rt>ひ</rt></ruby>くと？',
+    q_en: 'What does tensioning the outhaul do?',
     options: ['クローズ<ruby>角度<rt>かくど</rt></ruby><ruby>悪<rt>わる</rt></ruby>くなる', 'クローズ<ruby>角度<rt>かくど</rt></ruby><ruby>良<rt>よ</rt></ruby>くなるがスピードダウン', 'スピードアップ', '<ruby>変<rt>か</rt></ruby>わらない'],
+    options_en: ['Pointing angle worsens', 'Better pointing but lower speed', 'Speeds up', 'No change'],
     answer: 1,
-    explain: 'アウトホールを<ruby>強<rt>つよ</rt></ruby>くするとクローズ<ruby>角度<rt>かくど</rt></ruby><ruby>良<rt>よ</rt></ruby>くなるけどスピードはダウン。'
+    explain: 'アウトホールを<ruby>強<rt>つよ</rt></ruby>くするとクローズ<ruby>角度<rt>かくど</rt></ruby><ruby>良<rt>よ</rt></ruby>くなるけどスピードはダウン。',
+    explain_en: 'Tensioning the outhaul improves pointing angle but reduces speed.'
   },
   {
     cat: 'setting',
     q: 'テルテール（リボン）の<ruby>下側<rt>しもがわ</rt></ruby>がピラピラ。これは？',
+    q_en: 'The leeward telltale is fluttering. What does this mean?',
     options: ['<ruby>上<rt>のぼ</rt></ruby>りすぎ', '<ruby>下<rt>くだ</rt></ruby>りすぎ／シート<ruby>引<rt>ひ</rt></ruby>きすぎ', 'ちょうどいい', 'ヒールしすぎ'],
+    options_en: ['Pointing too high', 'Pointing too low / sheet trimmed too tight', 'Just right', 'Heeling too much'],
     answer: 1,
-    explain: 'しも<ruby>側<rt>がわ</rt></ruby>ピラピラ＝<ruby>下<rt>くだ</rt></ruby>りすぎ／シート<ruby>引<rt>ひ</rt></ruby>きすぎ。'
+    explain: 'しも<ruby>側<rt>がわ</rt></ruby>ピラピラ＝<ruby>下<rt>くだ</rt></ruby>りすぎ／シート<ruby>引<rt>ひ</rt></ruby>きすぎ。',
+    explain_en: 'Leeward telltale fluttering = pointing too low or sheet trimmed too tight.'
   },
   {
     cat: 'setting',
     q: '<ruby>中風<rt>ちゅうふう</rt></ruby>〜<ruby>強風<rt>きょうふう</rt></ruby>、クローズ<ruby>時<rt>とき</rt></ruby>のヒールバランスは？',
+    q_en: 'In medium to strong wind on close-hauled, what heel balance is best?',
     options: ['<ruby>大<rt>おお</rt></ruby>きく<ruby>風下<rt>かざしも</rt></ruby>にヒール', '<ruby>若干<rt>じゃっかん</rt></ruby>アンヒール', 'フラット', '<ruby>大<rt>おお</rt></ruby>きくアンヒール'],
+    options_en: ['Heeled heavily to leeward', 'Slight windward heel (anheel)', 'Flat', 'Heavily heeled to windward'],
     answer: 2,
-    explain: '<ruby>中風<rt>ちゅうふう</rt></ruby>〜<ruby>強風<rt>きょうふう</rt></ruby>はフラットが<ruby>基本<rt>きほん</rt></ruby>。<ruby>微風<rt>びふう</rt></ruby>のみ<ruby>若干<rt>じゃっかん</rt></ruby><ruby>風下<rt>かざしも</rt></ruby>にヒール（<ruby>形<rt>かたち</rt></ruby>を<ruby>作<rt>つく</rt></ruby>る）。アンヒール（<ruby>風上<rt>かざかみ</rt></ruby>へヒール）はランニング<ruby>時<rt>とき</rt></ruby>の<ruby>特殊技術<rt>とくしゅぎじゅつ</rt></ruby>。'
+    explain: '<ruby>中風<rt>ちゅうふう</rt></ruby>〜<ruby>強風<rt>きょうふう</rt></ruby>はフラットが<ruby>基本<rt>きほん</rt></ruby>。<ruby>微風<rt>びふう</rt></ruby>のみ<ruby>若干<rt>じゃっかん</rt></ruby><ruby>風下<rt>かざしも</rt></ruby>にヒール（<ruby>形<rt>かたち</rt></ruby>を<ruby>作<rt>つく</rt></ruby>る）。アンヒール（<ruby>風上<rt>かざかみ</rt></ruby>へヒール）はランニング<ruby>時<rt>とき</rt></ruby>の<ruby>特殊技術<rt>とくしゅぎじゅつ</rt></ruby>。',
+    explain_en: 'Medium to strong wind on close-hauled = flat is the standard. Only in light wind should you allow slight leeward heel (to set the sail shape). Windward heel (anheel) is a special technique for running.'
   },
 
   // ===== セッティング詳細（数値）10問 =====
   {
     cat: 'setting',
     q: '<ruby>微風<rt>びふう</rt></ruby>（0〜4m）のレーキの<ruby>目安<rt>めやす</rt></ruby>は？',
+    q_en: 'Rake guideline for light wind (0–4 m/s)?',
     options: ['2740〜2820', '2780〜2800', '2800〜2840', '2820〜2860'],
+    options_en: ['2740–2820 mm', '2780–2800 mm', '2800–2840 mm', '2820–2860 mm'],
     answer: 1,
-    explain: '<ruby>微風<rt>びふう</rt></ruby>のレーキは2780〜2800<ruby>mm<rt>みりめーとる</rt></ruby>くらい。<ruby>若干<rt>じゃっかん</rt></ruby><ruby>横<rt>よこ</rt></ruby>シワが<ruby>出<rt>で</rt></ruby>る<ruby>程度<rt>ていど</rt></ruby>。'
+    explain: '<ruby>微風<rt>びふう</rt></ruby>のレーキは2780〜2800<ruby>mm<rt>みりめーとる</rt></ruby>くらい。<ruby>若干<rt>じゃっかん</rt></ruby><ruby>横<rt>よこ</rt></ruby>シワが<ruby>出<rt>で</rt></ruby>る<ruby>程度<rt>ていど</rt></ruby>。',
+    explain_en: 'Light wind rake is around 2780–2800 mm. Just enough that slight horizontal wrinkles appear.'
   },
   {
     cat: 'setting',
     q: '<ruby>強風<rt>きょうふう</rt></ruby>（8〜12m）のレーキの<ruby>目安<rt>めやす</rt></ruby>は？',
+    q_en: 'Rake guideline for strong wind (8–12 m/s)?',
     options: ['2780〜2800', '2800〜2840', '2820〜2860', '2740〜2820'],
+    options_en: ['2780–2800 mm', '2800–2840 mm', '2820–2860 mm', '2740–2820 mm'],
     answer: 2,
-    explain: '<ruby>強風<rt>きょうふう</rt></ruby>のレーキは2820〜2860<ruby>mm<rt>みりめーとる</rt></ruby>。レーキを<ruby>起<rt>お</rt></ruby>こしてウェザーを<ruby>弱<rt>よわ</rt></ruby>める。'
+    explain: '<ruby>強風<rt>きょうふう</rt></ruby>のレーキは2820〜2860<ruby>mm<rt>みりめーとる</rt></ruby>。レーキを<ruby>起<rt>お</rt></ruby>こしてウェザーを<ruby>弱<rt>よわ</rt></ruby>める。',
+    explain_en: 'Strong wind rake is 2820–2860 mm. Standing the rake up more reduces weather helm.'
   },
   {
     cat: 'setting',
     q: '<ruby>超強風<rt>ちょうきょうふう</rt></ruby>（12m〜）のレーキは<ruby>強風<rt>きょうふう</rt></ruby>と<ruby>比<rt>くら</rt></ruby>べてどうする？',
+    q_en: 'How does overpowered wind rake (12+ m/s) compare to strong wind?',
     options: ['もっと<ruby>起<rt>お</rt></ruby>こす', '<ruby>倒<rt>たお</rt></ruby>す（2740〜2820）', '<ruby>同<rt>おな</rt></ruby>じレンジ<ruby>内<rt>ない</rt></ruby>で<ruby>維持<rt>いじ</rt></ruby>', '<ruby>最大<rt>さいだい</rt></ruby>まで<ruby>起<rt>お</rt></ruby>こす'],
+    options_en: ['Stand it up more', 'Lay it back (2740–2820)', 'Keep within the same range', 'Stand it fully upright'],
     answer: 1,
-    explain: '<ruby>超強風<rt>ちょうきょうふう</rt></ruby>はレーキを<ruby>倒<rt>たお</rt></ruby>して（2740〜2820）<ruby>艇<rt>てい</rt></ruby>を<ruby>抑<rt>おさ</rt></ruby>えやすくする。'
+    explain: '<ruby>超強風<rt>ちょうきょうふう</rt></ruby>はレーキを<ruby>倒<rt>たお</rt></ruby>して（2740〜2820）<ruby>艇<rt>てい</rt></ruby>を<ruby>抑<rt>おさ</rt></ruby>えやすくする。',
+    explain_en: 'Overpowered: lay the rake back (2740–2820 mm) to make the boat easier to control.'
   },
   {
     cat: 'setting',
     q: '<ruby>微風<rt>びふう</rt></ruby>でのアウトホール<ruby>調整<rt>ちょうせい</rt></ruby>（ブーム<ruby>端距離<rt>たんきょり</rt></ruby>）の<ruby>目安<rt>めやす</rt></ruby>は？',
+    q_en: 'Outhaul adjustment (sail-to-boom distance) for light wind?',
     options: ['0mm（フルテンション）', '0〜30mm（フット<ruby>横<rt>よこ</rt></ruby>シワ）', '30〜60mm（フットシワなし）', '40〜80mm（フット<ruby>若干<rt>じゃっかん</rt></ruby><ruby>縦<rt>たて</rt></ruby>シワ）'],
+    options_en: ['0 mm (full tension)', '0–30 mm (horizontal foot wrinkles)', '30–60 mm (no wrinkles)', '40–80 mm (slight vertical wrinkles)'],
     answer: 2,
-    explain: '<ruby>微風<rt>びふう</rt></ruby>はアウトホール<ruby>緩<rt>ゆる</rt></ruby>めに30〜60mm。フットにシワがない<ruby>状態<rt>じょうたい</rt></ruby>。'
+    explain: '<ruby>微風<rt>びふう</rt></ruby>はアウトホール<ruby>緩<rt>ゆる</rt></ruby>めに30〜60mm。フットにシワがない<ruby>状態<rt>じょうたい</rt></ruby>。',
+    explain_en: 'In light wind, ease the outhaul to 30–60 mm. The foot should have no wrinkles.'
   },
   {
     cat: 'setting',
     q: '<ruby>強風<rt>きょうふう</rt></ruby>でのアウトホールは？',
+    q_en: 'Outhaul for strong wind?',
     options: ['0〜30mm（フット<ruby>横<rt>よこ</rt></ruby>シワ）', '30〜60mm（シワなし）', '40〜80mm（<ruby>縦<rt>たて</rt></ruby>シワ）', '<ruby>引<rt>ひ</rt></ruby>かない'],
+    options_en: ['0–30 mm (horizontal foot wrinkles)', '30–60 mm (no wrinkles)', '40–80 mm (vertical wrinkles)', 'Do not tension'],
     answer: 0,
-    explain: '<ruby>強風<rt>きょうふう</rt></ruby>はアウトホール<ruby>強<rt>つよ</rt></ruby>めに<ruby>引<rt>ひ</rt></ruby>く（0〜30mm）。フットに<ruby>横<rt>よこ</rt></ruby>シワが<ruby>出<rt>で</rt></ruby>るくらい。'
+    explain: '<ruby>強風<rt>きょうふう</rt></ruby>はアウトホール<ruby>強<rt>つよ</rt></ruby>めに<ruby>引<rt>ひ</rt></ruby>く（0〜30mm）。フットに<ruby>横<rt>よこ</rt></ruby>シワが<ruby>出<rt>で</rt></ruby>るくらい。',
+    explain_en: 'In strong wind tension the outhaul tight (0–30 mm). Enough that horizontal foot wrinkles appear.'
   },
   {
     cat: 'setting',
     q: '<ruby>超強風<rt>ちょうきょうふう</rt></ruby>でのアウトホールは？',
+    q_en: 'Outhaul setting when overpowered?',
     options: ['<ruby>全開放<rt>ぜんかいほう</rt></ruby>', '30mm', '<ruby>フルテンション<rt>ふるてんしょん</rt></ruby>（0mm）', '<ruby>変<rt>か</rt></ruby>えない'],
+    options_en: ['Fully eased', '30 mm', 'Full tension (0 mm)', 'No change'],
     answer: 2,
-    explain: '<ruby>超強風<rt>ちょうきょうふう</rt></ruby>はフルテンション（0mm）！セールをペッタンコにする。'
+    explain: '<ruby>超強風<rt>ちょうきょうふう</rt></ruby>はフルテンション（0mm）！セールをペッタンコにする。',
+    explain_en: 'When overpowered, full tension (0 mm)! Make the sail completely flat.'
   },
   {
     cat: 'setting',
     q: '<ruby>微風<rt>びふう</rt></ruby>〜<ruby>中風<rt>ちゅうふう</rt></ruby>でセンターボード（クローズ<ruby>時<rt>とき</rt></ruby>の<ruby>上<rt>あ</rt></ruby>げ<ruby>具合<rt>ぐあい</rt></ruby>）は？',
+    q_en: 'Centerboard position (raised amount) on close-hauled in light to medium wind?',
     options: ['0mm（<ruby>完全<rt>かんぜん</rt></ruby>に<ruby>下<rt>お</rt></ruby>ろす）', '5mm<ruby>上<rt>あ</rt></ruby>げる', '7mm<ruby>上<rt>あ</rt></ruby>げる', '<ruby>半分<rt>はんぶん</rt></ruby><ruby>上<rt>あ</rt></ruby>げる'],
+    options_en: ['0 mm (fully down)', 'Raised 5 mm', 'Raised 7 mm', 'Raised halfway'],
     answer: 0,
-    explain: '<ruby>微風<rt>びふう</rt></ruby>〜<ruby>中風<rt>ちゅうふう</rt></ruby>はセンター0mm（フルダウン）が<ruby>基本<rt>きほん</rt></ruby>。'
+    explain: '<ruby>微風<rt>びふう</rt></ruby>〜<ruby>中風<rt>ちゅうふう</rt></ruby>はセンター0mm（フルダウン）が<ruby>基本<rt>きほん</rt></ruby>。',
+    explain_en: 'Light to medium wind = centerboard 0 mm (fully down) is standard.'
   },
   {
     cat: 'setting',
     q: '<ruby>超強風<rt>ちょうきょうふう</rt></ruby>でのセンターボード<ruby>上<rt>あ</rt></ruby>げ<ruby>具合<rt>ぐあい</rt></ruby>は？',
+    q_en: 'Centerboard raised amount when overpowered?',
     options: ['0mm', '5mm', '7mm', '<ruby>完全<rt>かんぜん</rt></ruby>に<ruby>上<rt>あ</rt></ruby>げる'],
+    options_en: ['0 mm', '5 mm', '7 mm', 'Fully raised'],
     answer: 2,
-    explain: '<ruby>超強風<rt>ちょうきょうふう</rt></ruby>はセンター7mm<ruby>上<rt>あ</rt></ruby>げる。ウェザー<ruby>軽減<rt>けいげん</rt></ruby>とコントロール<ruby>性向上<rt>せいこうじょう</rt></ruby>のため。'
+    explain: '<ruby>超強風<rt>ちょうきょうふう</rt></ruby>はセンター7mm<ruby>上<rt>あ</rt></ruby>げる。ウェザー<ruby>軽減<rt>けいげん</rt></ruby>とコントロール<ruby>性向上<rt>せいこうじょう</rt></ruby>のため。',
+    explain_en: 'Overpowered = raise the centerboard 7 mm. This reduces weather helm and improves control.'
   },
   {
     cat: 'setting',
     q: 'Sモード（スピードモード）とPモード（ピッチモード）の<ruby>違<rt>ちが</rt></ruby>いは？',
+    q_en: 'Difference between S mode (Speed) and P mode (Pitch)?',
     options: ['Sはスピード<ruby>優先<rt>ゆうせん</rt></ruby>、Pは<ruby>高<rt>たか</rt></ruby>さ（<ruby>上<rt>のぼ</rt></ruby>り）<ruby>優先<rt>ゆうせん</rt></ruby>', 'Sは<ruby>高<rt>たか</rt></ruby>さ<ruby>優先<rt>ゆうせん</rt></ruby>、Pはスピード<ruby>優先<rt>ゆうせん</rt></ruby>', '<ruby>同<rt>おな</rt></ruby>じ<ruby>意味<rt>いみ</rt></ruby>', '<ruby>艇<rt>てい</rt></ruby>のサイズが<ruby>違<rt>ちが</rt></ruby>う'],
+    options_en: ['S prioritizes speed, P prioritizes height (pointing)', 'S prioritizes height, P prioritizes speed', 'Same meaning', 'Different boat sizes'],
     answer: 0,
-    explain: 'S=スピードモード（<ruby>速<rt>はや</rt></ruby>さ<ruby>重視<rt>じゅうし</rt></ruby>、シート<ruby>緩<rt>ゆる</rt></ruby>め）、P=ピッチモード（<ruby>高<rt>たか</rt></ruby>さ<ruby>重視<rt>じゅうし</rt></ruby>、シート<ruby>引<rt>ひ</rt></ruby>く）。<ruby>強風<rt>きょうふう</rt></ruby>はPモード<ruby>優先<rt>ゆうせん</rt></ruby>。'
+    explain: 'S=スピードモード（<ruby>速<rt>はや</rt></ruby>さ<ruby>重視<rt>じゅうし</rt></ruby>、シート<ruby>緩<rt>ゆる</rt></ruby>め）、P=ピッチモード（<ruby>高<rt>たか</rt></ruby>さ<ruby>重視<rt>じゅうし</rt></ruby>、シート<ruby>引<rt>ひ</rt></ruby>く）。<ruby>強風<rt>きょうふう</rt></ruby>はPモード<ruby>優先<rt>ゆうせん</rt></ruby>。',
+    explain_en: 'S = Speed mode (prioritize speed, ease sheet a bit), P = Pitch mode (prioritize height, trim hard). In strong wind, prioritize P mode.'
   },
   {
     cat: 'setting',
     q: 'ラフのテンションを<ruby>強<rt>つよ</rt></ruby>くしたい<ruby>時<rt>とき</rt></ruby>、プリベンダーはどうする？',
+    q_en: 'To increase luff tension, how should you set the preventer?',
     options: ['ひもをねじって<ruby>巻<rt>ま</rt></ruby>いてかける', 'ひもを<ruby>巻<rt>ま</rt></ruby>かないでかける', 'マストを<ruby>叩<rt>たた</rt></ruby>く', 'バングを<ruby>緩<rt>ゆる</rt></ruby>める'],
+    options_en: ['Wrap the line around (twist)', 'Attach without wrapping (direct)', 'Tap the mast', 'Ease the vang'],
     answer: 1,
-    explain: 'プリベンダー：ひもを<ruby>巻<rt>ま</rt></ruby>かないでかける＝<ruby>強<rt>つよ</rt></ruby>く<ruby>固定<rt>こてい</rt></ruby>、ねじって<ruby>巻<rt>ま</rt></ruby>いてかける＝<ruby>弱<rt>よわ</rt></ruby>く。<ruby>強<rt>つよ</rt></ruby>くするとラフのテンションが<ruby>強<rt>つよ</rt></ruby>くなり、トップリーチが<ruby>開<rt>ひら</rt></ruby>く。'
+    explain: 'プリベンダー：ひもを<ruby>巻<rt>ま</rt></ruby>かないでかける＝<ruby>強<rt>つよ</rt></ruby>く<ruby>固定<rt>こてい</rt></ruby>、ねじって<ruby>巻<rt>ま</rt></ruby>いてかける＝<ruby>弱<rt>よわ</rt></ruby>く。<ruby>強<rt>つよ</rt></ruby>くするとラフのテンションが<ruby>強<rt>つよ</rt></ruby>くなり、トップリーチが<ruby>開<rt>ひら</rt></ruby>く。',
+    explain_en: 'Preventer: attach without wrapping = strong fix; wrap (twist) = weaker. Tighter preventer increases luff tension and opens the top leech.'
   },
 
   // ===== セッティング（ガイドベース）30問 =====
   {
     cat: 'setting',
     q: 'OPセッティングで<ruby>操作<rt>そうさ</rt></ruby>している3つの<ruby>基本要素<rt>きほんようそ</rt></ruby>は？',
+    q_en: 'The three basic elements you control with OP settings?',
     options: [
       'ドラフト（<ruby>深<rt>ふか</rt></ruby>さ）・ツイスト（リーチの<ruby>開<rt>ひら</rt></ruby>き）・CE（<ruby>風圧中心<rt>ふうあつちゅうしん</rt></ruby>）',
       'スピード・<ruby>高<rt>たか</rt></ruby>さ・<ruby>角度<rt>かくど</rt></ruby>',
       'パワー・バランス・<ruby>速度<rt>そくど</rt></ruby>',
       '<ruby>風<rt>かぜ</rt></ruby>・<ruby>波<rt>なみ</rt></ruby>・<ruby>潮<rt>しお</rt></ruby>'
     ],
+    options_en: [
+      'Draft (depth), Twist (leech opening), CE (center of effort)',
+      'Speed, height, angle',
+      'Power, balance, velocity',
+      'Wind, wave, tide'
+    ],
     answer: 0,
-    explain: 'セッティングは「ドラフト（セールの<ruby>深<rt>ふか</rt></ruby>さ）」「ツイスト（リーチの<ruby>開<rt>ひら</rt></ruby>き）」「CE（セール<ruby>風圧中心<rt>ふうあつちゅうしん</rt></ruby>の<ruby>位置<rt>いち</rt></ruby>）」の3つを<ruby>調整<rt>ちょうせい</rt></ruby>している。'
+    explain: 'セッティングは「ドラフト（セールの<ruby>深<rt>ふか</rt></ruby>さ）」「ツイスト（リーチの<ruby>開<rt>ひら</rt></ruby>き）」「CE（セール<ruby>風圧中心<rt>ふうあつちゅうしん</rt></ruby>の<ruby>位置<rt>いち</rt></ruby>）」の3つを<ruby>調整<rt>ちょうせい</rt></ruby>している。',
+    explain_en: 'Sail settings control: Draft (sail depth), Twist (leech opening), and CE (location of the center of effort).'
   },
   {
     cat: 'setting',
     q: 'ドラフト（セールの<ruby>深<rt>ふか</rt></ruby>さ）が<ruby>深<rt>ふか</rt></ruby>いと？',
+    q_en: 'What does deeper sail draft give you?',
     options: ['スピードが<ruby>出<rt>で</rt></ruby>る', 'パワーと<ruby>加速<rt>かそく</rt></ruby>が<ruby>出<rt>で</rt></ruby>る', '<ruby>角度<rt>かくど</rt></ruby>が<ruby>良<rt>よ</rt></ruby>くなる', 'デパワー'],
+    options_en: ['Higher speed', 'More power and acceleration', 'Better pointing angle', 'Depower'],
     answer: 1,
-    explain: 'ドラフトが<ruby>深<rt>ふか</rt></ruby>い＝パワー・<ruby>加速<rt>かそく</rt></ruby>UP。<ruby>浅<rt>あさ</rt></ruby>い＝スピード・<ruby>角度<rt>かくど</rt></ruby>UP、オーバーパワー<ruby>回避<rt>かいひ</rt></ruby>。'
+    explain: 'ドラフトが<ruby>深<rt>ふか</rt></ruby>い＝パワー・<ruby>加速<rt>かそく</rt></ruby>UP。<ruby>浅<rt>あさ</rt></ruby>い＝スピード・<ruby>角度<rt>かくど</rt></ruby>UP、オーバーパワー<ruby>回避<rt>かいひ</rt></ruby>。',
+    explain_en: 'Deeper draft = more power and acceleration. Flatter draft = better speed and pointing, helps avoid being overpowered.'
   },
   {
     cat: 'setting',
     q: 'ツイスト（リーチの<ruby>開<rt>ひら</rt></ruby>き）が<ruby>閉<rt>と</rt></ruby>じると？',
+    q_en: 'What happens when the twist (leech opening) closes?',
     options: ['スピードUP', '<ruby>上<rt>のぼ</rt></ruby>り<ruby>角<rt>かく</rt></ruby>と<ruby>低速時<rt>ていそくじ</rt></ruby>のパワーUP', 'ブローへの<ruby>許容度<rt>きょようど</rt></ruby>UP', 'デパワー'],
+    options_en: ['Speed UP', 'Better pointing and more low-speed power', 'Better tolerance to gusts', 'Depower'],
     answer: 1,
-    explain: 'リーチ<ruby>閉<rt>と</rt></ruby>じる＝<ruby>上<rt>のぼ</rt></ruby>り<ruby>角<rt>かく</rt></ruby>・<ruby>低速時<rt>ていそくじ</rt></ruby>パワーUP。<ruby>開<rt>ひら</rt></ruby>く＝スピードとデパワー、ブロー<ruby>許容度<rt>きょようど</rt></ruby>UP。'
+    explain: 'リーチ<ruby>閉<rt>と</rt></ruby>じる＝<ruby>上<rt>のぼ</rt></ruby>り<ruby>角<rt>かく</rt></ruby>・<ruby>低速時<rt>ていそくじ</rt></ruby>パワーUP。<ruby>開<rt>ひら</rt></ruby>く＝スピードとデパワー、ブロー<ruby>許容度<rt>きょようど</rt></ruby>UP。',
+    explain_en: 'Closed leech = better pointing and more low-speed power. Open leech = more speed, depower, and gust tolerance.'
   },
   {
     cat: 'setting',
     q: 'CE（セール<ruby>風圧中心<rt>ふうあつちゅうしん</rt></ruby>）が<ruby>後<rt>うし</rt></ruby>ろ・<ruby>上<rt>うえ</rt></ruby>に<ruby>行<rt>い</rt></ruby>くと？',
+    q_en: 'What happens when the CE (center of effort) moves back and up?',
     options: ['<ruby>艇<rt>てい</rt></ruby>が<ruby>速<rt>はや</rt></ruby>くなる', 'ウェザーヘルムとヒールモーメントが<ruby>増<rt>ふ</rt></ruby>える', '<ruby>艇<rt>てい</rt></ruby>が<ruby>下<rt>さが</rt></ruby>る', '<ruby>変<rt>か</rt></ruby>わらない'],
+    options_en: ['Boat gets faster', 'Weather helm and heel moment increase', 'Boat slows down', 'No change'],
     answer: 1,
-    explain: 'CEが<ruby>後<rt>うし</rt></ruby>ろ・<ruby>上<rt>うえ</rt></ruby>に<ruby>行<rt>い</rt></ruby>くほどウェザーヘルム（<ruby>風上<rt>かざかみ</rt></ruby>に<ruby>切<rt>き</rt></ruby>り<ruby>上<rt>あ</rt></ruby>がる<ruby>力<rt>ちから</rt></ruby>）とヒールが<ruby>増<rt>ふ</rt></ruby>える。'
+    explain: 'CEが<ruby>後<rt>うし</rt></ruby>ろ・<ruby>上<rt>うえ</rt></ruby>に<ruby>行<rt>い</rt></ruby>くほどウェザーヘルム（<ruby>風上<rt>かざかみ</rt></ruby>に<ruby>切<rt>き</rt></ruby>り<ruby>上<rt>あ</rt></ruby>がる<ruby>力<rt>ちから</rt></ruby>）とヒールが<ruby>増<rt>ふ</rt></ruby>える。',
+    explain_en: 'The further back and higher the CE, the more weather helm (force luffing the boat up) and heel moment.'
   },
   {
     cat: 'setting',
     q: 'スプリットは<ruby>主<rt>おも</rt></ruby>に<ruby>何<rt>なに</rt></ruby>を<ruby>調整<rt>ちょうせい</rt></ruby>する？',
+    q_en: 'What does the sprit primarily control?',
     options: ['フットの<ruby>深<rt>ふか</rt></ruby>さ', 'アッパーリーチ（セール<ruby>上部<rt>じょうぶ</rt></ruby>）の<ruby>開閉<rt>かいへい</rt></ruby>', 'マストの<ruby>角度<rt>かくど</rt></ruby>', 'ブームの<ruby>位置<rt>いち</rt></ruby>'],
+    options_en: ['Foot depth', 'Upper leech opening/closing', 'Mast angle', 'Boom position'],
     answer: 1,
-    explain: 'スプリットはピーク（セール<ruby>上部<rt>じょうぶ</rt></ruby>）の<ruby>張<rt>は</rt></ruby>りを<ruby>変<rt>か</rt></ruby>えて、アッパーリーチの<ruby>開閉<rt>かいへい</rt></ruby>を<ruby>支配<rt>しはい</rt></ruby>する。'
+    explain: 'スプリットはピーク（セール<ruby>上部<rt>じょうぶ</rt></ruby>）の<ruby>張<rt>は</rt></ruby>りを<ruby>変<rt>か</rt></ruby>えて、アッパーリーチの<ruby>開閉<rt>かいへい</rt></ruby>を<ruby>支配<rt>しはい</rt></ruby>する。',
+    explain_en: 'The sprit controls peak tension at the top of the sail, governing how the upper leech opens or closes.'
   },
   {
     cat: 'setting',
     q: 'クローズでスロート→クリュー<ruby>方向<rt>ほうこう</rt></ruby>に<ruby>斜<rt>なな</rt></ruby>めシワが<ruby>出<rt>で</rt></ruby>た。<ruby>原因<rt>げんいん</rt></ruby>は？',
+    q_en: 'On close-hauled, diagonal wrinkles appear from throat to clew. Cause?',
     options: ['スプリットが<ruby>足<rt>た</rt></ruby>りない（ピークが<ruby>落<rt>お</rt></ruby>ちて<ruby>上部<rt>じょうぶ</rt></ruby>が<ruby>開<rt>ひら</rt></ruby>きすぎ）', 'スプリット<ruby>張<rt>は</rt></ruby>りすぎ', 'バング<ruby>緩<rt>ゆる</rt></ruby>すぎ', 'アウトホール<ruby>緩<rt>ゆる</rt></ruby>すぎ'],
+    options_en: ['Sprit not tight enough (peak drops, top opens too much)', 'Sprit over-tensioned', 'Vang too loose', 'Outhaul too loose'],
     answer: 0,
-    explain: 'スロート→クリュー<ruby>方向<rt>ほうこう</rt></ruby>のシワ＝スプリット<ruby>不足<rt>ふそく</rt></ruby>。ピークが<ruby>落<rt>お</rt></ruby>ちて<ruby>上部<rt>じょうぶ</rt></ruby>が<ruby>開<rt>ひら</rt></ruby>きすぎ。<ruby>張<rt>は</rt></ruby>って<ruby>調整<rt>ちょうせい</rt></ruby>。'
+    explain: 'スロート→クリュー<ruby>方向<rt>ほうこう</rt></ruby>のシワ＝スプリット<ruby>不足<rt>ふそく</rt></ruby>。ピークが<ruby>落<rt>お</rt></ruby>ちて<ruby>上部<rt>じょうぶ</rt></ruby>が<ruby>開<rt>ひら</rt></ruby>きすぎ。<ruby>張<rt>は</rt></ruby>って<ruby>調整<rt>ちょうせい</rt></ruby>。',
+    explain_en: 'Throat-to-clew wrinkles = sprit insufficient. The peak drops and the top opens too much. Tension to adjust.'
   },
   {
     cat: 'setting',
     q: 'クローズでピーク→タック<ruby>方向<rt>ほうこう</rt></ruby>に<ruby>斜<rt>なな</rt></ruby>めシワが<ruby>出<rt>で</rt></ruby>た。<ruby>原因<rt>げんいん</rt></ruby>は？',
+    q_en: 'On close-hauled, diagonal wrinkles appear from peak to tack. Cause?',
     options: ['スプリット<ruby>不足<rt>ふそく</rt></ruby>', 'スプリット<ruby>張<rt>は</rt></ruby>りすぎ（<ruby>上部<rt>じょうぶ</rt></ruby>が<ruby>閉<rt>と</rt></ruby>じすぎ・リーチがフック）', 'バング<ruby>強<rt>つよ</rt></ruby>すぎ', 'プリベンダー<ruby>緩<rt>ゆる</rt></ruby>すぎ'],
+    options_en: ['Sprit too loose', 'Sprit over-tensioned (top closed too much, leech hooked)', 'Vang too tight', 'Preventer too loose'],
     answer: 1,
-    explain: 'ピーク→タック<ruby>方向<rt>ほうこう</rt></ruby>のシワ＝スプリット<ruby>張<rt>は</rt></ruby>りすぎ。<ruby>上部<rt>じょうぶ</rt></ruby>が<ruby>閉<rt>と</rt></ruby>じすぎてリーチがフック<ruby>状態<rt>じょうたい</rt></ruby>。<ruby>緩<rt>ゆる</rt></ruby>めて<ruby>調整<rt>ちょうせい</rt></ruby>。'
+    explain: 'ピーク→タック<ruby>方向<rt>ほうこう</rt></ruby>のシワ＝スプリット<ruby>張<rt>は</rt></ruby>りすぎ。<ruby>上部<rt>じょうぶ</rt></ruby>が<ruby>閉<rt>と</rt></ruby>じすぎてリーチがフック<ruby>状態<rt>じょうたい</rt></ruby>。<ruby>緩<rt>ゆる</rt></ruby>めて<ruby>調整<rt>ちょうせい</rt></ruby>。',
+    explain_en: 'Peak-to-tack wrinkles = sprit over-tensioned. Top closes too much and the leech hooks. Ease to adjust.'
   },
   {
     cat: 'setting',
     q: 'スプリット<ruby>調整<rt>ちょうせい</rt></ruby>の<ruby>基準<rt>きじゅん</rt></ruby>は？',
+    q_en: 'Reference for adjusting the sprit?',
     options: ['シワが<ruby>消<rt>き</rt></ruby>えるか、ごくわずかに<ruby>残<rt>のこ</rt></ruby>る<ruby>程度<rt>ていど</rt></ruby>', '<ruby>常<rt>つね</rt></ruby>に<ruby>全力<rt>ぜんりょく</rt></ruby>で<ruby>張<rt>は</rt></ruby>る', '<ruby>常<rt>つね</rt></ruby>に<ruby>完全<rt>かんぜん</rt></ruby>に<ruby>緩<rt>ゆる</rt></ruby>める', '<ruby>適当<rt>てきとう</rt></ruby>でOK'],
+    options_en: ['Wrinkles just disappear or barely remain', 'Always tension at full strength', 'Always fully loose', 'Roughly is OK'],
     answer: 0,
-    explain: 'スプリットの<ruby>基準<rt>きじゅん</rt></ruby>は<ruby>斜<rt>なな</rt></ruby>めシワが<ruby>消<rt>き</rt></ruby>えるか、ごくわずかに<ruby>残<rt>のこ</rt></ruby>る<ruby>程度<rt>ていど</rt></ruby>。<ruby>両方向<rt>りょうほうこう</rt></ruby>のシワを<ruby>見<rt>み</rt></ruby>て<ruby>判断<rt>はんだん</rt></ruby>。'
+    explain: 'スプリットの<ruby>基準<rt>きじゅん</rt></ruby>は<ruby>斜<rt>なな</rt></ruby>めシワが<ruby>消<rt>き</rt></ruby>えるか、ごくわずかに<ruby>残<rt>のこ</rt></ruby>る<ruby>程度<rt>ていど</rt></ruby>。<ruby>両方向<rt>りょうほうこう</rt></ruby>のシワを<ruby>見<rt>み</rt></ruby>て<ruby>判断<rt>はんだん</rt></ruby>。',
+    explain_en: 'Sprit reference: diagonal wrinkles just disappear or barely remain. Watch wrinkles in both directions to judge.'
   },
   {
     cat: 'setting',
     q: 'アウトホール（フットの<ruby>深<rt>ふか</rt></ruby>さ）、<ruby>中風<rt>ちゅうふう</rt></ruby>の<ruby>目安<rt>めやす</rt></ruby>は？',
+    q_en: 'Outhaul (foot depth) guideline for medium wind?',
     options: ['0〜2cm', '5〜8cm', '8〜12cm（<ruby>最大<rt>さいだい</rt></ruby>パワー）', '15〜20cm'],
+    options_en: ['0–2 cm', '5–8 cm', '8–12 cm (maximum power)', '15–20 cm'],
     answer: 2,
-    explain: '<ruby>中風<rt>ちゅうふう</rt></ruby>はブーム-セール<ruby>最大距離<rt>さいだいきょり</rt></ruby>8〜12cmで<ruby>最大<rt>さいだい</rt></ruby>パワー。<ruby>微風<rt>びふう</rt></ruby>は5〜8cm（<ruby>浅<rt>あさ</rt></ruby>め）、<ruby>強風<rt>きょうふう</rt></ruby>は5cm<ruby>以下<rt>いか</rt></ruby>。'
+    explain: '<ruby>中風<rt>ちゅうふう</rt></ruby>はブーム-セール<ruby>最大距離<rt>さいだいきょり</rt></ruby>8〜12cmで<ruby>最大<rt>さいだい</rt></ruby>パワー。<ruby>微風<rt>びふう</rt></ruby>は5〜8cm（<ruby>浅<rt>あさ</rt></ruby>め）、<ruby>強風<rt>きょうふう</rt></ruby>は5cm<ruby>以下<rt>いか</rt></ruby>。',
+    explain_en: 'Medium wind: max boom-to-sail gap 8–12 cm = maximum power. Light wind: 5–8 cm (shallower). Strong wind: under 5 cm.'
   },
   {
     cat: 'setting',
     q: 'キッカー（バング）が<ruby>最<rt>もっと</rt></ruby>も<ruby>重要<rt>じゅうよう</rt></ruby>なコースは？',
+    q_en: 'On which point of sail is the vang (kicker) most important?',
     options: ['クローズホールド<ruby>微風<rt>びふう</rt></ruby>', 'アビーム', 'ランニング（<ruby>下<rt>くだ</rt></ruby>り）', 'リーチング'],
+    options_en: ['Close-hauled in light wind', 'Beam reach', 'Running (downwind)', 'Reaching'],
     answer: 2,
-    explain: 'バングはランニングで<ruby>最重要<rt>さいじゅうよう</rt></ruby>！<ruby>緩<rt>ゆる</rt></ruby>いとブームが<ruby>上<rt>あ</rt></ruby>がってセール<ruby>上部<rt>じょうぶ</rt></ruby>が<ruby>前<rt>まえ</rt></ruby>にツイスト→<ruby>不安定<rt>ふあんてい</rt></ruby>（デスロールの<ruby>原因<rt>げんいん</rt></ruby>）。'
+    explain: 'バングはランニングで<ruby>最重要<rt>さいじゅうよう</rt></ruby>！<ruby>緩<rt>ゆる</rt></ruby>いとブームが<ruby>上<rt>あ</rt></ruby>がってセール<ruby>上部<rt>じょうぶ</rt></ruby>が<ruby>前<rt>まえ</rt></ruby>にツイスト→<ruby>不安定<rt>ふあんてい</rt></ruby>（デスロールの<ruby>原因<rt>げんいん</rt></ruby>）。',
+    explain_en: 'Vang is most important on the run! If loose, the boom rises and the top of the sail twists forward → unstable (cause of death roll).'
   },
   {
     cat: 'setting',
     q: 'クローズで<ruby>中風以上<rt>ちゅうふういじょう</rt></ruby>のバングの<ruby>役割<rt>やくわり</rt></ruby>は？',
+    q_en: 'Role of the vang on close-hauled in medium wind or above?',
     options: ['<ruby>緩<rt>ゆる</rt></ruby>めて<ruby>艇<rt>てい</rt></ruby>を<ruby>軽<rt>かる</rt></ruby>くする', 'バングシーティング<ruby>用<rt>よう</rt></ruby>に<ruby>張<rt>は</rt></ruby>る', 'タッキング<ruby>専用<rt>せんよう</rt></ruby>の<ruby>調整<rt>ちょうせい</rt></ruby>', 'プリベンダーの<ruby>補助<rt>ほじょ</rt></ruby>'],
+    options_en: ['Ease it to lighten the boat', 'Tension it for vang sheeting', 'Tacking-specific adjustment', 'Backup for the preventer'],
     answer: 1,
-    explain: 'バングシーティング：<ruby>中風以上<rt>ちゅうふういじょう</rt></ruby>はバングを<ruby>張<rt>は</rt></ruby>っておくと、ブローでシートを<ruby>出<rt>だ</rt></ruby>してもリーチが<ruby>開<rt>ひら</rt></ruby>きすぎず、ブームが<ruby>横<rt>よこ</rt></ruby>に<ruby>出<rt>で</rt></ruby>るだけで<ruby>済<rt>す</rt></ruby>む。'
+    explain: 'バングシーティング：<ruby>中風以上<rt>ちゅうふういじょう</rt></ruby>はバングを<ruby>張<rt>は</rt></ruby>っておくと、ブローでシートを<ruby>出<rt>だ</rt></ruby>してもリーチが<ruby>開<rt>ひら</rt></ruby>きすぎず、ブームが<ruby>横<rt>よこ</rt></ruby>に<ruby>出<rt>で</rt></ruby>るだけで<ruby>済<rt>す</rt></ruby>む。',
+    explain_en: 'Vang sheeting: in medium wind or above, keep the vang tight so when you ease the sheet in a gust, the leech doesn\'t open too much — the boom just slides outboard.'
   },
   {
     cat: 'setting',
     q: 'プリベンダーの<ruby>役割<rt>やくわり</rt></ruby>は？',
+    q_en: 'Role of the preventer?',
     options: ['ブームを<ruby>下<rt>した</rt></ruby>に<ruby>引<rt>ひ</rt></ruby>く', 'ブーム<ruby>前端<rt>ぜんたん</rt></ruby>が<ruby>下<rt>した</rt></ruby>に<ruby>下<rt>さ</rt></ruby>がりすぎないように<ruby>支<rt>ささ</rt></ruby>える', 'セールを<ruby>下<rt>お</rt></ruby>ろす', 'ラダーを<ruby>固定<rt>こてい</rt></ruby>'],
+    options_en: ['Pulls the boom down', 'Holds the boom\'s front end from dropping too low when sheeted', 'Lowers the sail', 'Fixes the rudder'],
     answer: 1,
-    explain: 'プリベンダー＝ブーム<ruby>前端<rt>ぜんたん</rt></ruby>がシートで<ruby>引<rt>ひ</rt></ruby>かれた<ruby>時<rt>とき</rt></ruby>に<ruby>下<rt>した</rt></ruby>に<ruby>下<rt>さ</rt></ruby>がりすぎないように<ruby>支<rt>ささ</rt></ruby>えるロープ。マストとブームの<ruby>角度<rt>かくど</rt></ruby>を<ruby>保<rt>たも</rt></ruby>って、ブームバングが<ruby>効<rt>き</rt></ruby>く<ruby>状態<rt>じょうたい</rt></ruby>を<ruby>維持<rt>いじ</rt></ruby>する。'
+    explain: 'プリベンダー＝ブーム<ruby>前端<rt>ぜんたん</rt></ruby>がシートで<ruby>引<rt>ひ</rt></ruby>かれた<ruby>時<rt>とき</rt></ruby>に<ruby>下<rt>した</rt></ruby>に<ruby>下<rt>さ</rt></ruby>がりすぎないように<ruby>支<rt>ささ</rt></ruby>えるロープ。マストとブームの<ruby>角度<rt>かくど</rt></ruby>を<ruby>保<rt>たも</rt></ruby>って、ブームバングが<ruby>効<rt>き</rt></ruby>く<ruby>状態<rt>じょうたい</rt></ruby>を<ruby>維持<rt>いじ</rt></ruby>する。',
+    explain_en: 'The preventer is a line that supports the boom\'s front end from dropping too low when the sheet is pulled. It maintains the mast-to-boom angle so the vang works properly.'
   },
   {
     cat: 'setting',
     q: 'シートの<ruby>役割<rt>やくわり</rt></ruby>は？',
+    q_en: 'Role of the mainsheet?',
     options: ['マストを<ruby>立<rt>た</rt></ruby>てる', 'ブーム<ruby>角度<rt>かくど</rt></ruby>とリーチテンションの<ruby>即応的<rt>そくおうてき</rt></ruby><ruby>調整<rt>ちょうせい</rt></ruby>', '<ruby>体重<rt>たいじゅう</rt></ruby>を<ruby>移動<rt>いどう</rt></ruby>', 'センターを<ruby>下<rt>お</rt></ruby>ろす'],
+    options_en: ['Holds the mast up', 'Instant adjustment of boom angle and leech tension', 'Shifts weight', 'Lowers the centerboard'],
     answer: 1,
-    explain: 'シートは<ruby>最<rt>もっと</rt></ruby>も<ruby>即応性<rt>そくおうせい</rt></ruby>の<ruby>高<rt>たか</rt></ruby>いパワー／ツイスト<ruby>調整<rt>ちょうせい</rt></ruby>。ブローで<ruby>出<rt>だ</rt></ruby>す→ハイクと<ruby>同時<rt>どうじ</rt></ruby>に<ruby>引<rt>ひ</rt></ruby>き<ruby>戻<rt>もど</rt></ruby>すシートワークが<ruby>体感速度<rt>たいかんそくど</rt></ruby>を<ruby>最<rt>もっと</rt></ruby>も<ruby>左右<rt>さゆう</rt></ruby>する。'
+    explain: 'シートは<ruby>最<rt>もっと</rt></ruby>も<ruby>即応性<rt>そくおうせい</rt></ruby>の<ruby>高<rt>たか</rt></ruby>いパワー／ツイスト<ruby>調整<rt>ちょうせい</rt></ruby>。ブローで<ruby>出<rt>だ</rt></ruby>す→ハイクと<ruby>同時<rt>どうじ</rt></ruby>に<ruby>引<rt>ひ</rt></ruby>き<ruby>戻<rt>もど</rt></ruby>すシートワークが<ruby>体感速度<rt>たいかんそくど</rt></ruby>を<ruby>最<rt>もっと</rt></ruby>も<ruby>左右<rt>さゆう</rt></ruby>する。',
+    explain_en: 'The sheet is the most responsive power/twist control. Ease in gusts → trim back as you hike — this sheet work most affects perceived speed.'
   },
   {
     cat: 'setting',
     q: 'クローズでシートを<ruby>引<rt>ひ</rt></ruby>きすぎるとどうなる？',
+    q_en: 'What happens if you overtrim the sheet close-hauled?',
     options: ['<ruby>角度<rt>かくど</rt></ruby>がもっと<ruby>良<rt>よ</rt></ruby>くなる', '<ruby>失速<rt>しっそく</rt></ruby>する', 'スピードがUPする', 'ヒールが<ruby>収<rt>おさ</rt></ruby>まる'],
+    options_en: ['Pointing gets even better', 'You stall', 'Speed increases', 'Heel stabilizes'],
     answer: 1,
-    explain: '<ruby>引<rt>ひ</rt></ruby>きすぎると<ruby>失速<rt>しっそく</rt></ruby>（ストール）。リーチが<ruby>立<rt>た</rt></ruby>って<ruby>角度<rt>かくど</rt></ruby>は<ruby>出<rt>で</rt></ruby>るがスピードが<ruby>落<rt>お</rt></ruby>ちて<ruby>結局<rt>けっきょく</rt></ruby><ruby>上<rt>のぼ</rt></ruby>れない。'
+    explain: '<ruby>引<rt>ひ</rt></ruby>きすぎると<ruby>失速<rt>しっそく</rt></ruby>（ストール）。リーチが<ruby>立<rt>た</rt></ruby>って<ruby>角度<rt>かくど</rt></ruby>は<ruby>出<rt>で</rt></ruby>るがスピードが<ruby>落<rt>お</rt></ruby>ちて<ruby>結局<rt>けっきょく</rt></ruby><ruby>上<rt>のぼ</rt></ruby>れない。',
+    explain_en: 'Overtrim = stall. The leech stands up giving angle, but speed drops and you can\'t actually point.'
   },
   {
     cat: 'setting',
     q: 'レーキを<ruby>倒<rt>たお</rt></ruby>す（マストを<ruby>後<rt>うし</rt></ruby>ろに<ruby>傾<rt>かたむ</rt></ruby>ける）と？',
+    q_en: 'What happens when you lay the rake back (raked mast)?',
     options: ['ヘルムが<ruby>軽<rt>かる</rt></ruby>くなる', 'CEが<ruby>後<rt>うし</rt></ruby>ろへ→ウェザーヘルム<ruby>増<rt>ぞう</rt></ruby>、<ruby>上<rt>のぼ</rt></ruby>り<ruby>感<rt>かん</rt></ruby>が<ruby>出<rt>で</rt></ruby>る', 'スピードUP', '<ruby>変<rt>か</rt></ruby>わらない'],
+    options_en: ['Helm gets lighter', 'CE moves aft → more weather helm and pointing feel', 'Speed increases', 'No change'],
     answer: 1,
-    explain: 'レーキを<ruby>倒<rt>たお</rt></ruby>す＝CE<ruby>後<rt>うし</rt></ruby>ろへ→ウェザーヘルム<ruby>増<rt>ぞう</rt></ruby>、<ruby>上<rt>のぼ</rt></ruby>り<ruby>感<rt>かん</rt></ruby>UP。<ruby>逆<rt>ぎゃく</rt></ruby>にレーキを<ruby>起<rt>お</rt></ruby>こす＝ヘルム<ruby>軽<rt>かる</rt></ruby>くベアしやすい。'
+    explain: 'レーキを<ruby>倒<rt>たお</rt></ruby>す＝CE<ruby>後<rt>うし</rt></ruby>ろへ→ウェザーヘルム<ruby>増<rt>ぞう</rt></ruby>、<ruby>上<rt>のぼ</rt></ruby>り<ruby>感<rt>かん</rt></ruby>UP。<ruby>逆<rt>ぎゃく</rt></ruby>にレーキを<ruby>起<rt>お</rt></ruby>こす＝ヘルム<ruby>軽<rt>かる</rt></ruby>くベアしやすい。',
+    explain_en: 'Laying the rake back moves CE aft → more weather helm and pointing. Conversely standing it up = lighter helm, easier to bear away.'
   },
   {
     cat: 'setting',
     q: 'ガラミ（マストタイ）を<ruby>締<rt>し</rt></ruby>めるとセールのエントリー（<ruby>前縁<rt>まえふち</rt></ruby>）は？',
+    q_en: 'Tightening the mast ties (luff tie) makes the sail entry (leading edge)?',
     options: ['<ruby>丸<rt>まる</rt></ruby>くなる', '<ruby>鋭<rt>するど</rt></ruby>くなる（<ruby>上<rt>のぼ</rt></ruby>り<ruby>角<rt>かく</rt></ruby>UP、グルーヴ<ruby>狭<rt>せま</rt></ruby>くなる）', '<ruby>変<rt>か</rt></ruby>わらない', 'ねじれる'],
+    options_en: ['Rounder', 'Sharper (better pointing but narrower groove)', 'No change', 'Twists'],
     answer: 1,
-    explain: 'ガラミ<ruby>締<rt>し</rt></ruby>める＝エントリー<ruby>鋭<rt>するど</rt></ruby>く、<ruby>上<rt>のぼ</rt></ruby>り<ruby>角<rt>かく</rt></ruby>UPだが<ruby>操船<rt>そうせん</rt></ruby>グルーヴが<ruby>狭<rt>せま</rt></ruby>くなる。<ruby>強風<rt>きょうふう</rt></ruby>・フラット<ruby>水面向<rt>すいめんむ</rt></ruby>き。'
+    explain: 'ガラミ<ruby>締<rt>し</rt></ruby>める＝エントリー<ruby>鋭<rt>するど</rt></ruby>く、<ruby>上<rt>のぼ</rt></ruby>り<ruby>角<rt>かく</rt></ruby>UPだが<ruby>操船<rt>そうせん</rt></ruby>グルーヴが<ruby>狭<rt>せま</rt></ruby>くなる。<ruby>強風<rt>きょうふう</rt></ruby>・フラット<ruby>水面向<rt>すいめんむ</rt></ruby>き。',
+    explain_en: 'Tight ties = sharp entry, better pointing but narrower steering groove. Suits strong wind and flat water.'
   },
   {
     cat: 'setting',
     q: 'ガラミを<ruby>緩<rt>ゆる</rt></ruby>めるとエントリーは？',
+    q_en: 'Loosening the mast ties makes the entry?',
     options: ['<ruby>鋭<rt>するど</rt></ruby>くなる', '<ruby>丸<rt>まる</rt></ruby>くなる（パワフルで<ruby>失速<rt>しっそく</rt></ruby>しにくい）', '<ruby>変<rt>か</rt></ruby>わらない', 'マスト<ruby>折<rt>お</rt></ruby>れる'],
+    options_en: ['Sharper', 'Rounder (more powerful, harder to stall)', 'No change', 'Breaks the mast'],
     answer: 1,
-    explain: 'ガラミ<ruby>緩<rt>ゆる</rt></ruby>める＝エントリー<ruby>丸<rt>まる</rt></ruby>く、パワフルで<ruby>失速<rt>しっそく</rt></ruby>しにくい。<ruby>微中風<rt>びちゅうふう</rt></ruby>・<ruby>波<rt>なみ</rt></ruby>がある<ruby>時向<rt>ときむ</rt></ruby>き。'
+    explain: 'ガラミ<ruby>緩<rt>ゆる</rt></ruby>める＝エントリー<ruby>丸<rt>まる</rt></ruby>く、パワフルで<ruby>失速<rt>しっそく</rt></ruby>しにくい。<ruby>微中風<rt>びちゅうふう</rt></ruby>・<ruby>波<rt>なみ</rt></ruby>がある<ruby>時向<rt>ときむ</rt></ruby>き。',
+    explain_en: 'Loose ties = rounder entry — powerful, less prone to stalling. Suits light/medium wind and choppy water.'
   },
   {
     cat: 'setting',
     q: '<ruby>柔<rt>やわ</rt></ruby>らかいマスト／スプリットの<ruby>長所<rt>ちょうしょ</rt></ruby>は？',
+    q_en: 'Advantage of a softer mast/sprit?',
     options: ['パワーを<ruby>逃<rt>に</rt></ruby>がさない', 'ブローで<ruby>自動<rt>じどう</rt></ruby>デパワー（<ruby>軽量<rt>けいりょう</rt></ruby>セーラー・<ruby>強風<rt>きょうふう</rt></ruby><ruby>有利<rt>ゆうり</rt></ruby>）', '<ruby>軽<rt>かる</rt></ruby>い', '<ruby>長持<rt>ながも</rt></ruby>ち'],
+    options_en: ['Doesn\'t let power escape', 'Auto-depowers in gusts (helpful for lighter sailors in strong wind)', 'Lightweight', 'Durable'],
     answer: 1,
-    explain: '<ruby>柔<rt>やわ</rt></ruby>らかいスパー＝ブローで<ruby>曲<rt>ま</rt></ruby>がってセールが<ruby>自動<rt>じどう</rt></ruby>フラット化、<ruby>上部<rt>じょうぶ</rt></ruby>も<ruby>開<rt>ひら</rt></ruby>く。<ruby>軽量<rt>けいりょう</rt></ruby>セーラー・<ruby>強風<rt>きょうふう</rt></ruby>で<ruby>有利<rt>ゆうり</rt></ruby>。'
+    explain: '<ruby>柔<rt>やわ</rt></ruby>らかいスパー＝ブローで<ruby>曲<rt>ま</rt></ruby>がってセールが<ruby>自動<rt>じどう</rt></ruby>フラット化、<ruby>上部<rt>じょうぶ</rt></ruby>も<ruby>開<rt>ひら</rt></ruby>く。<ruby>軽量<rt>けいりょう</rt></ruby>セーラー・<ruby>強風<rt>きょうふう</rt></ruby>で<ruby>有利<rt>ゆうり</rt></ruby>。',
+    explain_en: 'A softer spar bends in gusts → sail automatically flattens and the top opens. Helps lighter sailors in stronger wind.'
   },
   {
     cat: 'setting',
     q: 'クローズ<ruby>中風<rt>ちゅうふう</rt></ruby>でリーチテルテール（<ruby>上部<rt>じょうぶ</rt></ruby>）はどう<ruby>流<rt>なが</rt></ruby>れるのが<ruby>理想<rt>りそう</rt></ruby>？',
+    q_en: 'On close-hauled in medium wind, how should the upper leech telltale flow?',
     options: ['<ruby>全部<rt>ぜんぶ</rt></ruby><ruby>裏<rt>うら</rt></ruby>に<ruby>巻<rt>ま</rt></ruby>く', '5〜7<ruby>割流<rt>わりなが</rt></ruby>れる<ruby>程度<rt>ていど</rt></ruby>', '<ruby>全<rt>まった</rt></ruby>く<ruby>流<rt>なが</rt></ruby>れない', '<ruby>常<rt>つね</rt></ruby>に100%'],
+    options_en: ['Always curls behind', 'Flowing 50–70% of the time', 'Never flows', 'Always flowing 100%'],
     answer: 1,
-    explain: 'クローズ<ruby>中風<rt>ちゅうふう</rt></ruby>：<ruby>上部<rt>じょうぶ</rt></ruby>テルテールが5〜7<ruby>割流<rt>わりなが</rt></ruby>れるのが<ruby>理想<rt>りそう</rt></ruby>。<ruby>閉<rt>と</rt></ruby>じすぎ＝<ruby>裏<rt>うら</rt></ruby>に<ruby>巻<rt>ま</rt></ruby>く（<ruby>失速<rt>しっそく</rt></ruby>）、<ruby>開<rt>ひら</rt></ruby>きすぎ＝<ruby>上<rt>のぼ</rt></ruby>れない。'
+    explain: 'クローズ<ruby>中風<rt>ちゅうふう</rt></ruby>：<ruby>上部<rt>じょうぶ</rt></ruby>テルテールが5〜7<ruby>割流<rt>わりなが</rt></ruby>れるのが<ruby>理想<rt>りそう</rt></ruby>。<ruby>閉<rt>と</rt></ruby>じすぎ＝<ruby>裏<rt>うら</rt></ruby>に<ruby>巻<rt>ま</rt></ruby>く（<ruby>失速<rt>しっそく</rt></ruby>）、<ruby>開<rt>ひら</rt></ruby>きすぎ＝<ruby>上<rt>のぼ</rt></ruby>れない。',
+    explain_en: 'Medium wind close-hauled: upper telltale flowing 50–70% is ideal. Curling = leech too closed (stall). Always flowing = leech too open (can\'t point).'
   },
   {
     cat: 'setting',
     q: 'ドラフト<ruby>位置<rt>いち</rt></ruby>のベストはラフから<ruby>何<rt>なん</rt></ruby>%？',
+    q_en: 'Best draft position, measured as a percentage from the luff?',
     options: ['10〜20%', '40〜50%', '70〜80%', '<ruby>後<rt>うし</rt></ruby>ろほど<ruby>速<rt>はや</rt></ruby>い'],
+    options_en: ['10–20%', '40–50%', '70–80%', 'Further back is faster'],
     answer: 1,
-    explain: 'ドラフト<ruby>位置<rt>いち</rt></ruby>はラフから40〜50%が<ruby>理想<rt>りそう</rt></ruby>。<ruby>後<rt>うし</rt></ruby>ろに<ruby>移動<rt>いどう</rt></ruby>するとウェザーヘルム・ヒール<ruby>増<rt>ぞう</rt></ruby>で<ruby>遅<rt>おそ</rt></ruby>くなる。'
+    explain: 'ドラフト<ruby>位置<rt>いち</rt></ruby>はラフから40〜50%が<ruby>理想<rt>りそう</rt></ruby>。<ruby>後<rt>うし</rt></ruby>ろに<ruby>移動<rt>いどう</rt></ruby>するとウェザーヘルム・ヒール<ruby>増<rt>ぞう</rt></ruby>で<ruby>遅<rt>おそ</rt></ruby>くなる。',
+    explain_en: 'Ideal draft position is 40–50% back from the luff. If it shifts aft, weather helm and heel increase and the boat slows.'
   },
   {
     cat: 'setting',
     q: '<ruby>強風<rt>きょうふう</rt></ruby>のスプリットは？',
+    q_en: 'Sprit setting in strong wind?',
     options: ['<ruby>最大<rt>さいだい</rt></ruby><ruby>張<rt>は</rt></ruby>る', '<ruby>基準<rt>きじゅん</rt></ruby>〜わずかに<ruby>緩<rt>ゆる</rt></ruby>め', '<ruby>完全<rt>かんぜん</rt></ruby>に<ruby>緩<rt>ゆる</rt></ruby>める', 'スプリット<ruby>外<rt>はず</rt></ruby>す'],
+    options_en: ['Maximum tension', 'Reference to slightly eased', 'Fully eased', 'Remove the sprit'],
     answer: 1,
-    explain: '<ruby>強風<rt>きょうふう</rt></ruby>のスプリットは<ruby>基準<rt>きじゅん</rt></ruby>〜わずかに<ruby>緩<rt>ゆる</rt></ruby>め。オーバーパワーでは<ruby>緩<rt>ゆる</rt></ruby>めてピークを<ruby>落<rt>お</rt></ruby>とし、ツイストで<ruby>逃<rt>に</rt></ruby>がす。'
+    explain: '<ruby>強風<rt>きょうふう</rt></ruby>のスプリットは<ruby>基準<rt>きじゅん</rt></ruby>〜わずかに<ruby>緩<rt>ゆる</rt></ruby>め。オーバーパワーでは<ruby>緩<rt>ゆる</rt></ruby>めてピークを<ruby>落<rt>お</rt></ruby>とし、ツイストで<ruby>逃<rt>に</rt></ruby>がす。',
+    explain_en: 'In strong wind, sprit at reference or slightly eased. When overpowered, ease it to drop the peak and depower via twist.'
   },
   {
     cat: 'setting',
     q: 'オーバーパワー（18kt〜）のセンターボードは？',
+    q_en: 'Centerboard setting when overpowered (18+ kt)?',
     options: ['フルダウン', '<ruby>変<rt>か</rt></ruby>えない', '5〜10cm<ruby>上<rt>あ</rt></ruby>げる（ヒールモーメント<ruby>減<rt>げん</rt></ruby>）', '<ruby>完全<rt>かんぜん</rt></ruby>に<ruby>上<rt>あ</rt></ruby>げる'],
+    options_en: ['Full down', 'No change', 'Raise 5–10 cm (reduce heel moment)', 'Fully up'],
     answer: 2,
-    explain: 'オーバーパワーはセンターボードを5〜10cm<ruby>上<rt>あ</rt></ruby>げてヒールモーメントを<ruby>減<rt>へ</rt></ruby>らす。コントロール<ruby>確保<rt>かくほ</rt></ruby>のため。'
+    explain: 'オーバーパワーはセンターボードを5〜10cm<ruby>上<rt>あ</rt></ruby>げてヒールモーメントを<ruby>減<rt>へ</rt></ruby>らす。コントロール<ruby>確保<rt>かくほ</rt></ruby>のため。',
+    explain_en: 'When overpowered, raise the centerboard 5–10 cm to reduce heel moment. Ensures better control.'
   },
   {
     cat: 'setting',
     q: 'クローズホールドの<ruby>理想<rt>りそう</rt></ruby>のヘルム<ruby>感<rt>かん</rt></ruby>は？',
+    q_en: 'Ideal helm feel on close-hauled?',
     options: ['<ruby>強<rt>つよ</rt></ruby>いウェザーヘルム', 'ごく<ruby>軽<rt>かる</rt></ruby>いウェザーヘルム（<ruby>舵角<rt>だかく</rt></ruby>3〜5°）', '<ruby>完全<rt>かんぜん</rt></ruby>に<ruby>中立<rt>ちゅうりつ</rt></ruby>', 'リーヘルム'],
+    options_en: ['Strong weather helm', 'Very light weather helm (3–5° rudder angle)', 'Fully neutral', 'Lee helm'],
     answer: 1,
-    explain: '<ruby>理想<rt>りそう</rt></ruby>はごく<ruby>軽<rt>かる</rt></ruby>いウェザーヘルム（<ruby>舵角<rt>だかく</rt></ruby>3〜5°）。<ruby>強<rt>つよ</rt></ruby>すぎるとラダーがブレーキに、リーヘルムは<ruby>微風<rt>びふう</rt></ruby>で<ruby>起<rt>お</rt></ruby>きやすい。'
+    explain: '<ruby>理想<rt>りそう</rt></ruby>はごく<ruby>軽<rt>かる</rt></ruby>いウェザーヘルム（<ruby>舵角<rt>だかく</rt></ruby>3〜5°）。<ruby>強<rt>つよ</rt></ruby>すぎるとラダーがブレーキに、リーヘルムは<ruby>微風<rt>びふう</rt></ruby>で<ruby>起<rt>お</rt></ruby>きやすい。',
+    explain_en: 'Ideal is very light weather helm (3–5° rudder angle). Too strong = rudder acts as a brake. Lee helm often appears in light wind.'
   },
   {
     cat: 'setting',
     q: 'アビーム（リーチング）のセールトリムは？',
+    q_en: 'Sail trim for beam reach (reaching)?',
     options: ['<ruby>引<rt>ひ</rt></ruby>き<ruby>込<rt>こ</rt></ruby>んでフラットに', 'アウトホール・スプリットを<ruby>緩<rt>ゆる</rt></ruby>めて<ruby>深<rt>ふか</rt></ruby>く', 'クローズ<ruby>並<rt>な</rt></ruby>みに<ruby>引<rt>ひ</rt></ruby>く', '<ruby>微風<rt>びふう</rt></ruby><ruby>設定<rt>せってい</rt></ruby>を<ruby>維持<rt>いじ</rt></ruby>'],
+    options_en: ['Trim hard and keep flat', 'Ease outhaul and sprit for deeper shape', 'Trim as much as close-hauled', 'Keep light-wind settings'],
     answer: 1,
-    explain: 'アビームは<ruby>見<rt>み</rt></ruby>かけの<ruby>風<rt>かぜ</rt></ruby>が<ruby>落<rt>お</rt></ruby>ちる→パワー<ruby>全開<rt>ぜんかい</rt></ruby>。アウトホール・スプリットを<ruby>緩<rt>ゆる</rt></ruby>めて<ruby>深<rt>ふか</rt></ruby>く、シートはテルテール<ruby>基準<rt>きじゅん</rt></ruby>。'
+    explain: 'アビームは<ruby>見<rt>み</rt></ruby>かけの<ruby>風<rt>かぜ</rt></ruby>が<ruby>落<rt>お</rt></ruby>ちる→パワー<ruby>全開<rt>ぜんかい</rt></ruby>。アウトホール・スプリットを<ruby>緩<rt>ゆる</rt></ruby>めて<ruby>深<rt>ふか</rt></ruby>く、シートはテルテール<ruby>基準<rt>きじゅん</rt></ruby>。',
+    explain_en: 'On a reach the apparent wind drops → full power. Ease outhaul and sprit for deep shape; sheet by the telltales.'
   },
   {
     cat: 'setting',
     q: 'ランニングで<ruby>意図的<rt>いとてき</rt></ruby>なアンヒール（<ruby>風上<rt>かざかみ</rt></ruby>へヒール）の<ruby>効果<rt>こうか</rt></ruby>は？',
+    q_en: 'Effect of intentional windward heel (anheel) on a run?',
     options: ['<ruby>転覆<rt>てんぷく</rt></ruby>しやすくなるだけ', '<ruby>舵<rt>かじ</rt></ruby>が<ruby>中立<rt>ちゅうりつ</rt></ruby>になりラダードラグが<ruby>減<rt>へ</rt></ruby>る', '<ruby>艇速<rt>ていそく</rt></ruby>が<ruby>明<rt>あき</rt></ruby>らかに<ruby>遅<rt>おそ</rt></ruby>くなる', 'シートを<ruby>離<rt>はな</rt></ruby>しても<ruby>艇<rt>てい</rt></ruby>が<ruby>安定<rt>あんてい</rt></ruby>する'],
+    options_en: ['Just makes capsize more likely', 'Helm becomes neutral and rudder drag decreases', 'Boat speed obviously drops', 'Boat stays stable when you let go of the sheet'],
     answer: 1,
-    explain: 'アンヒール＝CEがハル<ruby>中心線上<rt>ちゅうしんせんじょう</rt></ruby>に<ruby>乗<rt>の</rt></ruby>って<ruby>舵<rt>かじ</rt></ruby>が<ruby>中立<rt>ちゅうりつ</rt></ruby>→ラダードラグが<ruby>消<rt>き</rt></ruby>えて<ruby>速<rt>はや</rt></ruby>い。<ruby>強風<rt>きょうふう</rt></ruby>では<ruby>控<rt>ひか</rt></ruby>えめに。'
+    explain: 'アンヒール＝CEがハル<ruby>中心線上<rt>ちゅうしんせんじょう</rt></ruby>に<ruby>乗<rt>の</rt></ruby>って<ruby>舵<rt>かじ</rt></ruby>が<ruby>中立<rt>ちゅうりつ</rt></ruby>→ラダードラグが<ruby>消<rt>き</rt></ruby>えて<ruby>速<rt>はや</rt></ruby>い。<ruby>強風<rt>きょうふう</rt></ruby>では<ruby>控<rt>ひか</rt></ruby>えめに。',
+    explain_en: 'Anheel puts the CE over the hull centerline → helm becomes neutral → rudder drag vanishes → faster. Use conservatively in strong wind.'
   },
   {
     cat: 'setting',
     q: 'ランニングのバングが<ruby>緩<rt>ゆる</rt></ruby>すぎると<ruby>起<rt>お</rt></ruby>こる<ruby>現象<rt>げんしょう</rt></ruby>は？',
+    q_en: 'What happens on the run if the vang is too loose?',
     options: ['スピードがUPする', 'デスロール（ローリング）が<ruby>発生<rt>はっせい</rt></ruby>', '<ruby>艇<rt>てい</rt></ruby>が<ruby>停止<rt>ていし</rt></ruby>する', 'マストが<ruby>真<rt>ま</rt></ruby>っすぐ<ruby>立<rt>た</rt></ruby>つ'],
+    options_en: ['Speed increases', 'Death roll (rolling) occurs', 'Boat stops', 'Mast stands straight'],
     answer: 1,
-    explain: 'バング<ruby>緩<rt>ゆる</rt></ruby>すぎ＝<ruby>上部<rt>じょうぶ</rt></ruby>が<ruby>前<rt>まえ</rt></ruby>に<ruby>倒<rt>たお</rt></ruby>れて<ruby>不安定<rt>ふあんてい</rt></ruby>→デスロール（ローリング）。<ruby>沈<rt>ちん</rt></ruby>の<ruby>原因<rt>げんいん</rt></ruby>。しっかり<ruby>張<rt>は</rt></ruby>って<ruby>安定<rt>あんてい</rt></ruby>させる。'
+    explain: 'バング<ruby>緩<rt>ゆる</rt></ruby>すぎ＝<ruby>上部<rt>じょうぶ</rt></ruby>が<ruby>前<rt>まえ</rt></ruby>に<ruby>倒<rt>たお</rt></ruby>れて<ruby>不安定<rt>ふあんてい</rt></ruby>→デスロール（ローリング）。<ruby>沈<rt>ちん</rt></ruby>の<ruby>原因<rt>げんいん</rt></ruby>。しっかり<ruby>張<rt>は</rt></ruby>って<ruby>安定<rt>あんてい</rt></ruby>させる。',
+    explain_en: 'Vang too loose = top of sail tips forward → unstable → death roll (rolling). A capsize risk. Keep it tight for stability.'
   },
   {
     cat: 'setting',
     q: 'ウェザーヘルムが<ruby>強<rt>つよ</rt></ruby>すぎる<ruby>時<rt>とき</rt></ruby>の<ruby>第一<rt>だいいち</rt></ruby>の<ruby>対策<rt>たいさく</rt></ruby>は？',
+    q_en: 'First action when weather helm is too strong?',
     options: ['シートを<ruby>引<rt>ひ</rt></ruby>く', 'まずフラットに<ruby>乗<rt>の</rt></ruby>る（<ruby>艇<rt>てい</rt></ruby>を<ruby>平<rt>たい</rt></ruby>らに）', 'レーキを<ruby>後<rt>うし</rt></ruby>ろへ', 'バングを<ruby>強<rt>つよ</rt></ruby>く'],
+    options_en: ['Trim the sheet', 'First, flatten the boat (keep it level)', 'Lay the rake back', 'Tighten the vang'],
     answer: 1,
-    explain: 'ウェザーヘルム<ruby>過多<rt>かた</rt></ruby>はまずフラットに！その<ruby>後<rt>あと</rt></ruby>シート<ruby>出<rt>だ</rt></ruby>す／ツイスト<ruby>増<rt>ふ</rt></ruby>やす／フラット化／レーキ<ruby>前<rt>まえ</rt></ruby>の<ruby>順<rt>じゅん</rt></ruby>で<ruby>対処<rt>たいしょ</rt></ruby>。'
+    explain: 'ウェザーヘルム<ruby>過多<rt>かた</rt></ruby>はまずフラットに！その<ruby>後<rt>あと</rt></ruby>シート<ruby>出<rt>だ</rt></ruby>す／ツイスト<ruby>増<rt>ふ</rt></ruby>やす／フラット化／レーキ<ruby>前<rt>まえ</rt></ruby>の<ruby>順<rt>じゅん</rt></ruby>で<ruby>対処<rt>たいしょ</rt></ruby>。',
+    explain_en: 'Excess weather helm — first, flatten the boat! Then ease the sheet / add twist / flatten the sail / move rake forward, in that order.'
   },
   {
     cat: 'setting',
     q: '<ruby>微風<rt>びふう</rt></ruby>セッティングの<ruby>合言葉<rt>あいことば</rt></ruby>（コツを<ruby>短<rt>みじか</rt></ruby>く<ruby>言<rt>い</rt></ruby>うと）は？',
+    q_en: 'Light wind setting mantra (short summary)?',
     options: ['<ruby>開<rt>ひら</rt></ruby>いて・<ruby>浅<rt>あさ</rt></ruby>く・<ruby>静<rt>しず</rt></ruby>かに', '<ruby>最大<rt>さいだい</rt></ruby>パワー', 'フラットに・<ruby>閉<rt>と</rt></ruby>じすぎない', '<ruby>上<rt>うえ</rt></ruby>を<ruby>捨<rt>す</rt></ruby>てる'],
+    options_en: ['Open, shallow, quiet', 'Maximum power', 'Flat, don\'t over-close', 'Sacrifice the top'],
     answer: 0,
-    explain: '<ruby>微風<rt>びふう</rt></ruby>の<ruby>合言葉<rt>あいことば</rt></ruby>は「<ruby>開<rt>ひら</rt></ruby>いて・<ruby>浅<rt>あさ</rt></ruby>く・<ruby>静<rt>しず</rt></ruby>かに」。リーチを<ruby>開<rt>ひら</rt></ruby>き、セールは<ruby>浅<rt>あさ</rt></ruby>く、<ruby>艇<rt>てい</rt></ruby>を<ruby>動<rt>うご</rt></ruby>かさず<ruby>気流<rt>きりゅう</rt></ruby>を<ruby>付<rt>つ</rt></ruby>ける。'
+    explain: '<ruby>微風<rt>びふう</rt></ruby>の<ruby>合言葉<rt>あいことば</rt></ruby>は「<ruby>開<rt>ひら</rt></ruby>いて・<ruby>浅<rt>あさ</rt></ruby>く・<ruby>静<rt>しず</rt></ruby>かに」。リーチを<ruby>開<rt>ひら</rt></ruby>き、セールは<ruby>浅<rt>あさ</rt></ruby>く、<ruby>艇<rt>てい</rt></ruby>を<ruby>動<rt>うご</rt></ruby>かさず<ruby>気流<rt>きりゅう</rt></ruby>を<ruby>付<rt>つ</rt></ruby>ける。',
+    explain_en: 'Light wind mantra: "open, shallow, quiet". Open the leech, keep the sail flat, don\'t disturb the boat — let airflow attach.'
   },
   {
     cat: 'setting',
     q: '<ruby>中風<rt>ちゅうふう</rt></ruby>セッティングの<ruby>合言葉<rt>あいことば</rt></ruby>は？',
+    q_en: 'Medium wind setting mantra?',
     options: ['<ruby>開<rt>ひら</rt></ruby>いて<ruby>浅<rt>あさ</rt></ruby>く<ruby>静<rt>しず</rt></ruby>かに', '<ruby>最大<rt>さいだい</rt></ruby>パワー', 'フェザリングで<ruby>逃<rt>に</rt></ruby>がす', '<ruby>上<rt>うえ</rt></ruby>を<ruby>捨<rt>す</rt></ruby>てる'],
+    options_en: ['Open, shallow, quiet', 'Maximum power', 'Depower by feathering', 'Sacrifice the top'],
     answer: 1,
-    explain: '<ruby>中風<rt>ちゅうふう</rt></ruby>の<ruby>合言葉<rt>あいことば</rt></ruby>は「<ruby>最大<rt>さいだい</rt></ruby>パワー」。シワが<ruby>消<rt>き</rt></ruby>える<ruby>基準値<rt>きじゅんち</rt></ruby>、フット<ruby>深<rt>ふか</rt></ruby>さ<ruby>最大<rt>さいだい</rt></ruby>、フラットでフルハイク。'
+    explain: '<ruby>中風<rt>ちゅうふう</rt></ruby>の<ruby>合言葉<rt>あいことば</rt></ruby>は「<ruby>最大<rt>さいだい</rt></ruby>パワー」。シワが<ruby>消<rt>き</rt></ruby>える<ruby>基準値<rt>きじゅんち</rt></ruby>、フット<ruby>深<rt>ふか</rt></ruby>さ<ruby>最大<rt>さいだい</rt></ruby>、フラットでフルハイク。',
+    explain_en: 'Medium wind mantra: "max power". Reference values where wrinkles disappear, max foot depth, flat boat with full hiking.'
   },
   {
     cat: 'setting',
     q: 'オーバーパワー（<ruby>超強風<rt>ちょうきょうふう</rt></ruby>）セッティングの<ruby>合言葉<rt>あいことば</rt></ruby>は？',
+    q_en: 'Overpowered (very strong wind) setting mantra?',
     options: ['<ruby>最大<rt>さいだい</rt></ruby>パワー', '<ruby>上<rt>うえ</rt></ruby>を<ruby>捨<rt>す</rt></ruby>てる（ピークを<ruby>落<rt>お</rt></ruby>とし、ボード<ruby>上<rt>あ</rt></ruby>げ、フェザリング）', 'パワーを<ruby>溜<rt>た</rt></ruby>める', 'いつも<ruby>同<rt>おな</rt></ruby>じ'],
+    options_en: ['Maximum power', 'Sacrifice the top (drop the peak, raise centerboard, feather)', 'Save power', 'Always the same'],
     answer: 1,
-    explain: 'オーバーパワーの<ruby>合言葉<rt>あいことば</rt></ruby>は「<ruby>上<rt>うえ</rt></ruby>を<ruby>捨<rt>す</rt></ruby>てる」。セール<ruby>上部<rt>じょうぶ</rt></ruby>のピークを<ruby>落<rt>お</rt></ruby>として<ruby>逃<rt>に</rt></ruby>がし、ボードを<ruby>上<rt>あ</rt></ruby>げ、フェザリングで<ruby>艇<rt>てい</rt></ruby>を<ruby>平<rt>たい</rt></ruby>らに<ruby>保<rt>たも</rt></ruby>つのが<ruby>最速<rt>さいそく</rt></ruby>。'
+    explain: 'オーバーパワーの<ruby>合言葉<rt>あいことば</rt></ruby>は「<ruby>上<rt>うえ</rt></ruby>を<ruby>捨<rt>す</rt></ruby>てる」。セール<ruby>上部<rt>じょうぶ</rt></ruby>のピークを<ruby>落<rt>お</rt></ruby>として<ruby>逃<rt>に</rt></ruby>がし、ボードを<ruby>上<rt>あ</rt></ruby>げ、フェザリングで<ruby>艇<rt>てい</rt></ruby>を<ruby>平<rt>たい</rt></ruby>らに<ruby>保<rt>たも</rt></ruby>つのが<ruby>最速<rt>さいそく</rt></ruby>。',
+    explain_en: 'Overpowered mantra: "sacrifice the top". Drop the peak to depower, raise the centerboard, and feather to keep the boat flat — fastest setup.'
   },
 
   // ===== 艤装・パーツ 6問 =====
