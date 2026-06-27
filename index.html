@@ -665,8 +665,8 @@ function flagSvg(type, cls = 'flag') {
 
   const defs = {
     orange: '<rect width="90" height="60" fill="#f08020"/>',
-    // OP旗：白地に黒いΦ（ファイ）マーク
-    op: '<rect width="90" height="60" fill="#fff"/><circle cx="45" cy="30" r="18" fill="none" stroke="#000" stroke-width="7"/><line x1="45" y1="2" x2="45" y2="58" stroke="#000" stroke-width="7" stroke-linecap="butt"/>',
+    // OP旗：白地に青いOptimistクラスマーク
+    op: '<rect width="90" height="60" fill="#fff"/><circle cx="45" cy="24" r="20" fill="#13479b"/><circle cx="45" cy="24" r="13" fill="#fff"/><rect x="41" y="24" width="8" height="32" fill="#13479b"/><rect x="39" y="23" width="12" height="3" fill="#13479b"/>',
     n: (() => {
       let s = '';
       for (let r = 0; r < 4; r++) for (let c = 0; c < 4; c++) {
@@ -1441,7 +1441,7 @@ const quizData = [
     q: `この<ruby>旗<rt>はた</rt></ruby>は？<br>${flagSvg('op','flag flag-big')}`,
     options: ['オレンジ<ruby>旗<rt>き</rt></ruby>', 'OP<ruby>旗<rt>き</rt></ruby>', 'I<ruby>旗<rt>き</rt></ruby>', 'M<ruby>旗<rt>き</rt></ruby>'],
     answer: 1,
-    explain: '<ruby>白地<rt>しろじ</rt></ruby>に<ruby>黒<rt>くろ</rt></ruby>いΦ<ruby>字<rt>じ</rt></ruby>マーク＝OP<ruby>旗<rt>き</rt></ruby>（Optimistクラスの<ruby>警告信号<rt>けいこくしんごう</rt></ruby>）。スタート5<ruby>分前<rt>ふんまえ</rt></ruby>にあがり、スタート<ruby>時<rt>とき</rt></ruby>におりる。Optimist<ruby>特有<rt>とくゆう</rt></ruby>の<ruby>旗<rt>き</rt></ruby>。'
+    explain: '<ruby>白地<rt>しろじ</rt></ruby>に<ruby>青<rt>あお</rt></ruby>いOptimistクラスマーク＝OP<ruby>旗<rt>き</rt></ruby>（Optimistクラスの<ruby>警告信号<rt>けいこくしんごう</rt></ruby>）。スタート5<ruby>分前<rt>ふんまえ</rt></ruby>にあがり、スタート<ruby>時<rt>とき</rt></ruby>におりる。Optimist<ruby>特有<rt>とくゆう</rt></ruby>の<ruby>旗<rt>き</rt></ruby>。'
   },
   {
     cat: 'flagimg',
