@@ -560,6 +560,9 @@ const i18n = {
     rankRandom100: '🎲 100問',
     rankCat: 'カテゴリ別',
     questionsLabel: '問',
+    recordsLabel: '件',
+    categoriesShort: 'カテゴリへ',
+    anonymousName: '名無し',
     quit: '← やめる',
     quitConfirm: 'やめると今のスコアは消えるよ。もどっていい？',
     nextBtn: '次の問題 →',
@@ -609,6 +612,9 @@ const i18n = {
     rankRandom100: '🎲 100Q',
     rankCat: 'By Category',
     questionsLabel: 'Q',
+    recordsLabel: 'records',
+    categoriesShort: 'Categories',
+    anonymousName: 'NoName',
     quit: '← Quit',
     quitConfirm: 'Quitting will erase your current score. Go back?',
     nextBtn: 'Next →',
@@ -3310,13 +3316,38 @@ function shuffle(arr) {
 
 // 選択肢A〜Dをシャッフル（answer indexも追従）
 function shuffleOptions(q) {
-  const indexed = q.options.map((opt, i) => ({ opt, isAns: i === q.answer }));
+  const indexed = q.options.map((opt, i) => ({
+    opt,
+    optEn: q.options_en ? q.options_en[i] : null,
+    isAns: i === q.answer
+  }));
   const shuffled = shuffle(indexed);
   return {
     ...q,
     options: shuffled.map(x => x.opt),
+    options_en: q.options_en ? shuffled.map(x => x.optEn) : q.options_en,
     answer: shuffled.findIndex(x => x.isAns)
   };
+}
+
+function renderHeaderText() {
+  document.title = t('title');
+  document.getElementById('title').textContent = t('title');
+  subtitleEl.textContent = t('subtitle', { n: quizData.length });
+}
+
+function renderStaticText() {
+  renderHeaderText();
+  document.querySelector('#start-screen .start-intro h2').textContent = t('catSelectTitle');
+  document.querySelector('#start-screen .start-intro p').textContent = t('catSelectDesc');
+  document.getElementById('ranking-title').textContent = t('rankingTitle');
+  document.getElementById('ranking-home').textContent = '← ' + t('categoriesShort');
+  quitBtn.textContent = t('quit');
+  document.getElementById('name-label').textContent = t('nameLabel');
+  document.getElementById('name-input').placeholder = t('namePlaceholder');
+  document.getElementById('save-record-btn').textContent = t('saveRecord');
+  restartBtn.textContent = t('retry');
+  homeBtn.textContent = t('backHome');
 }
 
 function renderStart() {
@@ -3326,11 +3357,7 @@ function renderStart() {
   rankingScreen.classList.add('hidden');
   progressEl.style.width = '0%';
 
-  // タイトル＆字幕の言語対応
-  document.getElementById('title').textContent = t('title');
-  subtitleEl.textContent = t('subtitle', { n: quizData.length });
-  document.querySelector('#start-screen .start-intro h2').textContent = t('catSelectTitle');
-  document.querySelector('#start-screen .start-intro p').textContent = t('catSelectDesc');
+  renderStaticText();
 
   catGrid.innerHTML = '';
 
@@ -3373,7 +3400,7 @@ function renderStart() {
   const rankBtn = document.createElement('button');
   rankBtn.className = 'cat-btn all';
   rankBtn.style.background = 'linear-gradient(135deg, #f4b400 0%, #d99500 100%)';
-  rankBtn.innerHTML = `<span class="emoji">🏆</span>${t('ranking')}<span class="count">${getRanking().length} records</span>`;
+  rankBtn.innerHTML = `<span class="emoji">🏆</span>${t('ranking')}<span class="count">${getRanking().length} ${t('recordsLabel')}</span>`;
   rankBtn.onclick = renderRanking;
   catGrid.appendChild(rankBtn);
 }
@@ -3384,8 +3411,7 @@ function renderRanking() {
   quizScreen.classList.add('hidden');
   resultScreen.classList.add('hidden');
   rankingScreen.classList.remove('hidden');
-  document.getElementById('ranking-title').textContent = t('rankingTitle');
-  document.getElementById('ranking-home').textContent = '← ' + (currentLang === 'en' ? 'Categories' : 'カテゴリへ');
+  renderStaticText();
 
   // タブ生成
   const tabs = document.getElementById('ranking-tabs');
@@ -3425,7 +3451,7 @@ function renderRanking() {
       <div class="ranking-item">
         <div class="ranking-rank ${rankClass}">${medal}</div>
         <div>
-          <div class="ranking-name">${r.name || 'NoName'}</div>
+          <div class="ranking-name">${r.name || t('anonymousName')}</div>
           <div class="ranking-date">${getModeLabel(r.mode)} · ${dateStr}</div>
         </div>
         <div class="ranking-pct">${r.pct}%</div>
@@ -3454,6 +3480,7 @@ function startQuiz(mode) {
 }
 
 function renderQuestion() {
+  renderHeaderText();
   const q = state.questions[state.current];
   qnumEl.textContent = `Q${state.current + 1} / ${state.questions.length}`;
   const cat = categories[q.cat];
@@ -3463,7 +3490,6 @@ function renderQuestion() {
   feedbackEl.classList.remove('show', 'correct', 'wrong');
   feedbackEl.innerHTML = '';
   nextBtn.classList.add('hidden');
-
   quitBtn.textContent = t('quit');
 
   getOptions(q).forEach((opt, idx) => {
@@ -3512,6 +3538,7 @@ function nextQuestion() {
 }
 
 function showResult() {
+  renderStaticText();
   progressEl.style.width = '100%';
   quizScreen.classList.add('hidden');
   resultScreen.classList.remove('hidden');
@@ -3568,8 +3595,10 @@ function switchLang(lang) {
   document.querySelectorAll('.lang-btn').forEach(b => {
     b.classList.toggle('active', b.dataset.lang === lang);
   });
+  renderStaticText();
   // 現在の画面を再描画
   if (!quizScreen.classList.contains('hidden')) renderQuestion();
+  else if (!rankingScreen.classList.contains('hidden')) renderRanking();
   else if (!resultScreen.classList.contains('hidden')) showResult();
   else renderStart();
 }
@@ -3584,7 +3613,7 @@ document.getElementById('ranking-home').addEventListener('click', renderStart);
 // 記録するボタン
 document.getElementById('save-record-btn').addEventListener('click', () => {
   const nameInput = document.getElementById('name-input');
-  const name = nameInput.value.trim() || 'NoName';
+  const name = nameInput.value.trim() || t('anonymousName');
   setLastName(name);
   const rank = saveRanking(state.mode, state.score, state.questions.length, name);
   const newRecordArea = document.getElementById('new-record-area');
