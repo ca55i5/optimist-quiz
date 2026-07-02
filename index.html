@@ -45,6 +45,27 @@
     width: 100%;
     overflow: hidden;
   }
+
+  /* 画面幅に応じて読みやすい密度へ段階調整 */
+  @media (min-width: 981px) {
+    body { padding: 28px; }
+    .container { max-width: 920px; }
+    header { padding: 16px 34px 24px; }
+    h1 { font-size: 26px; }
+    .subtitle { font-size: 14px; }
+    main { padding: 30px 34px; }
+    .lang-toggle { top: 14px; right: 18px; }
+  }
+
+  @media (min-width: 641px) and (max-width: 980px) {
+    body { padding: 20px; }
+    .container { max-width: 760px; }
+    header { padding: 14px 26px 22px; }
+    h1 { font-size: 23px; }
+    .subtitle { font-size: 13px; }
+    main { padding: 26px; }
+    .lang-toggle { top: 12px; right: 14px; }
+  }
   header {
     background: linear-gradient(135deg, var(--sea) 0%, var(--sea-deep) 100%);
     color: #fff;
@@ -54,11 +75,10 @@
   }
   .title-anim-wrap {
     position: relative;
-    display: flex;
-    align-items: center;
+    display: block;
     min-height: 56px;
-    width: fit-content;
-    max-width: calc(100% - 130px);
+    width: 100%;
+    max-width: 100%;
     overflow: hidden;
     z-index: 1;
   }
@@ -69,7 +89,8 @@
     line-height: 1.3;
     position: relative;
     z-index: 1;
-    white-space: nowrap;
+    white-space: normal;
+    overflow-wrap: anywhere;
   }
   .subtitle { margin-top: 10px; font-size: 13px; opacity: 0.9; line-height: 2; }
   .sail-mover {
@@ -91,6 +112,46 @@
     opacity: 0.95;
   }
   .sail-mover.alt .sail-boat { animation-duration: 1.5s; opacity: 0.75; }
+  .sail-swarm-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 5;
+  }
+  .sail-swarm-layer.active { display: block; }
+  .sail-swarm-layer:not(.active) { display: none; }
+  .sail-swarm-boat {
+    position: absolute;
+    left: -3em;
+    top: 10px;
+    opacity: 0;
+    transform: translateY(0) scale(0.9);
+    will-change: left, transform, opacity;
+    animation: swarmPass 4.2s linear forwards, boatBob 1.35s ease-in-out infinite;
+  }
+  .sail-swarm-boat svg { width: 24px; height: 21px; }
+  .runner-rush-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 6;
+  }
+  .runner-rush-layer.active { display: block; }
+  .runner-rush-layer:not(.active) { display: none; }
+  .runner-rush {
+    position: absolute;
+    left: -3.4em;
+    top: 28px;
+    font-size: 24px;
+    line-height: 1;
+    opacity: 0;
+    transform: translateX(0) translateY(0) scaleX(-1) scale(0.92);
+    will-change: left, transform, opacity;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.35);
+    animation: runnerDash 1.65s cubic-bezier(0.08, 0.9, 0.15, 1), runnerShake 0.2s linear infinite;
+  }
   .sail-bubble {
     position: absolute;
     left: 8px;
@@ -141,7 +202,7 @@
   }
   @keyframes sailMove {
     0% { left: -2.2em; }
-    100% { left: calc(100% - 1.7em); }
+    100% { left: calc(100% - 3.2em); }
   }
   @keyframes boatBob {
     0%, 100% { transform: translateY(0); }
@@ -150,7 +211,7 @@
   @keyframes sailFade {
     0% { opacity: 0; }
     10% { opacity: 0.95; }
-    84% { opacity: 0.95; }
+    76% { opacity: 0.95; }
     100% { opacity: 0; }
   }
   @keyframes waveChar {
@@ -163,6 +224,22 @@
     75% { opacity: 1; transform: translateY(-2px) scale(1); }
     100% { opacity: 0; transform: translateY(-5px) scale(0.98); }
   }
+  @keyframes swarmPass {
+    0% { left: -3em; opacity: 0; }
+    8% { opacity: 0.95; }
+    78% { opacity: 0.95; }
+    100% { left: calc(100% - 2.6em); opacity: 0; }
+  }
+  @keyframes runnerDash {
+    0% { left: -3.4em; opacity: 0; transform: translateY(0) scaleX(-1) scale(0.9); }
+    10% { opacity: 1; }
+    75% { opacity: 0.98; }
+    100% { left: calc(100% - 2.8em); opacity: 0; transform: translateY(-2px) scaleX(-1) scale(1.06); }
+  }
+  @keyframes runnerShake {
+    0%, 100% { margin-top: 0; }
+    50% { margin-top: -1px; }
+  }
   .progress-bar {
     height: 6px;
     background: rgba(255,255,255,0.2);
@@ -172,15 +249,17 @@
   }
   /* 言語切替トグル */
   .lang-toggle {
-    position: absolute;
-    top: 20px;
-    right: 80px;
+    position: fixed;
+    top: max(10px, env(safe-area-inset-top));
+    right: max(12px, env(safe-area-inset-right));
     display: flex;
     gap: 4px;
-    background: rgba(255,255,255,0.15);
+    background: rgba(7,52,99,0.78);
+    border: 1px solid rgba(255,255,255,0.3);
+    backdrop-filter: blur(4px);
     border-radius: 20px;
     padding: 4px;
-    z-index: 2;
+    z-index: 20;
   }
   .lang-btn {
     background: transparent;
@@ -548,28 +627,41 @@
 
   /* モバイル対応：タイトルと言語切替の被り解消 */
   @media (max-width: 480px) {
-    header { padding: 58px 20px 20px; }
-    .title-anim-wrap { width: fit-content; max-width: calc(100% - 74px); min-height: 50px; }
+    body { padding: 12px; }
+    .container { border-radius: 16px; }
+    header { padding: 14px 16px 18px; }
+    .title-anim-wrap { width: 100%; max-width: 100%; min-height: 50px; }
     .sail-mover { top: 6px; }
     .sail-mover.alt { top: 10px; }
-    .lang-toggle { top: 12px; right: 14px; }
-    h1 { font-size: 18px; padding-right: 0; }
+    .lang-toggle { top: max(8px, env(safe-area-inset-top)); right: max(8px, env(safe-area-inset-right)); }
+    h1 { font-size: 18px; padding-right: 0; line-height: 1.35; }
     .subtitle { font-size: 12px; }
+    .sail-swarm-boat svg { width: 21px; height: 18px; }
+    .runner-rush { font-size: 21px; top: 26px; }
+    main { padding: 18px 16px 20px; }
     .name-input-area input { width: 60%; }
+  }
+
+  @media (max-width: 360px) {
+    .lang-btn { padding: 4px 10px; font-size: 11px; }
+    h1 { font-size: 17px; letter-spacing: 0.03em; }
+    .subtitle { font-size: 11px; }
   }
 </style>
 </head>
 <body>
+<div class="lang-toggle">
+  <button class="lang-btn active" id="lang-ja" data-lang="ja">日本語</button>
+  <button class="lang-btn" id="lang-en" data-lang="en">EN</button>
+</div>
 <div class="container">
   <header>
     <div class="title-anim-wrap">
+      <div class="sail-swarm-layer" id="sail-swarm-layer" aria-hidden="true"></div>
+      <div class="runner-rush-layer" id="runner-rush-layer" aria-hidden="true"></div>
       <span class="sail-mover"><span class="sail-boat"><svg viewBox="0 0 30 26" width="28" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23 4 L13 0 L8 17 L23 18 Z" fill="#a8dadc" stroke="#a8dadc" stroke-width="0.7"/><line x1="23" y1="3" x2="23" y2="19" stroke="#a8dadc" stroke-width="1.5"/><path d="M3 20 L6 23 L26 23 L27 19 L23 19 Z" fill="#a8dadc" opacity="0.85"/><path d="M6 22 L5 26 L3 26 L4 22 Z" fill="#a8dadc" opacity="0.7"/></svg></span><span class="sail-bubble">スターボード！</span></span>
       <span class="sail-mover alt"><span class="sail-boat"><svg viewBox="0 0 30 26" width="28" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23 4 L13 0 L8 17 L23 18 Z" fill="#a8dadc" stroke="#a8dadc" stroke-width="0.7"/><line x1="23" y1="3" x2="23" y2="19" stroke="#a8dadc" stroke-width="1.5"/><path d="M3 20 L6 23 L26 23 L27 19 L23 19 Z" fill="#a8dadc" opacity="0.85"/><path d="M6 22 L5 26 L3 26 L4 22 Z" fill="#a8dadc" opacity="0.7"/></svg></span><span class="sail-bubble">ノールーム！</span></span>
       <h1 id="title">Optimistディンギー クイズ</h1>
-    </div>
-    <div class="lang-toggle">
-      <button class="lang-btn active" id="lang-ja" data-lang="ja">日本語</button>
-      <button class="lang-btn" id="lang-en" data-lang="en">EN</button>
     </div>
     <div class="subtitle" id="subtitle"><ruby>初級者<rt>しょきゅうしゃ</rt></ruby>から<ruby>上級者<rt>じょうきゅうしゃ</rt></ruby>まで<ruby>幅広<rt>はばひろ</rt></ruby>く<ruby>学<rt>まな</rt></ruby>べる<ruby>全<rt>ぜん</rt></ruby>267<ruby>問<rt>もん</rt></ruby>！</div>
     <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
@@ -4049,6 +4141,10 @@ const sailShouts = {
   ]
 };
 let titleShoutStarted = false;
+let sailSwarmTriggered = false;
+let runnerRushTriggered = false;
+
+const swarmBoatSvg = '<svg viewBox="0 0 30 26" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23 4 L13 0 L8 17 L23 18 Z" fill="#d9f2ff" stroke="#d9f2ff" stroke-width="0.7"/><line x1="23" y1="3" x2="23" y2="19" stroke="#d9f2ff" stroke-width="1.5"/><path d="M3 20 L6 23 L26 23 L27 19 L23 19 Z" fill="#d9f2ff" opacity="0.85"/><path d="M6 22 L5 26 L3 26 L4 22 Z" fill="#d9f2ff" opacity="0.7"/></svg>';
 
 function startTitleShouts() {
   if (titleShoutStarted) return;
@@ -4074,6 +4170,65 @@ function startTitleShouts() {
 
   loop();
 }
+
+function triggerSailSwarmOnce() {
+  if (sailSwarmTriggered) return;
+  sailSwarmTriggered = true;
+
+  const layer = document.getElementById('sail-swarm-layer');
+  if (!layer) return;
+
+  layer.innerHTML = '';
+  layer.classList.add('active');
+
+  const count = 30;
+  for (let i = 0; i < count; i++) {
+    const boat = document.createElement('span');
+    boat.className = 'sail-swarm-boat';
+    boat.innerHTML = swarmBoatSvg;
+    boat.style.top = `${4 + Math.random() * 26}px`;
+    boat.style.animationDelay = `${(i * 0.09).toFixed(2)}s, ${(Math.random() * 0.7).toFixed(2)}s`;
+    boat.style.animationDuration = `${(3.4 + Math.random() * 1.1).toFixed(2)}s, ${(1.0 + Math.random() * 0.6).toFixed(2)}s`;
+    boat.style.opacity = `${(0.75 + Math.random() * 0.22).toFixed(2)}`;
+    layer.appendChild(boat);
+  }
+
+  setTimeout(() => {
+    layer.classList.remove('active');
+    layer.innerHTML = '';
+  }, 9500);
+}
+
+function scheduleSailSwarm() {
+  setTimeout(triggerSailSwarmOnce, 30000);
+}
+
+function triggerRunnerRushOnce() {
+  if (runnerRushTriggered) return;
+  runnerRushTriggered = true;
+
+  const layer = document.getElementById('runner-rush-layer');
+  if (!layer) return;
+
+  layer.innerHTML = '';
+  layer.classList.add('active');
+
+  const runner = document.createElement('span');
+  runner.className = 'runner-rush';
+  runner.textContent = '🏃💨';
+  runner.style.top = `${26 + (Math.random() * 6 - 3).toFixed(2)}px`;
+  layer.appendChild(runner);
+
+  setTimeout(() => {
+    layer.classList.remove('active');
+    layer.innerHTML = '';
+  }, 2500);
+}
+
+function scheduleRunnerRush() {
+  setTimeout(triggerRunnerRushOnce, 60000);
+}
+
 
 function renderStaticText() {
   renderHeaderText();
@@ -4384,6 +4539,8 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
   await migrateLocalRankingToCloudIfNeeded();
   await renderStart();
   startTitleShouts();
+  scheduleSailSwarm();
+  scheduleRunnerRush();
 })();
 </script>
 </body>
