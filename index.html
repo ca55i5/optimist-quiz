@@ -48,21 +48,121 @@
   header {
     background: linear-gradient(135deg, var(--sea) 0%, var(--sea-deep) 100%);
     color: #fff;
-    padding: 28px 28px 24px;
+    padding: 12px 28px 24px;
     position: relative;
+    overflow: hidden;
   }
-  header::before {
+  .title-anim-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 56px;
+    width: fit-content;
+    max-width: calc(100% - 130px);
+    overflow: hidden;
+    z-index: 1;
+  }
+  h1 {
+    margin: 0;
+    font-size: 22px;
+    letter-spacing: 0.06em;
+    line-height: 1.3;
+    position: relative;
+    z-index: 1;
+    white-space: nowrap;
+  }
+  .subtitle { margin-top: 10px; font-size: 13px; opacity: 0.9; line-height: 2; }
+  .sail-mover {
+    position: absolute;
+    top: 7px;
+    left: -2.2em;
+    animation: sailMove 9s linear infinite, sailFade 9s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 3;
+  }
+  .sail-mover.alt {
+    animation-duration: 7s, 7s;
+    animation-delay: -1.5s, -1.5s;
+    top: 12px;
+  }
+  .sail-boat {
+    display: inline-block;
+    animation: boatBob 1.9s ease-in-out infinite;
+    opacity: 0.95;
+  }
+  .sail-mover.alt .sail-boat { animation-duration: 1.5s; opacity: 0.75; }
+  .sail-bubble {
+    position: absolute;
+    left: 8px;
+    top: 22px;
+    background: rgba(255,255,255,0.96);
+    color: #0a4d8c;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 6px 9px;
+    border-radius: 12px;
+    border: 1px solid rgba(10,77,140,0.22);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.18);
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateY(4px) scale(0.94);
+    pointer-events: none;
+    z-index: 4;
+  }
+  .sail-bubble::after {
     content: "";
     position: absolute;
-    top: 12px;
-    left: 18px;
-    width: 58px;
-    height: 58px;
-    background: url("optimist-icon.svg") center / contain no-repeat;
-    opacity: 0.85;
+    left: 14px;
+    top: -6px;
+    width: 10px;
+    height: 10px;
+    background: rgba(255,255,255,0.96);
+    border-left: 1px solid rgba(10,77,140,0.22);
+    border-top: 1px solid rgba(10,77,140,0.22);
+    transform: rotate(45deg);
   }
-  h1 { margin: 0; font-size: 22px; letter-spacing: 0.03em; line-height: 2; padding-left: 72px; }
-  .subtitle { margin-top: 10px; font-size: 13px; opacity: 0.9; line-height: 2; padding-left: 72px; }
+  .sail-bubble.show {
+    animation: bubblePop 2.6s ease forwards;
+  }
+  .title-char {
+    display: inline-block;
+    animation: waveChar 1.5s ease-in-out infinite;
+    color: #d9f2ff;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.18), 0 0 8px rgba(76,168,224,0.24);
+  }
+  .title-char.accent {
+    color: #ffd36a;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.2), 0 0 8px rgba(255,201,51,0.24);
+  }
+  .title-space {
+    display: inline-block;
+    width: 0.56em;
+  }
+  @keyframes sailMove {
+    0% { left: -2.2em; }
+    100% { left: calc(100% - 1.7em); }
+  }
+  @keyframes boatBob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+  @keyframes sailFade {
+    0% { opacity: 0; }
+    10% { opacity: 0.95; }
+    84% { opacity: 0.95; }
+    100% { opacity: 0; }
+  }
+  @keyframes waveChar {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+  }
+  @keyframes bubblePop {
+    0% { opacity: 0; transform: translateY(4px) scale(0.94); }
+    12% { opacity: 1; transform: translateY(0) scale(1); }
+    75% { opacity: 1; transform: translateY(-2px) scale(1); }
+    100% { opacity: 0; transform: translateY(-5px) scale(0.98); }
+  }
   .progress-bar {
     height: 6px;
     background: rgba(255,255,255,0.2);
@@ -448,11 +548,13 @@
 
   /* モバイル対応：タイトルと言語切替の被り解消 */
   @media (max-width: 480px) {
-    header { padding: 60px 20px 20px; }
-    header::before { width: 44px; height: 44px; top: 12px; left: 12px; }
+    header { padding: 58px 20px 20px; }
+    .title-anim-wrap { width: fit-content; max-width: calc(100% - 74px); min-height: 50px; }
+    .sail-mover { top: 6px; }
+    .sail-mover.alt { top: 10px; }
     .lang-toggle { top: 12px; right: 14px; }
-    h1 { font-size: 18px; padding-left: 54px; padding-right: 0; }
-    .subtitle { font-size: 12px; padding-left: 54px; }
+    h1 { font-size: 18px; padding-right: 0; }
+    .subtitle { font-size: 12px; }
     .name-input-area input { width: 60%; }
   }
 </style>
@@ -460,11 +562,15 @@
 <body>
 <div class="container">
   <header>
+    <div class="title-anim-wrap">
+      <span class="sail-mover"><span class="sail-boat"><svg viewBox="0 0 30 26" width="28" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23 4 L13 0 L8 17 L23 18 Z" fill="#a8dadc" stroke="#a8dadc" stroke-width="0.7"/><line x1="23" y1="3" x2="23" y2="19" stroke="#a8dadc" stroke-width="1.5"/><path d="M3 20 L6 23 L26 23 L27 19 L23 19 Z" fill="#a8dadc" opacity="0.85"/><path d="M6 22 L5 26 L3 26 L4 22 Z" fill="#a8dadc" opacity="0.7"/></svg></span><span class="sail-bubble">スターボード！</span></span>
+      <span class="sail-mover alt"><span class="sail-boat"><svg viewBox="0 0 30 26" width="28" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23 4 L13 0 L8 17 L23 18 Z" fill="#a8dadc" stroke="#a8dadc" stroke-width="0.7"/><line x1="23" y1="3" x2="23" y2="19" stroke="#a8dadc" stroke-width="1.5"/><path d="M3 20 L6 23 L26 23 L27 19 L23 19 Z" fill="#a8dadc" opacity="0.85"/><path d="M6 22 L5 26 L3 26 L4 22 Z" fill="#a8dadc" opacity="0.7"/></svg></span><span class="sail-bubble">ノールーム！</span></span>
+      <h1 id="title">Optimistディンギー クイズ</h1>
+    </div>
     <div class="lang-toggle">
       <button class="lang-btn active" id="lang-ja" data-lang="ja">日本語</button>
       <button class="lang-btn" id="lang-en" data-lang="en">EN</button>
     </div>
-    <h1 id="title">Optimistディンギー クイズ</h1>
     <div class="subtitle" id="subtitle"><ruby>初級者<rt>しょきゅうしゃ</rt></ruby>から<ruby>上級者<rt>じょうきゅうしゃ</rt></ruby>まで<ruby>幅広<rt>はばひろ</rt></ruby>く<ruby>学<rt>まな</rt></ruby>べる<ruby>全<rt>ぜん</rt></ruby>267<ruby>問<rt>もん</rt></ruby>！</div>
     <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
   </header>
@@ -530,7 +636,7 @@
 // ===== i18n（多言語）辞書 =====
 const i18n = {
   ja: {
-    title: 'Optimistディンギー クイズ',
+    title: 'Optimist ディンギー クイズ',
     subtitle: '初級者から上級者まで幅広く学べる全{n}問。ルール・旗・セッティング・戦略を網羅！',
     catSelectTitle: 'カテゴリをえらんでね',
     catSelectDesc: '気になるテーマだけ練習することもできるよ！',
@@ -3910,8 +4016,63 @@ function shuffleOptions(q) {
 
 function renderHeaderText() {
   document.title = t('title');
-  document.getElementById('title').textContent = t('title');
+  const titleText = t('title');
+  const titleEl = document.getElementById('title');
+  titleEl.innerHTML = Array.from(titleText).map((ch, i) => {
+    if (ch === ' ') return '<span class="title-space"></span>';
+    const prev = i > 0 ? titleText[i - 1] : ' ';
+    const accent = i === 0 || prev === ' ' ? ' accent' : '';
+    return `<span class="title-char${accent}" style="animation-delay:${(i * 0.12).toFixed(2)}s">${ch}</span>`;
+  }).join('');
   subtitleEl.textContent = t('subtitle', { n: quizData.length });
+}
+
+const sailShouts = {
+  ja: [
+    'スターボー！',
+    'プロテスト！',
+    'しも～！',
+    'みずないよ～！',
+    'みずちょーだい♥️',
+    'タックしないでー><',
+    '前通っていいよ～！'
+  ],
+  en: [
+    'Starboard!',
+    'No room!',
+    'Protest!',
+    'Leeward!',
+    'No room here!',
+    'Give me room, please!',
+    'No tack, please!',
+    'You can cross ahead!'
+  ]
+};
+let titleShoutStarted = false;
+
+function startTitleShouts() {
+  if (titleShoutStarted) return;
+  titleShoutStarted = true;
+
+  const movers = Array.from(document.querySelectorAll('.title-anim-wrap .sail-mover'));
+  const bubbles = movers.map(m => m.querySelector('.sail-bubble')).filter(Boolean);
+  if (!bubbles.length) return;
+
+  const loop = () => {
+    // 吹き出し表示後、次の表示まで最低3秒空ける
+    const delay = 3000 + Math.floor(Math.random() * 3200);
+    setTimeout(() => {
+      const bubble = bubbles[Math.floor(Math.random() * bubbles.length)];
+      const shouts = sailShouts[currentLang] || sailShouts.ja;
+      bubble.textContent = shouts[Math.floor(Math.random() * shouts.length)];
+      bubble.classList.remove('show');
+      void bubble.offsetWidth;
+      bubble.classList.add('show');
+      loop();
+    }, delay);
+  };
+
+  loop();
 }
 
 function renderStaticText() {
@@ -4222,6 +4383,7 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
 (async () => {
   await migrateLocalRankingToCloudIfNeeded();
   await renderStart();
+  startTitleShouts();
 })();
 </script>
 </body>
