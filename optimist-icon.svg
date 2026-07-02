@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Optimist dinghy icon">
+  <defs>
+    <linearGradient id="sail" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" />
+      <stop offset="1" stop-color="#e8f4ff" />
+    </linearGradient>
+  </defs>
+  <g fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="80" y1="18" x2="80" y2="84" />
+    <polygon points="80,20 80,78 26,72" fill="url(#sail)" stroke="#ffffff" />
+    <line x1="80" y1="50" x2="40" y2="46" stroke="#d6ecff" stroke-width="2" />
+    <path d="M20 84 L98 84 L86 95 L30 95 Z" fill="#dff1ff" />
+    <circle cx="58" cy="46" r="7" stroke="#0a4d8c" stroke-width="3" fill="#ffffff" />
+    <line x1="58" y1="53" x2="58" y2="65" stroke="#0a4d8c" stroke-width="3" />
+  </g>
+</svg>

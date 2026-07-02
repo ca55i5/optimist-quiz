@@ -52,15 +52,17 @@
     position: relative;
   }
   header::before {
-    content: "⛵";
+    content: "";
     position: absolute;
-    top: 16px;
-    right: 24px;
-    font-size: 48px;
-    opacity: 0.4;
+    top: 12px;
+    left: 18px;
+    width: 58px;
+    height: 58px;
+    background: url("optimist-icon.svg") center / contain no-repeat;
+    opacity: 0.85;
   }
-  h1 { margin: 0; font-size: 22px; letter-spacing: 0.03em; line-height: 2; }
-  .subtitle { margin-top: 10px; font-size: 13px; opacity: 0.9; line-height: 2; }
+  h1 { margin: 0; font-size: 22px; letter-spacing: 0.03em; line-height: 2; padding-left: 72px; }
+  .subtitle { margin-top: 10px; font-size: 13px; opacity: 0.9; line-height: 2; padding-left: 72px; }
   .progress-bar {
     height: 6px;
     background: rgba(255,255,255,0.2);
@@ -447,10 +449,10 @@
   /* モバイル対応：タイトルと言語切替の被り解消 */
   @media (max-width: 480px) {
     header { padding: 60px 20px 20px; }
-    header::before { font-size: 36px; top: 10px; right: 14px; }
+    header::before { width: 44px; height: 44px; top: 12px; left: 12px; }
     .lang-toggle { top: 12px; right: 14px; }
-    h1 { font-size: 18px; padding-right: 0; }
-    .subtitle { font-size: 12px; }
+    h1 { font-size: 18px; padding-left: 54px; padding-right: 0; }
+    .subtitle { font-size: 12px; padding-left: 54px; }
     .name-input-area input { width: 60%; }
   }
 </style>
