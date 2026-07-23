@@ -1631,6 +1631,168 @@ const quizData = [
     explain_en: 'Under RRS Rule 31, a penalty is only required when touching a mark that begins, bounds, or ends the leg currently being sailed. During the start-to-mark-1 leg, mark 2 is not such a mark, so no penalty is needed.'
   },
 
+  // ===== 海上計測・標準ペナルティー 16問 =====
+  {
+    cat: 'rule',
+    q: '海上計測(a)でチェックされる<ruby>安全<rt>あんぜん</rt></ruby><ruby>装備<rt>そうび</rt></ruby>はどれ？',
+    q_en: 'Which safety equipment is checked in on-the-water inspection item (a)?',
+    options: ['もやいロープとパドル', 'PFD（ライフジャケット）と<ruby>笛<rt>ふえ</rt></ruby>', 'センターボードとラダー', 'アカ<ruby>汲<rt>く</rt></ruby>みとバング'],
+    options_en: ['Mooring rope and paddle', 'PFD (life jacket) and whistle', 'Centerboard and rudder', 'Bailer and vang'],
+    answer: 1,
+    explain: '海上計測(a)では、PFD（ライフジャケット）と<ruby>笛<rt>ふえ</rt></ruby>が<ruby>正<rt>ただ</rt></ruby>しく<ruby>装着<rt>そうちゃく</rt></ruby>されているかをチェックする。<ruby>笛<rt>ふえ</rt></ruby>はPFDに<ruby>取<rt>と</rt></ruby>りつけられていなければならない。',
+    explain_en: 'On-the-water inspection (a) checks that the PFD (life jacket) and whistle are correctly worn. The whistle must be attached to the PFD.'
+  },
+  {
+    cat: 'rule',
+    q: '海上計測(b)で<ruby>確認<rt>かくにん</rt></ruby>される<ruby>内容<rt>ないよう</rt></ruby>はどれ？',
+    q_en: 'What is verified in on-the-water inspection item (b)?',
+    options: ['セールのラフ計測バンドの<ruby>位置<rt>いち</rt></ruby>', 'もやいロープの<ruby>取<rt>と</rt></ruby>りつけ<ruby>位置<rt>いち</rt></ruby>', 'アカ<ruby>汲<rt>く</rt></ruby>み・センターボード・パドルがハルにしっかりと<ruby>結<rt>むす</rt></ruby>びつけられていること', 'バングロープの<ruby>調整<rt>ちょうせい</rt></ruby><ruby>位置<rt>いち</rt></ruby>'],
+    options_en: ['Position of sail luff measurement bands', 'Mooring rope attachment point', 'Bailer, centerboard, and paddle are properly tied to the hull', 'Vang rope adjustment point'],
+    answer: 2,
+    explain: '海上計測(b)は、アカ<ruby>汲<rt>く</rt></ruby>み・センターボード・パドルの3<ruby>点<rt>てん</rt></ruby>がハルにしっかりと<ruby>結<rt>むす</rt></ruby>びつけられているかを<ruby>確認<rt>かくにん</rt></ruby>する（CR4.3）。',
+    explain_en: 'On-the-water inspection (b) verifies that the bailer, centerboard, and paddle are all properly tied to the hull (CR4.3).'
+  },
+  {
+    cat: 'rule',
+    q: '海上計測(c)のルールで、もやいロープはどこから<ruby>取<rt>と</rt></ruby>らなければならない？',
+    q_en: 'According to on-the-water inspection rule (c), where must the mooring rope be taken from?',
+    options: ['ブームエンドから', 'トランサムから', 'マストステップから', 'フォアデッキから'],
+    options_en: ['From the boom end', 'From the transom', 'From the mast step', 'From the foredeck'],
+    answer: 2,
+    explain: '海上計測(c)では、もやいロープはマストステップから<ruby>取<rt>と</rt></ruby>らなければならないと<ruby>定<rt>さだ</rt></ruby>められている（CR4.3(b)）。',
+    explain_en: 'On-the-water inspection rule (c) requires the mooring rope to be taken from the mast step (CR4.3(b)).'
+  },
+  {
+    cat: 'rule',
+    q: '海上計測(d)の「マストロック」は<ruby>何<rt>なん</rt></ruby>のための<ruby>装置<rt>そうち</rt></ruby>？',
+    q_en: 'What is the purpose of the "mast lock" checked in on-the-water inspection (d)?',
+    options: ['マストの<ruby>高<rt>たか</rt></ruby>さを<ruby>調整<rt>ちょうせい</rt></ruby>するため', 'マストの<ruby>傾<rt>かたむ</rt></ruby>きを<ruby>固定<rt>こてい</rt></ruby>するため', '<ruby>沈<rt>ちん</rt></ruby>した<ruby>時<rt>とき</rt></ruby>にマストがハルから<ruby>抜<rt>ぬ</rt></ruby>けないようにするため', 'リグテンションを<ruby>均一<rt>きんいつ</rt></ruby>にするため'],
+    options_en: ['To adjust mast height', 'To lock mast rake', 'To prevent the mast from pulling out when capsized', 'To equalize rig tension'],
+    answer: 2,
+    explain: '海上計測(d)は、<ruby>転覆<rt>てんぷく</rt></ruby>（<ruby>沈<rt>ちん</rt></ruby>）した<ruby>時<rt>とき</rt></ruby>にマストがハルから<ruby>抜<rt>ぬ</rt></ruby>けないようにするラニヤードやロック<ruby>装置<rt>そうち</rt></ruby>があるかを<ruby>確認<rt>かくにん</rt></ruby>する（CR3.5.2.10）。',
+    explain_en: 'On-the-water inspection (d) verifies that a lanyard or locking device is present to prevent the mast from pulling out when capsized (CR3.5.2.10).'
+  },
+  {
+    cat: 'rule',
+    q: '海上計測(e)でチェックされるのはどれ？',
+    q_en: 'What is checked in on-the-water inspection item (e)?',
+    options: ['ブームの<ruby>長<rt>なが</rt></ruby>さとクリュー<ruby>位置<rt>いち</rt></ruby>', 'マストのカラーバンドとセールのラフ計測バンドの<ruby>位置<rt>いち</rt></ruby>', 'センターボードとラダーの<ruby>取<rt>と</rt></ruby>りつけ', 'タックとスロートのアイレット'],
+    options_en: ['Boom length and clew position', 'Mast color bands and sail luff measurement band positions', 'Centerboard and rudder attachment', 'Tack and throat eyelets'],
+    answer: 1,
+    explain: '海上計測(e)は、マストのカラーバンドとセールのラフ計測バンドの<ruby>位置<rt>いち</rt></ruby>が<ruby>正<rt>ただ</rt></ruby>しいことを<ruby>確認<rt>かくにん</rt></ruby>する（CR3.5.2.6、CR6.6.3.1）。バンドが<ruby>基準<rt>きじゅん</rt></ruby><ruby>位置<rt>いち</rt></ruby>から<ruby>外<rt>はず</rt></ruby>れると30%<ruby>加点<rt>かてん</rt></ruby>となる。',
+    explain_en: 'On-the-water inspection (e) verifies the positions of the mast color bands and sail luff measurement bands (CR3.5.2.6, CR6.6.3.1). If the sail band falls outside the two mast bands, a 30% per-race penalty applies.'
+  },
+  {
+    cat: 'rule',
+    q: '海上計測(f)において、セールのガラミロープとマスト・ブームの<ruby>間隔<rt>かんかく</rt></ruby>は<ruby>何<rt>なん</rt></ruby>mm<ruby>以内<rt>いない</rt></ruby>でなければならない？',
+    q_en: 'According to on-the-water inspection rule (f), what is the maximum allowed gap between the sail tie rope and the mast/boom?',
+    options: ['5mm', '10mm', '15mm', '20mm'],
+    options_en: ['5mm', '10mm', '15mm', '20mm'],
+    answer: 1,
+    explain: '海上計測(f)では、セールのガラミロープとマスト・ブームの<ruby>間隔<rt>かんかく</rt></ruby>が10mm<ruby>以内<rt>いない</rt></ruby>であることを<ruby>確認<rt>かくにん</rt></ruby>する（CR6.6.3.3）。<ruby>超過<rt>ちょうか</rt></ruby>すると10〜30%の標準ペナルティー<ruby>対象<rt>たいしょう</rt></ruby>となる。',
+    explain_en: 'On-the-water inspection (f) checks that the gap between the sail tie rope (garami) and the mast/boom is within 10mm (CR6.6.3.3). Exceeding this triggers a 10–30% standard penalty depending on severity.'
+  },
+  {
+    cat: 'rule',
+    q: '海上計測(g)（CR3.5.5.2）のバングロープに<ruby>関<rt>かん</rt></ruby>するルールはどれ？',
+    q_en: 'Which rule applies to the vang rope in on-the-water inspection (g) (CR3.5.5.2)?',
+    options: ['バングロープはブームエンドに<ruby>固定<rt>こてい</rt></ruby>すること', 'バングロープはミッドフレームより<ruby>後方<rt>こうほう</rt></ruby>から<ruby>調整<rt>ちょうせい</rt></ruby>できないこと', 'バングロープの<ruby>長<rt>なが</rt></ruby>さは1m<ruby>以内<rt>いない</rt></ruby>にすること', 'バングロープにブロックは<ruby>使用<rt>しよう</rt></ruby>できないこと'],
+    options_en: ['Vang rope must be fixed at boom end', 'Vang rope must not be adjustable from behind the mid-frame', 'Vang rope must be no longer than 1m', 'Blocks cannot be used on the vang rope'],
+    answer: 1,
+    explain: '海上計測(g)（CR3.5.5.2）では、バングロープはミッドフレームより<ruby>後方<rt>こうほう</rt></ruby>から<ruby>調整<rt>ちょうせい</rt></ruby>できないことが<ruby>定<rt>さだ</rt></ruby>められている。<ruby>違反<rt>いはん</rt></ruby>した<ruby>場合<rt>ばあい</rt></ruby>は<ruby>失格<rt>しっかく</rt></ruby>の<ruby>対象<rt>たいしょう</rt></ruby>となる。',
+    explain_en: 'On-the-water inspection (g) (CR3.5.5.2) requires that the vang rope must not be adjustable from behind the mid-frame position.'
+  },
+  {
+    cat: 'rule',
+    q: 'フィニッシュ<ruby>直後<rt>ちょくご</rt></ruby>の海上計測では、<ruby>着順<rt>ちゃくじゅん</rt></ruby>何<ruby>位<rt>い</rt></ruby><ruby>以内<rt>いない</rt></ruby>の<ruby>中<rt>なか</rt></ruby>から何<ruby>艇<rt>てい</rt></ruby>が計測の<ruby>対象<rt>たいしょう</rt></ruby>となる？',
+    q_en: 'In on-the-water measurement after finishing, how many boats from the top finishers are selected for inspection?',
+    options: ['5<ruby>位<rt>い</rt></ruby><ruby>以内<rt>いない</rt></ruby>から2<ruby>艇<rt>てい</rt></ruby>', '10<ruby>位<rt>い</rt></ruby><ruby>以内<rt>いない</rt></ruby>から3<ruby>艇<rt>てい</rt></ruby>', '3<ruby>位<rt>い</rt></ruby><ruby>以内<rt>いない</rt></ruby>の<ruby>全艇<rt>ぜんてい</rt></ruby>', '<ruby>全艇<rt>ぜんてい</rt></ruby>が計測の<ruby>対象<rt>たいしょう</rt></ruby>'],
+    options_en: ['2 boats from top 5', '3 boats from top 10', 'All boats in top 3', 'All boats inspected'],
+    answer: 1,
+    explain: 'フィニッシュ<ruby>直後<rt>ちょくご</rt></ruby>の海上計測では、<ruby>着順<rt>ちゃくじゅん</rt></ruby>10<ruby>位<rt>い</rt></ruby><ruby>以内<rt>いない</rt></ruby>の<ruby>艇<rt>てい</rt></ruby>の<ruby>中<rt>なか</rt></ruby>から3<ruby>艇<rt>てい</rt></ruby>がランダムに<ruby>選<rt>えら</rt></ruby>ばれて計測される。',
+    explain_en: 'In on-the-water measurement after finishing, 3 boats are randomly selected from the top 10 finishers for inspection.'
+  },
+  {
+    cat: 'rule',
+    q: '出<ruby>艇<rt>てい</rt></ruby>申告が<ruby>正<rt>ただ</rt></ruby>しくされていなかった<ruby>場合<rt>ばあい</rt></ruby>（<ruby>航跡記録装置<rt>こうせききろくそうち</rt></ruby>の<ruby>受取<rt>うけとり</rt></ruby>を<ruby>含<rt>ふく</rt></ruby>む）、標準ペナルティーは<ruby>何<rt>なん</rt></ruby>のレースに<ruby>加点<rt>かてん</rt></ruby>される？',
+    q_en: 'If the departure declaration (including GPS tracker receipt) was not properly completed, which race receives the standard penalty?',
+    options: ['<ruby>次<rt>つぎ</rt></ruby>のレース', '<ruby>直近<rt>ちょっきん</rt></ruby>のレース', 'シリーズ<ruby>全<rt>ぜん</rt></ruby>レース', 'ペナルティーなし'],
+    options_en: ['Next race', 'Most recent race', 'All series races', 'No penalty'],
+    answer: 1,
+    explain: '出<ruby>艇<rt>てい</rt></ruby>申告<ruby>未了<rt>みりょう</rt></ruby>は「<ruby>直近<rt>ちょっきん</rt></ruby>のレース」に5%<ruby>加点<rt>かてん</rt></ruby>（SI 5.1、19.1）。<ruby>帰着<rt>きちゃく</rt></ruby>申告<ruby>未了<rt>みりょう</rt></ruby>（<ruby>航跡記録装置<rt>こうせききろくそうち</rt></ruby>の<ruby>返却<rt>へんきゃく</rt></ruby>）も<ruby>同様<rt>どうよう</rt></ruby>に<ruby>直近<rt>ちょっきん</rt></ruby>のレースに5%。<ruby>装備<rt>そうび</rt></ruby>の<ruby>交換<rt>こうかん</rt></ruby>・計測チェック<ruby>未了<rt>みりょう</rt></ruby>はレース<ruby>毎<rt>ごと</rt></ruby>に5%と<ruby>異<rt>こと</rt></ruby>なる。',
+    explain_en: 'Departure declaration not properly completed: 5% added to the most recent race (SI 5.1, 19.1). Same for a missing return declaration. Equipment replacement/inspection check failures are penalized 5% per race — note the difference.'
+  },
+  {
+    cat: 'rule',
+    q: 'アカ<ruby>汲<rt>く</rt></ruby>みの標準ペナルティーで、ハルへの<ruby>取<rt>と</rt></ruby>りつけ<ruby>不備<rt>ふび</rt></ruby>と<ruby>艇<rt>てい</rt></ruby>に<ruby>積<rt>つ</rt></ruby>んでいない<ruby>場合<rt>ばあい</rt></ruby>、どちらが<ruby>重<rt>おも</rt></ruby>いペナルティーになる？（CR4.3(a)）',
+    q_en: 'For the bailer standard penalty (CR4.3(a)), which violation is penalized more heavily — not properly attached to hull, or not on board?',
+    options: ['<ruby>取<rt>と</rt></ruby>りつけ<ruby>不備<rt>ふび</rt></ruby>の<ruby>方<rt>ほう</rt></ruby>が<ruby>重<rt>おも</rt></ruby>い', '<ruby>積<rt>つ</rt></ruby>んでいない<ruby>方<rt>ほう</rt></ruby>が<ruby>重<rt>おも</rt></ruby>い', '<ruby>両方<rt>りょうほう</rt></ruby><ruby>同<rt>おな</rt></ruby>じペナルティー', '<ruby>両方<rt>りょうほう</rt></ruby>とも<ruby>抗議<rt>こうぎ</rt></ruby>の<ruby>対象<rt>たいしょう</rt></ruby>'],
+    options_en: ['Improper attachment is heavier', 'Not on board is heavier', 'Same penalty for both', 'Both result in a protest'],
+    answer: 1,
+    explain: 'ハルへの<ruby>取<rt>と</rt></ruby>りつけ<ruby>不備<rt>ふび</rt></ruby>は10%<ruby>加点<rt>かてん</rt></ruby>（レース<ruby>毎<rt>ごと</rt></ruby>）、<ruby>艇<rt>てい</rt></ruby>に<ruby>積<rt>つ</rt></ruby>んでいない<ruby>場合<rt>ばあい</rt></ruby>は30%<ruby>加点<rt>かてん</rt></ruby>（レース<ruby>毎<rt>ごと</rt></ruby>）。<ruby>未搭載<rt>みとうさい</rt></ruby>の<ruby>方<rt>ほう</rt></ruby>がより<ruby>重<rt>おも</rt></ruby>い（CR4.3(a)）。パドル・もやいロープも<ruby>同様<rt>どうよう</rt></ruby>の<ruby>区分<rt>くぶん</rt></ruby>。',
+    explain_en: 'Not properly attached to hull: 10% per race. Not on board: 30% per race. Missing the item entirely is penalized more heavily (CR4.3(a)). Same logic applies to paddle and mooring rope.'
+  },
+  {
+    cat: 'rule',
+    q: '<ruby>笛<rt>ふえ</rt></ruby>がPFD（<ruby>個人用浮揚用具<rt>こじんようふようようぐ</rt></ruby>）に<ruby>取<rt>と</rt></ruby>りつけられていなかった<ruby>場合<rt>ばあい</rt></ruby>と、<ruby>笛<rt>ふえ</rt></ruby>が<ruby>全<rt>まった</rt></ruby>くなかった<ruby>場合<rt>ばあい</rt></ruby>、どちらが<ruby>重<rt>おも</rt></ruby>いペナルティー？（CR4.2(a)）',
+    q_en: 'Which carries a heavier standard penalty — whistle not attached to PFD, or no whistle at all? (CR4.2(a))',
+    options: ['PFDへの<ruby>取<rt>と</rt></ruby>りつけ<ruby>不備<rt>ふび</rt></ruby>の<ruby>方<rt>ほう</rt></ruby>が<ruby>重<rt>おも</rt></ruby>い', '<ruby>笛<rt>ふえ</rt></ruby>がない<ruby>方<rt>ほう</rt></ruby>が<ruby>重<rt>おも</rt></ruby>い', '<ruby>両方<rt>りょうほう</rt></ruby><ruby>同<rt>おな</rt></ruby>じペナルティー', '<ruby>両方<rt>りょうほう</rt></ruby>とも<ruby>抗議<rt>こうぎ</rt></ruby>の<ruby>対象<rt>たいしょう</rt></ruby>'],
+    options_en: ['Not attached to PFD is heavier', 'No whistle at all is heavier', 'Same penalty for both', 'Both result in a protest'],
+    answer: 1,
+    explain: '<ruby>笛<rt>ふえ</rt></ruby>がPFDに<ruby>取<rt>と</rt></ruby>りつけられていない：10%<ruby>加点<rt>かてん</rt></ruby>（レース<ruby>毎<rt>ごと</rt></ruby>）。<ruby>笛<rt>ふえ</rt></ruby>が<ruby>全<rt>まった</rt></ruby>くない：30%<ruby>加点<rt>かてん</rt></ruby>（レース<ruby>毎<rt>ごと</rt></ruby>）（CR4.2(a)）。',
+    explain_en: 'Whistle not attached to PFD: 10% per race. No whistle at all: 30% per race (CR4.2(a)).'
+  },
+  {
+    cat: 'rule',
+    q: 'マストをハルに<ruby>固定<rt>こてい</rt></ruby>するラニヤードやロック<ruby>装置<rt>そうち</rt></ruby>がなかった<ruby>場合<rt>ばあい</rt></ruby>（CR3.5.2.10）はどうなる？',
+    q_en: 'What is the consequence if there is no lanyard, lock, or other device to secure the mast to the hull? (CR3.5.2.10)',
+    options: ['ペナルティーなし（<ruby>推奨<rt>すいしょう</rt></ruby>のみ）', '<ruby>軽微<rt>けいび</rt></ruby>な標準ペナルティーが<ruby>加点<rt>かてん</rt></ruby>される', '<ruby>重<rt>おも</rt></ruby>い標準ペナルティーが<ruby>加点<rt>かてん</rt></ruby>される（レース<ruby>毎<rt>ごと</rt></ruby>）', '<ruby>抗議<rt>こうぎ</rt></ruby>の<ruby>対象<rt>たいしょう</rt></ruby>になる'],
+    options_en: ['No penalty (recommendation only)', 'Minor standard penalty added', 'Heavy standard penalty added (per race)', 'Subject to protest'],
+    answer: 2,
+    explain: 'マストロック<ruby>装置<rt>そうち</rt></ruby>がない<ruby>場合<rt>ばあい</rt></ruby>は30%<ruby>加点<rt>かてん</rt></ruby>（レース<ruby>毎<rt>ごと</rt></ruby>）（CR3.5.2.10）。<ruby>転覆<rt>てんぷく</rt></ruby><ruby>時<rt>じ</rt></ruby>の<ruby>安全<rt>あんぜん</rt></ruby><ruby>上<rt>じょう</rt></ruby>の<ruby>問題<rt>もんだい</rt></ruby>から<ruby>重<rt>おも</rt></ruby>いペナルティーが<ruby>設定<rt>せってい</rt></ruby>されている。',
+    explain_en: 'No mast locking device: 30% per race (CR3.5.2.10). This heavy penalty reflects the safety risk of the mast pulling out of the hull when capsized.'
+  },
+  {
+    cat: 'rule',
+    q: '1<ruby>本<rt>ほん</rt></ruby>のセールタイ（ガラミ）がなくなっていた<ruby>場合<rt>ばあい</rt></ruby>と、2<ruby>本以上<rt>ほんいじょう</rt></ruby>のアイレットで<ruby>間隔<rt>かんかく</rt></ruby>が15mm<ruby>以上<rt>いじょう</rt></ruby>の<ruby>場合<rt>ばあい</rt></ruby>、ペナルティーの<ruby>重<rt>おも</rt></ruby>さはどう<ruby>違<rt>ちが</rt></ruby>う？（CR6.6.3.3）',
+    q_en: 'How do penalties differ between 1 missing sail tie vs a gap ≥15mm at 2 or more eyelets? (CR6.6.3.3)',
+    options: ['<ruby>両方<rt>りょうほう</rt></ruby><ruby>同<rt>おな</rt></ruby>じ', '1<ruby>本<rt>ほん</rt></ruby>なくなっていた<ruby>方<rt>ほう</rt></ruby>が<ruby>重<rt>おも</rt></ruby>い', '15mm<ruby>以上<rt>いじょう</rt></ruby>の<ruby>方<rt>ほう</rt></ruby>が<ruby>重<rt>おも</rt></ruby>い', '<ruby>両方<rt>りょうほう</rt></ruby>とも<ruby>抗議<rt>こうぎ</rt></ruby>の<ruby>対象<rt>たいしょう</rt></ruby>'],
+    options_en: ['Same for both', '1 missing tie is penalized more heavily', 'Gap ≥15mm is penalized more heavily', 'Both result in a protest'],
+    answer: 2,
+    explain: '1<ruby>本<rt>ほん</rt></ruby>のセールタイがなくなっていた<ruby>場合<rt>ばあい</rt></ruby>：10%<ruby>加点<rt>かてん</rt></ruby>（レース<ruby>毎<rt>ごと</rt></ruby>）。2<ruby>本以上<rt>ほんいじょう</rt></ruby>のアイレットで15mm<ruby>以上<rt>いじょう</rt></ruby>の<ruby>場合<rt>ばあい</rt></ruby>：30%<ruby>加点<rt>かてん</rt></ruby>（レース<ruby>毎<rt>ごと</rt></ruby>）（CR6.6.3.3）。',
+    explain_en: '1 missing sail tie: 10% per race. Gap ≥15mm at 2+ eyelets: 30% per race (CR6.6.3.3).'
+  },
+  {
+    cat: 'rule',
+    q: '<ruby>浮力<rt>ふりょく</rt></ruby>バッグ（アップバック）が1<ruby>つ<rt>つ</rt></ruby><ruby>正<rt>ただ</rt></ruby>しく<ruby>取<rt>と</rt></ruby>りつけられていない/<ruby>適切<rt>てきせつ</rt></ruby>に<ruby>膨<rt>ふく</rt></ruby>らんでいない<ruby>場合<rt>ばあい</rt></ruby>と、2<ruby>つ以上<rt>ついじょう</rt></ruby>が<ruby>不備<rt>ふび</rt></ruby>の<ruby>場合<rt>ばあい</rt></ruby>の<ruby>扱<rt>あつか</rt></ruby>いは？（CR3.2.7.1）',
+    q_en: 'What are the different outcomes when 1 buoyancy bag is improperly installed vs 2 or more? (CR3.2.7.1)',
+    options: ['<ruby>両方<rt>りょうほう</rt></ruby><ruby>同<rt>おな</rt></ruby>じ標準ペナルティー', '1<ruby>つ<rt>つ</rt></ruby>は標準ペナルティー、2<ruby>つ以上<rt>ついじょう</rt></ruby>は<ruby>抗議<rt>こうぎ</rt></ruby>の<ruby>対象<rt>たいしょう</rt></ruby>', '1<ruby>つ<rt>つ</rt></ruby>は<ruby>抗議<rt>こうぎ</rt></ruby>の<ruby>対象<rt>たいしょう</rt></ruby>、2<ruby>つ以上<rt>ついじょう</rt></ruby>は標準ペナルティー', '<ruby>両方<rt>りょうほう</rt></ruby>とも<ruby>抗議<rt>こうぎ</rt></ruby>の<ruby>対象<rt>たいしょう</rt></ruby>'],
+    options_en: ['Same standard penalty for both', '1 = standard penalty; 2+ = subject to protest', '1 = subject to protest; 2+ = standard penalty', 'Both subject to protest'],
+    answer: 1,
+    explain: '<ruby>浮力<rt>ふりょく</rt></ruby>バッグ1<ruby>つ<rt>つ</rt></ruby>が<ruby>不備<rt>ふび</rt></ruby>：30%<ruby>加点<rt>かてん</rt></ruby>（レース<ruby>毎<rt>ごと</rt></ruby>）。2<ruby>つ以上<rt>ついじょう</rt></ruby>が<ruby>不備<rt>ふび</rt></ruby>：<ruby>抗議<rt>こうぎ</rt></ruby>の<ruby>対象<rt>たいしょう</rt></ruby>（CR3.2.7.1）。',
+    explain_en: '1 buoyancy bag not properly installed/inflated: 30% per race. 2 or more not properly installed/inflated: subject to protest (CR3.2.7.1).'
+  },
+  {
+    cat: 'rule',
+    q: 'ブームの<ruby>張<rt>は</rt></ruby>り<ruby>索<rt>さく</rt></ruby>とブームとの<ruby>間隔<rt>かんかく</rt></ruby>が120mmを<ruby>超<rt>こ</rt></ruby>えていた<ruby>場合<rt>ばあい</rt></ruby>と、100〜120mmの<ruby>場合<rt>ばあい</rt></ruby>のペナルティーの<ruby>重<rt>おも</rt></ruby>さは？（CR3.5.3.8）',
+    q_en: 'How do standard penalties differ for a boom tension line gap over 120mm vs 100–120mm? (CR3.5.3.8)',
+    options: ['<ruby>両方<rt>りょうほう</rt></ruby><ruby>同<rt>おな</rt></ruby>じ', '120mm<ruby>超<rt>ちょう</rt></ruby>の<ruby>方<rt>ほう</rt></ruby>が<ruby>重<rt>おも</rt></ruby>いペナルティー', '100〜120mmの<ruby>方<rt>ほう</rt></ruby>が<ruby>重<rt>おも</rt></ruby>いペナルティー', '<ruby>両方<rt>りょうほう</rt></ruby>とも<ruby>抗議<rt>こうぎ</rt></ruby>の<ruby>対象<rt>たいしょう</rt></ruby>'],
+    options_en: ['Same for both', 'Over 120mm carries a heavier penalty', '100–120mm carries a heavier penalty', 'Both result in a protest'],
+    answer: 1,
+    explain: 'ブームの<ruby>張<rt>は</rt></ruby>り<ruby>索<rt>さく</rt></ruby>とブームの<ruby>間隔<rt>かんかく</rt></ruby>が100mm〜120mm：10%<ruby>加点<rt>かてん</rt></ruby>（レース<ruby>毎<rt>ごと</rt></ruby>）、120mm<ruby>超<rt>ちょう</rt></ruby>：30%<ruby>加点<rt>かてん</rt></ruby>（レース<ruby>毎<rt>ごと</rt></ruby>）（CR3.5.3.8）。<ruby>間隔<rt>かんかく</rt></ruby>が<ruby>大<rt>おお</rt></ruby>きいほど<ruby>重<rt>おも</rt></ruby>い。',
+    explain_en: 'Gap 100mm–120mm: 10% per race. Over 120mm: 30% per race (CR3.5.3.8). The larger the gap, the heavier the penalty.'
+  },
+  {
+    cat: 'rule',
+    q: '計測で<ruby>検査<rt>けんさ</rt></ruby>されていない<ruby>装備品<rt>そうびひん</rt></ruby>を<ruby>使用<rt>しよう</rt></ruby>した<ruby>場合<rt>ばあい</rt></ruby>、どうなる？',
+    q_en: 'What is the consequence of using equipment that was not inspected during measurement?',
+    options: ['5%<ruby>加点<rt>かてん</rt></ruby>（レース<ruby>毎<rt>ごと</rt></ruby>）', '10%<ruby>加点<rt>かてん</rt></ruby>（レース<ruby>毎<rt>ごと</rt></ruby>）', '30%<ruby>加点<rt>かてん</rt></ruby>（レース<ruby>毎<rt>ごと</rt></ruby>）', '<ruby>抗議<rt>こうぎ</rt></ruby>の<ruby>対象<rt>たいしょう</rt></ruby>になる'],
+    options_en: ['5% per race', '10% per race', '30% per race', 'Subject to protest'],
+    answer: 3,
+    explain: '計測で<ruby>検査<rt>けんさ</rt></ruby>されていない<ruby>装備品<rt>そうびひん</rt></ruby>の<ruby>使用<rt>しよう</rt></ruby>は<ruby>抗議<rt>こうぎ</rt></ruby>の<ruby>対象<rt>たいしょう</rt></ruby>。<ruby>承認<rt>しょうにん</rt></ruby>されていない<ruby>艤装品<rt>ぎそうひん</rt></ruby>の<ruby>使用<rt>しよう</rt></ruby>、<ruby>中程度<rt>ちゅうていど</rt></ruby>のペナルティーの<ruby>繰<rt>く</rt></ruby>り<ruby>返<rt>かえ</rt></ruby>しも<ruby>同様<rt>どうよう</rt></ruby>に<ruby>抗議<rt>こうぎ</rt></ruby>の<ruby>対象<rt>たいしょう</rt></ruby>となる。',
+    explain_en: 'Using uninspected equipment is subject to protest. The same applies to using unapproved fittings and repeated mid-level violations.'
+  },
+
   // ===== 旗（テキスト）13問 =====
   {
     cat: 'flag',
