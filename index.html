@@ -1085,7 +1085,7 @@ const quizData = [
     explain_en: 'RRS Rule 13. A boat tacking must keep clear of other boats until the tack is complete.'
   },
   {
-    cat: 'rule',
+    cat: 'sail',
     q: '「ベアアウェイ」とはどういう<ruby>動作<rt>どうさ</rt></ruby>？',
     q_en: 'What does "bear away" mean?',
     options: ['<ruby>艇<rt>てい</rt></ruby>を<ruby>風上<rt>かざかみ</rt></ruby>へ<ruby>向<rt>む</rt></ruby>ける', '<ruby>艇<rt>てい</rt></ruby>を<ruby>風下<rt>かざしも</rt></ruby>へ<ruby>向<rt>む</rt></ruby>ける', '<ruby>速度<rt>そくど</rt></ruby>を<ruby>落<rt>お</rt></ruby>とす', 'リタイア'],
@@ -1522,7 +1522,7 @@ const quizData = [
     cat: 'rule',
     q: 'シリーズ<ruby>中<rt>ちゅう</rt></ruby>2<ruby>回目<rt>かいめ</rt></ruby>のRule 42ペナルティを<ruby>受<rt>う</rt></ruby>けた。<ruby>最<rt>もっと</rt></ruby>も<ruby>正<rt>ただ</rt></ruby>しい<ruby>行動<rt>こうどう</rt></ruby>は？',
     q_en: 'You receive a second Rule 42 penalty in the series. What must you do?',
-    options: ['Two Turnsする', 'Two Turns<ruby>後<rt>ご</rt></ruby>にRET', '<ruby>直<rt>ただ</rt></ruby>ちにRET', 'フィニッシュ<ruby>後<rt>ご</rt></ruby>にジュリーへ'],
+    options: ['720<ruby>度回転<rt>どかいてん</rt></ruby>（Two Turns）をする', '720<ruby>度回転<rt>どかいてん</rt></ruby>後にリタイアする', '<ruby>直<rt>ただ</rt></ruby>ちにリタイアする', 'フィニッシュ<ruby>後<rt>ご</rt></ruby>にジュリーへ<ruby>報告<rt>ほうこく</rt></ruby>する'],
     options_en: ['Take a Two-Turns Penalty', 'Take Two Turns, then retire', 'Retire immediately', 'Report to the jury after finishing'],
     answer: 2,
     explain: 'シリーズ2<ruby>回目<rt>かいめ</rt></ruby>のRule 42ペナルティを<ruby>受<rt>う</rt></ruby>けた<ruby>艇<rt>てい</rt></ruby>は、<ruby>直<rt>ただ</rt></ruby>ちにリタイアしなければならない。<ruby>続行<rt>ぞっこう</rt></ruby>すると、<ruby>通常<rt>つうじょう</rt></ruby>は<ruby>審問<rt>しんもん</rt></ruby>なしで<ruby>失格<rt>しっかく</rt></ruby>となる。',
@@ -1562,33 +1562,33 @@ const quizData = [
   // ===== ルール追加7問 =====
   {
     cat: 'rule',
-    q: 'ジュリーに1<ruby>回目<rt>かいめ</rt></ruby>の<ruby>笛<rt>ふえ</rt></ruby>を<ruby>吹<rt>ふ</rt></ruby>かれたが<ruby>無視<rt>むし</rt></ruby>した。どうなる？',
-    q_en: 'You received the first whistle from the jury but ignored it. What happens?',
-    options: ['<ruby>即失格<rt>そくしっかく</rt></ruby>になる', '<ruby>特<rt>とく</rt></ruby>に<ruby>何<rt>なに</rt></ruby>もない（<ruby>警告<rt>けいこく</rt></ruby>のみ）', 'リタイアを<ruby>求<rt>もと</rt></ruby>められる', '720<ruby>度回転<rt>どかいてん</rt></ruby>が<ruby>必要<rt>ひつよう</rt></ruby>'],
-    options_en: ['Immediate disqualification', 'Nothing happens (warning only)', 'You are required to retire', 'A 720° turn is required'],
+    q: 'Rule 42<ruby>違反<rt>いはん</rt></ruby>でジュリーから<ruby>笛<rt>ふえ</rt></ruby>（<ruby>黄旗<rt>おうき</rt></ruby>）を<ruby>吹<rt>ふ</rt></ruby>かれた（シリーズ<ruby>初回<rt>しょかい</rt></ruby>）。<ruby>何<rt>なに</rt></ruby>をすればよい？',
+    q_en: 'You receive a Rule 42 penalty signal (yellow flag + whistle) for the first time in the series. What must you do?',
+    options: ['<ruby>特<rt>とく</rt></ruby>に<ruby>何<rt>なに</rt></ruby>もしなくてよい（<ruby>警告<rt>けいこく</rt></ruby>のみ）', '720<ruby>度回転<rt>どかいてん</rt></ruby>（Two-Turns）をすぐに<ruby>行<rt>おこな</rt></ruby>う', 'すぐにリタイアする', 'フィニッシュ<ruby>後<rt>ご</rt></ruby>にジュリーへ<ruby>報告<rt>ほうこく</rt></ruby>する'],
+    options_en: ['Nothing required (warning only)', 'Take a Two-Turns Penalty (720°) immediately', 'Retire immediately', 'Report to the jury after finishing'],
     answer: 1,
-    explain: '1<ruby>回目<rt>かいめ</rt></ruby>の<ruby>笛<rt>ふえ</rt></ruby>は<ruby>警告<rt>けいこく</rt></ruby>。これだけでペナルティは<ruby>科<rt>か</rt></ruby>されない。<ruby>引<rt>ひ</rt></ruby>き<ruby>続<rt>つづ</rt></ruby>き<ruby>帆走<rt>はんそう</rt></ruby>を<ruby>続<rt>つづ</rt></ruby>けられる。',
-    explain_en: 'The first whistle is a warning only. No penalty is imposed at this stage. You may continue racing.'
+    explain: 'Rule 42<ruby>違反<rt>いはん</rt></ruby>（シリーズ1<ruby>回目<rt>かいめ</rt></ruby>）のペナルティはTwo-Turns（720<ruby>度回転<rt>どかいてん</rt></ruby>）。すぐに<ruby>取<rt>と</rt></ruby>らなければ<ruby>無審問<rt>むしんもん</rt></ruby>でDSQ（Appendix P1）。',
+    explain_en: 'A first Rule 42 penalty (Appendix P1) requires a Two-Turns (720°) penalty immediately. Failure to comply results in DSQ without a hearing.'
   },
   {
     cat: 'rule',
-    q: 'ジュリーに2<ruby>回目<rt>かいめ</rt></ruby>の<ruby>笛<rt>ふえ</rt></ruby>を<ruby>吹<rt>ふ</rt></ruby>かれたが<ruby>無視<rt>むし</rt></ruby>した。どうなる？（リタイア<ruby>時<rt>じ</rt></ruby>の<ruby>扱<rt>あつか</rt></ruby>いも<ruby>記載<rt>きさい</rt></ruby>）',
-    q_en: 'You received the second whistle from the jury but ignored it. What happens? (Also: what if you retire?)',
-    options: ['<ruby>即失格<rt>そくしっかく</rt></ruby>になる', '<ruby>特<rt>とく</rt></ruby>に<ruby>何<rt>なに</rt></ruby>もない', '3<ruby>回目<rt>かいめ</rt></ruby>の<ruby>笛<rt>ふえ</rt></ruby>へ（リタイアすれば<ruby>最下位<rt>さいかい</rt></ruby>フィニッシャーと<ruby>同点<rt>どうてん</rt></ruby>）', '<ruby>警告<rt>けいこく</rt></ruby>として<ruby>記録<rt>きろく</rt></ruby>される'],
-    options_en: ['Immediate disqualification', 'Nothing happens', 'Advances to 3rd whistle (retiring = same score as last finisher)', 'Recorded as a warning'],
-    answer: 2,
-    explain: '2<ruby>回目<rt>かいめ</rt></ruby>の<ruby>笛<rt>ふえ</rt></ruby>でリタイアを<ruby>指示<rt>しじ</rt></ruby>される。この<ruby>時点<rt>じてん</rt></ruby>でリタイアした<ruby>場合<rt>ばあい</rt></ruby>は<ruby>最下位<rt>さいかい</rt></ruby>フィニッシャーと<ruby>同点<rt>どうてん</rt></ruby>（DNFより<ruby>有利<rt>ゆうり</rt></ruby>）。<ruby>無視<rt>むし</rt></ruby>すると3<ruby>回目<rt>かいめ</rt></ruby>の<ruby>笛<rt>ふえ</rt></ruby>へ。',
-    explain_en: 'The second whistle is an instruction to retire. If you retire at this point, you receive the same score as the last finisher (better than DNF). Ignoring it leads to the third whistle.'
+    q: 'シリーズ<ruby>中<rt>ちゅう</rt></ruby>2<ruby>回目<rt>かいめ</rt></ruby>のRule 42<ruby>違反<rt>いはん</rt></ruby>でジュリーから<ruby>笛<rt>ふえ</rt></ruby>を<ruby>吹<rt>ふ</rt></ruby>かれた。<ruby>正<rt>ただ</rt></ruby>しい<ruby>対応<rt>たいおう</rt></ruby>は？',
+    q_en: 'You receive a second Rule 42 penalty signal in the series. What is the correct response?',
+    options: ['720<ruby>度回転<rt>どかいてん</rt></ruby>（Two-Turns）をすぐに<ruby>行<rt>おこな</rt></ruby>う', 'すぐにリタイアする（スコアはRET）', '<ruby>特<rt>とく</rt></ruby>に<ruby>何<rt>なに</rt></ruby>もしなくてよい', 'フィニッシュ<ruby>後<rt>ご</rt></ruby>にジュリーへ<ruby>報告<rt>ほうこく</rt></ruby>する'],
+    options_en: ['Take a Two-Turns Penalty (720°) immediately', 'Retire immediately (score = RET)', 'Nothing required', 'Report to the jury after finishing'],
+    answer: 1,
+    explain: 'シリーズ2<ruby>回目<rt>かいめ</rt></ruby>のRule 42ペナルティ（Appendix P2）はすぐにリタイア。リタイアすればスコアはRET（＝DNF<ruby>相当<rt>そうとう</rt></ruby>、シリーズ<ruby>除外<rt>じょがい</rt></ruby>可）。リタイアしなければ<ruby>無審問<rt>むしんもん</rt></ruby>でDSQ。',
+    explain_en: 'A second Rule 42 penalty (Appendix P2) requires immediate retirement. Retiring scores as RET (= DNF equivalent, excludable from series). Failure to retire results in DSQ without a hearing.'
   },
   {
     cat: 'rule',
-    q: 'ジュリーに3<ruby>回目<rt>かいめ</rt></ruby>の<ruby>笛<rt>ふえ</rt></ruby>を<ruby>吹<rt>ふ</rt></ruby>かれたが<ruby>無視<rt>むし</rt></ruby>した。どうなる？（リタイア<ruby>時<rt>じ</rt></ruby>の<ruby>扱<rt>あつか</rt></ruby>いも<ruby>記載<rt>きさい</rt></ruby>）',
-    q_en: 'You received the third whistle from the jury but ignored it. What happens? (Also: what about retiring after this point?)',
-    options: ['<ruby>特<rt>とく</rt></ruby>に<ruby>何<rt>なに</rt></ruby>もない', '<ruby>警告<rt>けいこく</rt></ruby>として<ruby>記録<rt>きろく</rt></ruby>される', '<ruby>失格<rt>しっかく</rt></ruby>（DSQ）になる', '<ruby>次<rt>つぎ</rt></ruby>のレースに<ruby>出場停止<rt>しゅつじょうていし</rt></ruby>'],
-    options_en: ['Nothing happens', 'Recorded as a warning', 'Disqualified (DSQ)', 'Excluded from the next race'],
-    answer: 2,
-    explain: '3<ruby>回目<rt>かいめ</rt></ruby>の<ruby>笛<rt>ふえ</rt></ruby>を<ruby>無視<rt>むし</rt></ruby>すると<ruby>失格<rt>しっかく</rt></ruby>（DSQ）。3<ruby>回目<rt>かいめ</rt></ruby>の<ruby>後<rt>あと</rt></ruby>にリタイアしてもDSQは<ruby>免<rt>まぬか</rt></ruby>れない。DSQはDNFより<ruby>点数<rt>てんすう</rt></ruby>が<ruby>悪<rt>わる</rt></ruby>くなる。',
-    explain_en: 'Ignoring the third whistle results in disqualification (DSQ). Even retiring after the third whistle will not avoid DSQ. DSQ scores worse than DNF.'
+    q: 'シリーズ<ruby>中<rt>ちゅう</rt></ruby>3<ruby>回目<rt>かいめ</rt></ruby>のRule 42<ruby>違反<rt>いはん</rt></ruby>でジュリーから<ruby>笛<rt>ふえ</rt></ruby>を<ruby>吹<rt>ふ</rt></ruby>かれ、すぐにリタイアした。スコアはどうなる？',
+    q_en: 'You receive a third Rule 42 penalty in the series and retire immediately. What is your score?',
+    options: ['<ruby>通常<rt>つうじょう</rt></ruby>のRET（シリーズ<ruby>除外<rt>じょがい</rt></ruby>可）になる', '<ruby>無審問<rt>むしんもん</rt></ruby>でDSQ（<ruby>除外<rt>じょがい</rt></ruby><ruby>不可<rt>ふか</rt></ruby>＝DNE<ruby>相当<rt>そうとう</rt></ruby>）になる', 'リタイアにより<ruby>免除<rt>めんじょ</rt></ruby>される', '<ruby>全<rt>ぜん</rt></ruby>レースDSQになる'],
+    options_en: ['Normal RET (excludable from series)', 'DSQ without hearing, not excludable (= DNE equivalent)', 'Exonerated by retiring', 'DSQ in all races'],
+    answer: 1,
+    explain: 'シリーズ3<ruby>回目<rt>かいめ</rt></ruby>のRule 42ペナルティ（Appendix P3）はリタイアしても<ruby>除外<rt>じょがい</rt></ruby><ruby>不可<rt>ふか</rt></ruby>のDSQ（DNE<ruby>相当<rt>そうとう</rt></ruby>）。リタイアしなければ<ruby>全<rt>ぜん</rt></ruby>レース<ruby>除外<rt>じょがい</rt></ruby><ruby>不可<rt>ふか</rt></ruby>DSQに<ruby>加<rt>くわ</rt></ruby>えRule 69<ruby>審問<rt>しんもん</rt></ruby>の<ruby>対象<rt>たいしょう</rt></ruby>にもなる。',
+    explain_en: 'A third Rule 42 penalty (Appendix P3): even retiring results in DSQ that cannot be excluded from the series (= DNE equivalent). Failure to retire means DSQ in all series races (not excludable) plus possible Rule 69 hearing.'
   },
   {
     cat: 'rule',
@@ -1624,7 +1624,7 @@ const quizData = [
     cat: 'rule',
     q: 'スタートと1マークの<ruby>間<rt>あいだ</rt></ruby>に2マークがあり、<ruby>接触<rt>せっしょく</rt></ruby>したが360<ruby>度回転<rt>どかいてん</rt></ruby>のペナルティを<ruby>履行<rt>りこう</rt></ruby>しなかった。どうなる？',
     q_en: 'Mark 2 was placed between the start and mark 1. You touched it but did not take a 360° penalty turn. What happens?',
-    options: ['<ruby>失格<rt>しっかく</rt></ruby>になる', 'ペナルティは<ruby>不要<rt>ふよう</rt></ruby>（<ruby>現在<rt>げんざい</rt></ruby>のレグのコースマークでないため）', '360<ruby>度回転<rt>どかいてん</rt></ruby>のペナルティが<ruby>必要<rt>ひつよう</rt></ruby>', '<ruby>他艇<rt>たてい</rt></ruby>からプロテストされる'],
+    options: ['<ruby>失格<rt>しっかく</rt></ruby>になる', 'ペナルティは<ruby>不要<rt>ふよう</rt></ruby>', '360<ruby>度回転<rt>どかいてん</rt></ruby>のペナルティが<ruby>必要<rt>ひつよう</rt></ruby>', '<ruby>他艇<rt>たてい</rt></ruby>からプロテストされる'],
     options_en: ['You are disqualified', 'No penalty required — it is not a mark bounding the current leg', 'A 360° penalty turn is required', 'You can be protested by other boats'],
     answer: 1,
     explain: 'RRS 31により、ペナルティが<ruby>発生<rt>はっせい</rt></ruby>するのは「<ruby>現在<rt>げんざい</rt></ruby><ruby>帆走<rt>はんそう</rt></ruby>しているレグの<ruby>始点<rt>してん</rt></ruby>・<ruby>境界<rt>きょうかい</rt></ruby>・<ruby>終点<rt>しゅうてん</rt></ruby>となるマーク」に<ruby>接触<rt>せっしょく</rt></ruby>した<ruby>場合<rt>ばあい</rt></ruby>のみ。スタート→1マーク<ruby>間<rt>あいだ</rt></ruby>の<ruby>帆走中<rt>はんそうちゅう</rt></ruby>に2マークは<ruby>該当<rt>がいとう</rt></ruby>しないのでペナルティ<ruby>不要<rt>ふよう</rt></ruby>。',
