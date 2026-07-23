@@ -1296,6 +1296,78 @@ const quizData = [
     explain_en: 'RRS Rule 13 also applies during jibing. From the moment the foot crosses the centerline until the main is fully filled on the new side, the boat must keep clear.'
   },
 
+  // ===== ルール追加7問 =====
+  {
+    cat: 'rule',
+    q: 'ジュリーに1<ruby>回目<rt>かいめ</rt></ruby>の<ruby>笛<rt>ふえ</rt></ruby>を<ruby>吹<rt>ふ</rt></ruby>かれたが<ruby>無視<rt>むし</rt></ruby>した。どうなる？',
+    q_en: 'You received the first whistle from the jury but ignored it. What happens?',
+    options: ['<ruby>即失格<rt>そくしっかく</rt></ruby>になる', '<ruby>特<rt>とく</rt></ruby>に<ruby>何<rt>なに</rt></ruby>もない（<ruby>警告<rt>けいこく</rt></ruby>のみ）', 'リタイアを<ruby>求<rt>もと</rt></ruby>められる', '720<ruby>度回転<rt>どかいてん</rt></ruby>が<ruby>必要<rt>ひつよう</rt></ruby>'],
+    options_en: ['Immediate disqualification', 'Nothing happens (warning only)', 'You are required to retire', 'A 720° turn is required'],
+    answer: 1,
+    explain: '1<ruby>回目<rt>かいめ</rt></ruby>の<ruby>笛<rt>ふえ</rt></ruby>は<ruby>警告<rt>けいこく</rt></ruby>。これだけでペナルティは<ruby>科<rt>か</rt></ruby>されない。<ruby>引<rt>ひ</rt></ruby>き<ruby>続<rt>つづ</rt></ruby>き<ruby>帆走<rt>はんそう</rt></ruby>を<ruby>続<rt>つづ</rt></ruby>けられる。',
+    explain_en: 'The first whistle is a warning only. No penalty is imposed at this stage. You may continue racing.'
+  },
+  {
+    cat: 'rule',
+    q: 'ジュリーに2<ruby>回目<rt>かいめ</rt></ruby>の<ruby>笛<rt>ふえ</rt></ruby>を<ruby>吹<rt>ふ</rt></ruby>かれたが<ruby>無視<rt>むし</rt></ruby>した。どうなる？（リタイア<ruby>時<rt>じ</rt></ruby>の<ruby>扱<rt>あつか</rt></ruby>いも<ruby>記載<rt>きさい</rt></ruby>）',
+    q_en: 'You received the second whistle from the jury but ignored it. What happens? (Also: what if you retire?)',
+    options: ['<ruby>即失格<rt>そくしっかく</rt></ruby>になる', '<ruby>特<rt>とく</rt></ruby>に<ruby>何<rt>なに</rt></ruby>もない', '3<ruby>回目<rt>かいめ</rt></ruby>の<ruby>笛<rt>ふえ</rt></ruby>へ（リタイアすれば<ruby>最下位<rt>さいかい</rt></ruby>フィニッシャーと<ruby>同点<rt>どうてん</rt></ruby>）', '<ruby>警告<rt>けいこく</rt></ruby>として<ruby>記録<rt>きろく</rt></ruby>される'],
+    options_en: ['Immediate disqualification', 'Nothing happens', 'Advances to 3rd whistle (retiring = same score as last finisher)', 'Recorded as a warning'],
+    answer: 2,
+    explain: '2<ruby>回目<rt>かいめ</rt></ruby>の<ruby>笛<rt>ふえ</rt></ruby>でリタイアを<ruby>指示<rt>しじ</rt></ruby>される。この<ruby>時点<rt>じてん</rt></ruby>でリタイアした<ruby>場合<rt>ばあい</rt></ruby>は<ruby>最下位<rt>さいかい</rt></ruby>フィニッシャーと<ruby>同点<rt>どうてん</rt></ruby>（DNFより<ruby>有利<rt>ゆうり</rt></ruby>）。<ruby>無視<rt>むし</rt></ruby>すると3<ruby>回目<rt>かいめ</rt></ruby>の<ruby>笛<rt>ふえ</rt></ruby>へ。',
+    explain_en: 'The second whistle is an instruction to retire. If you retire at this point, you receive the same score as the last finisher (better than DNF). Ignoring it leads to the third whistle.'
+  },
+  {
+    cat: 'rule',
+    q: 'ジュリーに3<ruby>回目<rt>かいめ</rt></ruby>の<ruby>笛<rt>ふえ</rt></ruby>を<ruby>吹<rt>ふ</rt></ruby>かれたが<ruby>無視<rt>むし</rt></ruby>した。どうなる？（リタイア<ruby>時<rt>じ</rt></ruby>の<ruby>扱<rt>あつか</rt></ruby>いも<ruby>記載<rt>きさい</rt></ruby>）',
+    q_en: 'You received the third whistle from the jury but ignored it. What happens? (Also: what about retiring after this point?)',
+    options: ['<ruby>特<rt>とく</rt></ruby>に<ruby>何<rt>なに</rt></ruby>もない', '<ruby>警告<rt>けいこく</rt></ruby>として<ruby>記録<rt>きろく</rt></ruby>される', '<ruby>失格<rt>しっかく</rt></ruby>（DSQ）になる', '<ruby>次<rt>つぎ</rt></ruby>のレースに<ruby>出場停止<rt>しゅつじょうていし</rt></ruby>'],
+    options_en: ['Nothing happens', 'Recorded as a warning', 'Disqualified (DSQ)', 'Excluded from the next race'],
+    answer: 2,
+    explain: '3<ruby>回目<rt>かいめ</rt></ruby>の<ruby>笛<rt>ふえ</rt></ruby>を<ruby>無視<rt>むし</rt></ruby>すると<ruby>失格<rt>しっかく</rt></ruby>（DSQ）。3<ruby>回目<rt>かいめ</rt></ruby>の<ruby>後<rt>あと</rt></ruby>にリタイアしてもDSQは<ruby>免<rt>まぬか</rt></ruby>れない。DSQはDNFより<ruby>点数<rt>てんすう</rt></ruby>が<ruby>悪<rt>わる</rt></ruby>くなる。',
+    explain_en: 'Ignoring the third whistle results in disqualification (DSQ). Even retiring after the third whistle will not avoid DSQ. DSQ scores worse than DNF.'
+  },
+  {
+    cat: 'rule',
+    q: '<ruby>上<rt>かみ</rt></ruby>マークに<ruby>接触<rt>せっしょく</rt></ruby>したあと、360<ruby>度回転<rt>どかいてん</rt></ruby><ruby>中<rt>ちゅう</rt></ruby>に<ruby>他艇<rt>たてい</rt></ruby>と<ruby>接触<rt>せっしょく</rt></ruby>しプロテストされた。どうする？',
+    q_en: 'After touching the windward mark, you contacted another boat during your 360° penalty turn and were protested. What should you do?',
+    options: ['すぐに<ruby>回転<rt>かいてん</rt></ruby>を<ruby>止<rt>と</rt></ruby>めてリタイアする', '<ruby>現在<rt>げんざい</rt></ruby>の<ruby>回転<rt>かいてん</rt></ruby>を<ruby>完了<rt>かんりょう</rt></ruby>してから<ruby>追加<rt>ついか</rt></ruby>でもう1<ruby>回<rt>かい</rt></ruby>360<ruby>度回転<rt>どかいてん</rt></ruby>する', '<ruby>回転中<rt>かいてんちゅう</rt></ruby>の<ruby>接触<rt>せっしょく</rt></ruby>はペナルティ<ruby>免除<rt>めんじょ</rt></ruby>なので<ruby>何<rt>なに</rt></ruby>もしない', '<ruby>審問<rt>しんもん</rt></ruby>を<ruby>待<rt>ま</rt></ruby>つだけでよい'],
+    options_en: ['Stop immediately and retire', 'Complete the current turn, then take one additional 360° turn', 'No action — contact during a penalty turn is exempt', 'Just wait for the protest hearing'],
+    answer: 1,
+    explain: 'ペナルティ<ruby>中<rt>ちゅう</rt></ruby>（360<ruby>度回転<rt>どかいてん</rt></ruby><ruby>中<rt>ちゅう</rt></ruby>）にさらに<ruby>他艇<rt>たてい</rt></ruby>と<ruby>接触<rt>せっしょく</rt></ruby>した<ruby>場合<rt>ばあい</rt></ruby>は、<ruby>現在<rt>げんざい</rt></ruby>の<ruby>回転<rt>かいてん</rt></ruby>を<ruby>完了<rt>かんりょう</rt></ruby>してから<ruby>追加<rt>ついか</rt></ruby>でもう1<ruby>回<rt>かい</rt></ruby>360<ruby>度回転<rt>どかいてん</rt></ruby>を<ruby>行<rt>おこな</rt></ruby>う（RRS 44.2）。',
+    explain_en: 'If you foul another boat while taking a penalty turn, complete the current turn and then take one additional 360° penalty turn (RRS 44.2).'
+  },
+  {
+    cat: 'rule',
+    q: '<ruby>他艇<rt>たてい</rt></ruby>とスターボーポートで<ruby>接触<rt>せっしょく</rt></ruby>し、「プロテスト」とコールしたが、フィニッシュ<ruby>艇<rt>てい</rt></ruby>にプロテストしたことを<ruby>伝<rt>つた</rt></ruby>えるのを<ruby>忘<rt>わす</rt></ruby>れた。どうなる？',
+    q_en: 'After a starboard-port incident you hailed "Protest" to the other boat, but forgot to inform the finish boat when crossing the line. What happens?',
+    options: ['プロテストは<ruby>有効<rt>ゆうこう</rt></ruby>（<ruby>伝<rt>つた</rt></ruby>えなくても<ruby>問題<rt>もんだい</rt></ruby>ない）', 'プロテストが<ruby>無効<rt>むこう</rt></ruby>になる<ruby>可能性<rt>かのうせい</rt></ruby>がある', '<ruby>相手艇<rt>あいててい</rt></ruby>に<ruby>自動的<rt>じどうてき</rt></ruby>に<ruby>免除<rt>めんじょ</rt></ruby>が<ruby>与<rt>あた</rt></ruby>えられる', '<ruby>自分<rt>じぶん</rt></ruby>が<ruby>失格<rt>しっかく</rt></ruby>になる'],
+    options_en: ['Protest is valid (no need to inform finish boat)', 'The protest may be declared invalid', 'The other boat is automatically exonerated', 'You are disqualified'],
+    answer: 1,
+    explain: 'RRS 61.1(a)により、プロテスト<ruby>艇<rt>てい</rt></ruby>はフィニッシュ<ruby>時<rt>じ</rt></ruby>またはその<ruby>最初<rt>さいしょ</rt></ruby>の<ruby>機会<rt>きかい</rt></ruby>にレース<ruby>委員会<rt>いいんかい</rt></ruby>（フィニッシュ<ruby>艇<rt>てい</rt></ruby>）へ<ruby>通知<rt>つうち</rt></ruby>する<ruby>義務<rt>ぎむ</rt></ruby>がある。<ruby>忘<rt>わす</rt></ruby>れるとプロテストが<ruby>無効<rt>むこう</rt></ruby>と<ruby>判断<rt>はんだん</rt></ruby>されることがある。',
+    explain_en: 'Under RRS 61.1(a), the protesting boat must notify the race committee (finish boat) upon finishing or at the first reasonable opportunity. Failing to do so may result in the protest being declared invalid.'
+  },
+  {
+    cat: 'rule',
+    q: '<ruby>本船<rt>ほんせん</rt></ruby>、マークボートなどの<ruby>運営艇<rt>うんえいてい</rt></ruby>は<ruby>証人<rt>しょうにん</rt></ruby>になれる？',
+    q_en: 'Can race committee boats such as the committee boat or mark boats act as witnesses in a protest hearing?',
+    options: ['できない（<ruby>運営艇<rt>うんえいてい</rt></ruby>は<ruby>証人<rt>しょうにん</rt></ruby>になれない）', 'できる（<ruby>観察<rt>かんさつ</rt></ruby>した<ruby>内容<rt>ないよう</rt></ruby>を<ruby>証言<rt>しょうげん</rt></ruby>できる）', 'できるが、<ruby>証言<rt>しょうげん</rt></ruby>は<ruby>参考<rt>さんこう</rt></ruby>にしかならない', 'できるが、<ruby>両艇<rt>りょうてい</rt></ruby>の<ruby>同意<rt>どうい</rt></ruby>が<ruby>必要<rt>ひつよう</rt></ruby>'],
+    options_en: ['No — race committee boats cannot be witnesses', 'Yes — they can testify about what they observed', 'Yes, but their testimony is advisory only', 'Yes, but both boats must consent'],
+    answer: 1,
+    explain: '<ruby>本船<rt>ほんせん</rt></ruby>・マークボートなどの<ruby>運営艇<rt>うんえいてい</rt></ruby>も<ruby>目撃<rt>もくげき</rt></ruby>した<ruby>内容<rt>ないよう</rt></ruby>を<ruby>審問<rt>しんもん</rt></ruby>で<ruby>証言<rt>しょうげん</rt></ruby>できる。<ruby>中立的<rt>ちゅうりつてき</rt></ruby>な<ruby>立場<rt>たちば</rt></ruby>として、その<ruby>証言<rt>しょうげん</rt></ruby>は<ruby>重要視<rt>じゅうようし</rt></ruby>される。',
+    explain_en: 'Race committee boats (committee boat, mark boat, etc.) may testify in a protest hearing about what they observed. As neutral parties, their testimony carries significant weight.'
+  },
+  {
+    cat: 'rule',
+    q: 'スタートと1マークの<ruby>間<rt>あいだ</rt></ruby>に2マークがあり、<ruby>接触<rt>せっしょく</rt></ruby>したが360<ruby>度回転<rt>どかいてん</rt></ruby>のペナルティを<ruby>履行<rt>りこう</rt></ruby>しなかった。どうなる？',
+    q_en: 'Mark 2 was placed between the start and mark 1. You touched it but did not take a 360° penalty turn. What happens?',
+    options: ['<ruby>失格<rt>しっかく</rt></ruby>になる', 'ペナルティは<ruby>不要<rt>ふよう</rt></ruby>（<ruby>現在<rt>げんざい</rt></ruby>のレグのコースマークでないため）', '360<ruby>度回転<rt>どかいてん</rt></ruby>のペナルティが<ruby>必要<rt>ひつよう</rt></ruby>', '<ruby>他艇<rt>たてい</rt></ruby>からプロテストされる'],
+    options_en: ['You are disqualified', 'No penalty required — it is not a mark bounding the current leg', 'A 360° penalty turn is required', 'You can be protested by other boats'],
+    answer: 1,
+    explain: 'RRS 31により、ペナルティが<ruby>発生<rt>はっせい</rt></ruby>するのは「<ruby>現在<rt>げんざい</rt></ruby><ruby>帆走<rt>はんそう</rt></ruby>しているレグの<ruby>始点<rt>してん</rt></ruby>・<ruby>境界<rt>きょうかい</rt></ruby>・<ruby>終点<rt>しゅうてん</rt></ruby>となるマーク」に<ruby>接触<rt>せっしょく</rt></ruby>した<ruby>場合<rt>ばあい</rt></ruby>のみ。スタート→1マーク<ruby>間<rt>あいだ</rt></ruby>の<ruby>帆走中<rt>はんそうちゅう</rt></ruby>に2マークは<ruby>該当<rt>がいとう</rt></ruby>しないのでペナルティ<ruby>不要<rt>ふよう</rt></ruby>。',
+    explain_en: 'Under RRS Rule 31, a penalty is only required when touching a mark that begins, bounds, or ends the leg currently being sailed. During the start-to-mark-1 leg, mark 2 is not such a mark, so no penalty is needed.'
+  },
+
   // ===== 旗（テキスト）13問 =====
   {
     cat: 'flag',
@@ -1647,7 +1719,7 @@ const quizData = [
   {
     cat: 'flag',
     q: 'S<ruby>旗<rt>き</rt></ruby>の「S」をフォネティックコードで<ruby>読<rt>よ</rt></ruby>むと？',
-    options: ['サンライズ', 'サムライ', 'シエラ', 'ストップ'],
+    options: ['サンライズ', 'サムライ', 'シエラ（Sierra）', 'ストップ'],
     answer: 2,
     explain: 'S＝シエラ（Sierra）。コース<ruby>短縮<rt>たんしゅく</rt></ruby>のS<ruby>旗<rt>き</rt></ruby>。'
   },
@@ -2416,28 +2488,28 @@ const quizData = [
   {
     cat: 'parts',
     q: 'セールの<ruby>3<rt>さん</rt></ruby>つの<ruby>角<rt>かど</rt></ruby>のうち、ブームの<ruby>後端<rt>こうたん</rt></ruby>（リーチとフットの<ruby>交点<rt>こうてん</rt></ruby>）の<ruby>名前<rt>なまえ</rt></ruby>は？',
-    options: ['ヘッド', 'タック', 'クリュー', 'スロート'],
+    options: ['ヘッド（head）', 'タック（tack）', 'クリュー（clew）', 'スロート（throat）'],
     answer: 2,
     explain: 'クリュー（clew）＝リーチとフットの<ruby>交点<rt>こうてん</rt></ruby>（ブーム<ruby>後端<rt>こうたん</rt></ruby>）。アウトホールでブームに<ruby>引<rt>ひ</rt></ruby>っ<ruby>張<rt>ぱ</rt></ruby>る<ruby>場所<rt>ばしょ</rt></ruby>。'
   },
   {
     cat: 'parts',
     q: 'セールの<ruby>角<rt>かど</rt></ruby>のうち、ラフとフットの<ruby>交点<rt>こうてん</rt></ruby>（マスト<ruby>下<rt>した</rt></ruby>・ブーム<ruby>前端<rt>ぜんたん</rt></ruby>）の<ruby>名前<rt>なまえ</rt></ruby>は？',
-    options: ['ヘッド', 'タック', 'クリュー', 'スロート'],
+    options: ['クリュー（clew）', 'タック（tack）', 'スロート（throat）', 'ヘッド（head）'],
     answer: 1,
     explain: 'タック（tack）＝ラフとフットの<ruby>交点<rt>こうてん</rt></ruby>（マスト<ruby>下<rt>した</rt></ruby>のブーム<ruby>前端<rt>ぜんたん</rt></ruby>）。ここをマストに<ruby>固定<rt>こてい</rt></ruby>する。'
   },
   {
     cat: 'parts',
     q: 'セールの<ruby>一番上<rt>いちばんうえ</rt></ruby>（ピーク／<ruby>頂点<rt>ちょうてん</rt></ruby>）の<ruby>名前<rt>なまえ</rt></ruby>は？',
-    options: ['ヘッド', 'タック', 'クリュー', 'スロート'],
+    options: ['ヘッド（head）', 'クリュー（clew）', 'スロート（throat）', 'タック（tack）'],
     answer: 0,
     explain: 'ヘッド（head）＝セールの<ruby>頂点<rt>ちょうてん</rt></ruby>。スプリットで<ruby>支<rt>ささ</rt></ruby>えられる<ruby>部分<rt>ぶぶん</rt></ruby>。'
   },
   {
     cat: 'parts',
     q: 'セールのマスト<ruby>側<rt>がわ</rt></ruby>の<ruby>上<rt>うえ</rt></ruby>の<ruby>角<rt>かど</rt></ruby>（ラフの<ruby>上端<rt>じょうたん</rt></ruby>）の<ruby>名前<rt>なまえ</rt></ruby>は？',
-    options: ['ヘッド', 'スロート', 'クリュー', 'タック'],
+    options: ['ヘッド（head）', 'スロート（throat）', 'クリュー（clew）', 'タック（tack）'],
     answer: 1,
     explain: 'スロート（throat）＝セールのマスト<ruby>側<rt>がわ</rt></ruby>の<ruby>上<rt>うえ</rt></ruby>の<ruby>角<rt>かど</rt></ruby>（ラフ<ruby>上端<rt>じょうたん</rt></ruby>）。ヘッド（<ruby>頂点<rt>ちょうてん</rt></ruby>）とは<ruby>別<rt>べつ</rt></ruby>の<ruby>角<rt>かど</rt></ruby>で、スプリットの<ruby>上端<rt>じょうたん</rt></ruby>はヘッドに<ruby>付<rt>つ</rt></ruby>く。'
   },
