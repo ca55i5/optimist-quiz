@@ -525,6 +525,7 @@
   </main>
 </div>
 
+<script src="config.js"></script>
 <script>
 // ===== i18n（多言語）辞書 =====
 const i18n = {
@@ -554,6 +555,7 @@ const i18n = {
     namePlaceholder: 'ニックネーム',
     saveRecord: '記録する',
     saved: '✓ 記録した！',
+    cloudSaveFailed: 'クラウド保存に失敗しました。通信状況を確認して再度お試しください。',
     rankAll: '🏆 全問',
     rankRandom10: '🎲 10問',
     rankRandom50: '🎲 50問',
@@ -603,6 +605,7 @@ const i18n = {
     namePlaceholder: 'Nickname',
     saveRecord: 'Save',
     saved: '✓ Saved!',
+    cloudSaveFailed: 'Cloud save failed. Check your connection and try again.',
     rankAll: '🏆 All',
     rankRandom10: '🎲 10Q',
     rankRandom50: '🎲 50Q',
@@ -629,6 +632,22 @@ const i18n = {
 };
 
 let currentLang = 'ja';
+function normalizeLang(lang) {
+  return lang === 'en' ? 'en' : 'ja';
+}
+function getLangFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const lang = params.get('lang');
+  if (!lang) return null;
+  return normalizeLang(lang.toLowerCase());
+}
+function updateLangUrl(lang) {
+  const next = normalizeLang(lang);
+  const url = new URL(window.location.href);
+  if (next === 'ja') url.searchParams.delete('lang');
+  else url.searchParams.set('lang', 'en');
+  history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
+}
 const t = (key, vars = {}) => {
   let s = i18n[currentLang][key] || i18n.ja[key] || key;
   Object.keys(vars).forEach(k => { s = s.replace(`{${k}}`, vars[k]); });
@@ -3301,7 +3320,157 @@ const state = { current: 0, score: 0, history: [], questions: [], mode: null };
 
 // ===== ランキング機能 =====
 const RANKING_KEY = 'optimist-quiz-ranking-v2';
+const LEGACY_RANKING_KEY = 'optimist-quiz-ranking-v1';
 const NAME_KEY = 'optimist-quiz-last-name';
+const RANKING_MIGRATION_DONE_KEY = 'optimist-quiz-ranking-migrated-v1';
+const RANKING_DISPLAY_LIMIT_DEFAULT = 30;
+const RANKING_DISPLAY_LIMIT_ALL = 100;
+const CLOUD_CONFIG = window.OPTIMIST_QUIZ_CONFIG || {};
+const FIREBASE_DB_URL_RAW = CLOUD_CONFIG.firebaseDatabaseUrl || '';
+const SUPABASE_URL = CLOUD_CONFIG.supabaseUrl || '';
+const SUPABASE_ANON_KEY = CLOUD_CONFIG.supabaseAnonKey || '';
+const CLOUD_ONLY_RANKING = CLOUD_CONFIG.cloudOnlyRanking !== false;
+const SUPABASE_TABLE = 'quiz_rankings';
+
+function normalizeFirebaseDbUrl(url) {
+  const trimmed = String(url || '').trim();
+  if (!trimmed) return '';
+  const noJson = trimmed.replace(/\.json$/i, '');
+  return noJson.endsWith('/') ? noJson.slice(0, -1) : noJson;
+}
+
+const FIREBASE_DB_URL = normalizeFirebaseDbUrl(FIREBASE_DB_URL_RAW);
+const CLOUD_BACKEND = FIREBASE_DB_URL
+  ? 'firebase'
+  : (SUPABASE_URL && SUPABASE_ANON_KEY ? 'supabase' : 'none');
+
+function getRankingDisplayLimit(bucket) {
+  return bucket === 'all' ? RANKING_DISPLAY_LIMIT_ALL : RANKING_DISPLAY_LIMIT_DEFAULT;
+}
+function isCloudRankingEnabled() {
+  return CLOUD_BACKEND !== 'none';
+}
+function shouldUseCloudOnlyRanking() {
+  return isCloudRankingEnabled() && CLOUD_ONLY_RANKING;
+}
+
+function readLocalRankingAll() {
+  const current = JSON.parse(localStorage.getItem(RANKING_KEY) || '[]');
+  const legacy = JSON.parse(localStorage.getItem(LEGACY_RANKING_KEY) || '[]');
+  const merged = [...current, ...legacy];
+  const seen = new Set();
+  return merged.filter(r => {
+    const key = [r.mode, r.bucket, r.score, r.total, r.pct, r.name, r.date].join('|');
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+function localSaveRanking(mode, score, total, name) {
+  const ranking = readLocalRankingAll();
+  const pct = Math.round(score / total * 1000) / 10;
+  const bucket = getRankingBucket(mode);
+  const entry = { mode, bucket, score, total, pct, name: name || 'NoName', date: new Date().toISOString() };
+  ranking.push(entry);
+  ranking.sort((a, b) => b.pct - a.pct || b.score - a.score);
+  localStorage.setItem(RANKING_KEY, JSON.stringify(ranking));
+  localStorage.removeItem(LEGACY_RANKING_KEY);
+  const sameBucket = ranking.filter(r => r.bucket === bucket).sort((a, b) => b.pct - a.pct || b.score - a.score);
+  return sameBucket.findIndex(r => r === entry) + 1;
+}
+function localGetRanking(bucket = null) {
+  const all = readLocalRankingAll();
+  if (!bucket) return all;
+  return all.filter(r => r.bucket === bucket);
+}
+
+async function fetchCloudRanking(bucket = null) {
+  if (CLOUD_BACKEND === 'firebase') {
+    const endpoint = `${FIREBASE_DB_URL}/${SUPABASE_TABLE}.json`;
+    const res = await fetch(endpoint, { method: 'GET' });
+    if (!res.ok) throw new Error(`firebase ranking fetch failed: ${res.status}`);
+    const data = await res.json();
+    const rows = Object.values(data || {}).map(r => ({
+      mode: r.mode,
+      bucket: r.bucket,
+      score: Number(r.score),
+      total: Number(r.total),
+      pct: Number(r.pct),
+      name: r.name,
+      date: r.played_at || r.date || ''
+    })).filter(r => r.mode && r.bucket && Number.isFinite(r.score) && Number.isFinite(r.total) && Number.isFinite(r.pct));
+    const filtered = bucket ? rows.filter(r => r.bucket === bucket) : rows;
+    filtered.sort((a, b) => b.pct - a.pct || b.score - a.score || String(b.date).localeCompare(String(a.date)));
+    return filtered.slice(0, 200);
+  }
+  if (CLOUD_BACKEND !== 'supabase') throw new Error('cloud ranking backend is not configured');
+  const params = [
+    'select=mode,bucket,score,total,pct,name,played_at',
+    'order=pct.desc,score.desc,played_at.desc',
+    'limit=200'
+  ];
+  if (bucket) params.push(`bucket=eq.${encodeURIComponent(bucket)}`);
+  const endpoint = `${SUPABASE_URL}/rest/v1/${SUPABASE_TABLE}?${params.join('&')}`;
+  const res = await fetch(endpoint, {
+    method: 'GET',
+    headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${SUPABASE_ANON_KEY}` }
+  });
+  if (!res.ok) throw new Error(`cloud ranking fetch failed: ${res.status}`);
+  const rows2 = await res.json();
+  return rows2.map(r => ({
+    mode: r.mode, bucket: r.bucket, score: Number(r.score), total: Number(r.total),
+    pct: Number(r.pct), name: r.name, date: r.played_at
+  }));
+}
+
+async function saveCloudRanking(entry) {
+  if (CLOUD_BACKEND === 'firebase') {
+    const endpoint = `${FIREBASE_DB_URL}/${SUPABASE_TABLE}.json`;
+    const res = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ mode: entry.mode, bucket: entry.bucket, score: entry.score,
+        total: entry.total, pct: entry.pct, name: entry.name, played_at: entry.date })
+    });
+    if (!res.ok) throw new Error(`firebase ranking save failed: ${res.status}`);
+    return;
+  }
+  if (CLOUD_BACKEND !== 'supabase') throw new Error('cloud ranking backend is not configured');
+  const endpoint = `${SUPABASE_URL}/rest/v1/${SUPABASE_TABLE}`;
+  const res = await fetch(endpoint, {
+    method: 'POST',
+    headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+      'Content-Type': 'application/json', Prefer: 'return=minimal' },
+    body: JSON.stringify([{ mode: entry.mode, bucket: entry.bucket, score: entry.score,
+      total: entry.total, pct: entry.pct, name: entry.name, played_at: entry.date }])
+  });
+  if (!res.ok) throw new Error(`cloud ranking save failed: ${res.status}`);
+}
+
+async function migrateLocalRankingToCloudIfNeeded() {
+  if (!isCloudRankingEnabled()) return;
+  if (localStorage.getItem(RANKING_MIGRATION_DONE_KEY) === '1') return;
+  const localRanking = localGetRanking();
+  if (!localRanking.length) {
+    localStorage.setItem(RANKING_MIGRATION_DONE_KEY, '1');
+    return;
+  }
+  try {
+    for (const r of localRanking) {
+      const entry = {
+        mode: r.mode, bucket: r.bucket || getRankingBucket(r.mode),
+        score: Number(r.score), total: Number(r.total), pct: Number(r.pct),
+        name: r.name || 'NoName', date: r.date || new Date().toISOString()
+      };
+      await saveCloudRanking(entry);
+    }
+    localStorage.removeItem(RANKING_KEY);
+    localStorage.setItem(RANKING_MIGRATION_DONE_KEY, '1');
+  } catch (err) {
+    console.warn('Cloud migration failed. Keep local ranking data.', err);
+  }
+}
+
 function getRankingBucket(mode) {
   if (mode === 'all') return 'all';
   if (mode === 'random10' || mode === 'random') return 'random10';
@@ -3309,25 +3478,40 @@ function getRankingBucket(mode) {
   if (mode === 'random100') return 'random100';
   return 'cat:' + mode;
 }
-function saveRanking(mode, score, total, name) {
-  const ranking = JSON.parse(localStorage.getItem(RANKING_KEY) || '[]');
-  const pct = Math.round(score / total * 1000) / 10; // 小数点1桁
+async function saveRanking(mode, score, total, name) {
+  const pct = Math.round(score / total * 1000) / 10;
   const bucket = getRankingBucket(mode);
   const entry = { mode, bucket, score, total, pct, name: name || 'NoName', date: new Date().toISOString() };
-  ranking.push(entry);
-  ranking.sort((a, b) => b.pct - a.pct || b.score - a.score);
-  localStorage.setItem(RANKING_KEY, JSON.stringify(ranking.slice(0, 200)));
-  // 自分の順位を返す（同バケット内）
-  const sameBucket = ranking.filter(r => r.bucket === bucket).sort((a,b) => b.pct - a.pct || b.score - a.score);
-  return sameBucket.findIndex(r => r === entry) + 1;
+  if (!isCloudRankingEnabled()) return localSaveRanking(mode, score, total, name);
+  try {
+    await saveCloudRanking(entry);
+    const sameBucket = await fetchCloudRanking(bucket);
+    return sameBucket.findIndex(r => r.date === entry.date && r.name === entry.name && r.score === entry.score && r.total === entry.total) + 1;
+  } catch (err) {
+    if (shouldUseCloudOnlyRanking()) {
+      console.warn('Cloud ranking save failed. Cloud-only mode keeps data off localStorage.', err);
+      return 0;
+    }
+    console.warn('Cloud ranking save failed. Fallback to localStorage.', err);
+    return localSaveRanking(mode, score, total, name);
+  }
 }
-function getRanking(bucket = null) {
-  const all = JSON.parse(localStorage.getItem(RANKING_KEY) || '[]');
-  if (!bucket) return all;
-  return all.filter(r => r.bucket === bucket);
+async function getRanking(bucket = null) {
+  if (!isCloudRankingEnabled()) return localGetRanking(bucket);
+  try {
+    return await fetchCloudRanking(bucket);
+  } catch (err) {
+    if (shouldUseCloudOnlyRanking()) {
+      console.warn('Cloud ranking fetch failed. Cloud-only mode does not read localStorage.', err);
+      return [];
+    }
+    console.warn('Cloud ranking fetch failed. Fallback to localStorage.', err);
+    return localGetRanking(bucket);
+  }
 }
 function clearRankingData() {
   localStorage.removeItem(RANKING_KEY);
+  localStorage.removeItem(LEGACY_RANKING_KEY);
 }
 function getLastName() {
   return localStorage.getItem(NAME_KEY) || '';
@@ -3391,7 +3575,7 @@ function shuffleOptions(q) {
   };
 }
 
-function renderStart() {
+async function renderStart() {
   startScreen.classList.remove('hidden');
   quizScreen.classList.add('hidden');
   resultScreen.classList.add('hidden');
@@ -3445,13 +3629,20 @@ function renderStart() {
   const rankBtn = document.createElement('button');
   rankBtn.className = 'cat-btn all';
   rankBtn.style.background = 'linear-gradient(135deg, #f4b400 0%, #d99500 100%)';
-  rankBtn.innerHTML = `<span class="emoji">🏆</span>${t('ranking')}<span class="count">${getRanking().length} records</span>`;
+  rankBtn.innerHTML = `<span class="emoji">🏆</span>${t('ranking')}<span class="count">...</span>`;
   rankBtn.onclick = renderRanking;
   catGrid.appendChild(rankBtn);
+
+  try {
+    const count = (await getRanking()).length;
+    rankBtn.innerHTML = `<span class="emoji">🏆</span>${t('ranking')}<span class="count">${count} records</span>`;
+  } catch {
+    rankBtn.innerHTML = `<span class="emoji">🏆</span>${t('ranking')}<span class="count">0 records</span>`;
+  }
 }
 
 let currentRankingBucket = 'all';
-function renderRanking() {
+async function renderRanking() {
   startScreen.classList.add('hidden');
   quizScreen.classList.add('hidden');
   resultScreen.classList.add('hidden');
@@ -3482,12 +3673,14 @@ function renderRanking() {
   });
 
   const list = document.getElementById('ranking-list');
-  const ranking = getRanking(currentRankingBucket);
+  list.innerHTML = `<div class="ranking-empty">Loading...</div>`;
+  const ranking = await getRanking(currentRankingBucket);
   if (ranking.length === 0) {
     list.innerHTML = `<div class="ranking-empty">${t('noRanking')}</div>`;
     return;
   }
-  list.innerHTML = ranking.slice(0, 20).map((r, i) => {
+  const displayLimit = getRankingDisplayLimit(currentRankingBucket);
+  list.innerHTML = ranking.slice(0, displayLimit).map((r, i) => {
     const rank = i + 1;
     const rankClass = rank === 1 ? 'top1' : rank === 2 ? 'top2' : rank === 3 ? 'top3' : '';
     const medal = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : rank;
@@ -3634,14 +3827,21 @@ function quitToHome() {
 
 // 言語切替
 function switchLang(lang) {
-  if (lang === currentLang) return;
-  currentLang = lang;
-  document.body.classList.toggle('lang-en', lang === 'en');
+  const nextLang = normalizeLang(lang);
+  const changed = nextLang !== currentLang;
+  currentLang = nextLang;
+
+  document.documentElement.lang = currentLang;
+  document.body.classList.toggle('lang-en', currentLang === 'en');
   document.querySelectorAll('.lang-btn').forEach(b => {
-    b.classList.toggle('active', b.dataset.lang === lang);
+    b.classList.toggle('active', b.dataset.lang === currentLang);
   });
+  updateLangUrl(currentLang);
+
+  if (!changed) return;
   // 現在の画面を再描画
   if (!quizScreen.classList.contains('hidden')) renderQuestion();
+  else if (!rankingScreen.classList.contains('hidden')) renderRanking();
   else if (!resultScreen.classList.contains('hidden')) showResult();
   else renderStart();
 }
@@ -3654,26 +3854,37 @@ document.getElementById('ranking-home').addEventListener('click', renderStart);
 
 
 // 記録するボタン
-document.getElementById('save-record-btn').addEventListener('click', () => {
+document.getElementById('save-record-btn').addEventListener('click', async () => {
   const nameInput = document.getElementById('name-input');
   const name = nameInput.value.trim() || 'NoName';
   setLastName(name);
-  const rank = saveRanking(state.mode, state.score, state.questions.length, name);
+  const saveBtn = document.getElementById('save-record-btn');
+  saveBtn.disabled = true;
+  const rank = await saveRanking(state.mode, state.score, state.questions.length, name);
   const newRecordArea = document.getElementById('new-record-area');
-  if (rank <= 3) {
+  if (rank === 0) {
+    newRecordArea.innerHTML = `<div class="new-record-badge">${t('cloudSaveFailed')}</div>`;
+  } else if (rank <= 3) {
     const medal = rank === 1 ? '🥇' : rank === 2 ? '🥈' : '🥉';
     newRecordArea.innerHTML = `<div class="new-record-badge">${medal} ${t('newRecord')} (${rank})</div>`;
   }
   document.getElementById('name-input-area').classList.remove('show');
-  // 「記録した」確認
-  const btn = document.getElementById('save-record-btn');
-  btn.textContent = t('saved');
+  saveBtn.textContent = t('saved');
+  saveBtn.disabled = false;
 });
 document.querySelectorAll('.lang-btn').forEach(btn => {
   btn.addEventListener('click', () => switchLang(btn.dataset.lang));
 });
 
-renderStart();
+window.addEventListener('popstate', () => {
+  switchLang(getLangFromUrl() || 'ja');
+});
+
+(async () => {
+  switchLang(getLangFromUrl() || 'ja');
+  await migrateLocalRankingToCloudIfNeeded();
+  await renderStart();
+})();
 </script>
 </body>
 </html>
